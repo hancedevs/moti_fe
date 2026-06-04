@@ -191,7 +191,7 @@ export default function Header() {
               { label: "Our Leadership Team", href: "/about#leadership" },
               { label: "Certifications & Awards", href: "/about#awards" },
             ]} onNavigate={handleSmoothNavigation} />
-            <NavItem href="#projects" label="Projects" onNavigate={handleSmoothNavigation} />
+            <NavItem href="/projects" label="Projects" onNavigate={handleSmoothNavigation} />
             <NavItem href="#testimonials" label="Testimonial" dropdownItems={[{ label: "Client Feedback", href: "#testimonials" }]} onNavigate={handleSmoothNavigation} />
             <NavItem href="#services" label="Our Services" dropdownItems={[{ label: "View Services", href: "#services" }]} onNavigate={handleSmoothNavigation} />
             <NavItem href="#news" label="News & Media" dropdownItems={[{ label: "Latest Updates", href: "#news" }]} onNavigate={handleSmoothNavigation} />
@@ -312,7 +312,7 @@ export default function Header() {
             )}
           </div>
 
-          <Link href="#projects" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#projects", true)}>Projects</Link>
+          <Link href="/projects" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>Projects</Link>
           <Link href="#testimonials" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#testimonials", true)}>Testimonial</Link>
           <Link href="#services" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#services", true)}>Our Services</Link>
           <Link href="#news" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#news", true)}>News & Media</Link>

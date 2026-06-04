@@ -26,6 +26,77 @@ export interface ProjectCategory {
   updatedAt: string;
 }
 
+export interface ProjectCategoryWithCount extends ProjectCategory {
+  _count: { projects: number };
+}
+
+export interface ProjectsQueryParams {
+  page?: number;
+  limit?: number;
+  categoryId?: number;
+  id?: number;
+}
+
+function unwrapProject(response: unknown): Project {
+  if (!response || typeof response !== "object") {
+    throw new Error("Invalid project response");
+  }
+
+  const record = response as Record<string, unknown>;
+
+  if (record.data && typeof record.data === "object" && record.data !== null) {
+    return record.data as Project;
+  }
+
+  if (typeof record.id === "number" && typeof record.title === "string") {
+    return record as unknown as Project;
+  }
+
+  throw new Error("Invalid project response");
+}
+
+export interface PaginatedProjectsMeta {
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}
+
+export interface PaginatedProjectsResult {
+  items: Project[];
+  meta: PaginatedProjectsMeta;
+}
+
+type ProjectsApiResponse = {
+  data: Project[];
+  meta?: Partial<PaginatedProjectsMeta> & {
+    lastPage?: number;
+  };
+  pagination?: Partial<PaginatedProjectsMeta> & {
+    lastPage?: number;
+  };
+};
+
+function normalizePaginatedProjects(
+  response: ProjectsApiResponse,
+  params: ProjectsQueryParams
+): PaginatedProjectsResult {
+  const items = response.data;
+  const raw = response.meta ?? response.pagination ?? {};
+  const limit = raw.limit ?? params.limit ?? (items.length || 1);
+  const page = raw.page ?? params.page ?? 1;
+  const total = raw.total ?? items.length;
+  const totalPages =
+    raw.totalPages ??
+    raw.lastPage ??
+    (limit > 0 ? Math.max(1, Math.ceil(total / limit)) : 1);
+
+  return {
+    items,
+    meta: { total, page, limit, totalPages },
+  };
+}
+
 export interface ProjectClient {
   id: number;
   name: string;
@@ -56,7 +127,7 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_API_URL,
   }),
-  tagTypes: ["Testimonials", "Projects"],
+  tagTypes: ["Testimonials", "Projects", "Categories"],
   endpoints: (builder) => ({
     getTestimonials: builder.query<Testimonial[], void>({
       query: () => "/testimonials",
@@ -68,7 +139,46 @@ export const apiSlice = createApi({
       providesTags: ["Projects"],
       transformResponse: (response: { data: Project[] }) => response.data,
     }),
+    getProjectCategories: builder.query<ProjectCategoryWithCount[], void>({
+      query: () => "/project-categories",
+      providesTags: ["Categories"],
+      transformResponse: (response: { data: ProjectCategoryWithCount[] }) =>
+        response.data,
+    }),
+    getPaginatedProjects: builder.query<
+      PaginatedProjectsResult,
+      ProjectsQueryParams
+    >({
+      query: ({ page = 1, limit = 9, categoryId, id }) => {
+        const params = new URLSearchParams();
+        params.set("page", String(page));
+        params.set("limit", String(limit));
+        if (categoryId != null) {
+          params.set("categoryId", String(categoryId));
+        }
+        if (id != null) {
+          params.set("id", String(id));
+        }
+        return `/projects?${params.toString()}`;
+      },
+      providesTags: ["Projects"],
+      transformResponse: (response: ProjectsApiResponse, _meta, arg) =>
+        normalizePaginatedProjects(response, arg),
+    }),
+    getProjectById: builder.query<Project, number>({
+      query: (id) => `/projects/${id}`,
+      providesTags: (_result, _error, id) => [{ type: "Projects", id: String(id) }],
+      transformResponse: (response: unknown) => unwrapProject(response),
+    }),
   }),
 });
 
-export const { useGetTestimonialsQuery, useGetProjectsQuery } = apiSlice;
+export const {
+  useGetTestimonialsQuery,
+  useGetProjectsQuery,
+  useGetProjectCategoriesQuery,
+  useGetPaginatedProjectsQuery,
+  useGetProjectByIdQuery,
+} = apiSlice;
+
+export const PROJECTS_PAGE_SIZE = 9;
