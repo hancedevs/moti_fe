@@ -20,6 +20,7 @@ export type PageHeroProps = {
   primaryCta: { href: string; label: string };
   secondaryCta: { href: string; label: string };
   stats: PageHeroStat[];
+  headingHighlightClassName?: string;
 };
 
 function ArrowIcon() {
@@ -47,6 +48,7 @@ export default function PageHero({
   primaryCta,
   secondaryCta,
   stats,
+  headingHighlightClassName = "text-blue-500",
 }: PageHeroProps) {
   return (
     <section className="relative w-full bg-gray-900 py-12 sm:py-14 lg:py-16 flex items-center overflow-hidden">
@@ -71,7 +73,7 @@ export default function PageHero({
 
           <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-[2.65rem] leading-tight mb-3">
             {headingBefore}{" "}
-            <span className="text-blue-500">{headingHighlight}</span>
+            <span className={headingHighlightClassName}>{headingHighlight}</span>
           </h1>
 
           <p className="text-sm sm:text-base text-gray-300 leading-relaxed max-w-3xl mb-5">

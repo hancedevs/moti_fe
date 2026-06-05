@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import AnimateInView from "@/components/ui/AnimateInView";
 
 type CardContent = {
   title: string;
@@ -319,7 +320,7 @@ export default function ProductsSection() {
   return (
     <section id="products" className="py-12 lg:py-20 bg-[#f8f9fb]">
       <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-8 lg:mb-16">
+        <AnimateInView className="text-center mb-8 lg:mb-16">
           <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-blue-50/60 text-gray-900 font-semibold tracking-wider text-[10px] uppercase border border-blue-100/50 shadow-sm mb-4">
             What We Offer
           </span>
@@ -327,10 +328,10 @@ export default function ProductsSection() {
           <p className="text-sm text-gray-500 max-w-2xl mx-auto">
             Comprehensive technology solutions tailored to meet your business needs across multiple sectors.
           </p>
-        </div>
+        </AnimateInView>
 
         {/* Segmented Control Tabs */}
-        <div className="flex justify-start sm:justify-center mb-8 lg:mb-16 relative">
+        <AnimateInView className="flex justify-start sm:justify-center mb-8 lg:mb-16 relative" delay={0.1}>
           <div className="flex overflow-x-auto hide-scrollbar snap-x whitespace-nowrap gap-2 p-1.5 bg-gray-100/80 backdrop-blur-sm rounded-xl md:rounded-full w-full sm:w-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
             <style dangerouslySetInnerHTML={{__html: `
               .hide-scrollbar::-webkit-scrollbar {
@@ -351,10 +352,10 @@ export default function ProductsSection() {
               </button>
             ))}
           </div>
-        </div>
+        </AnimateInView>
 
         {/* Tab Content Area */}
-        <div className="max-w-[80rem] mx-auto">
+        <AnimateInView className="max-w-[80rem] mx-auto" delay={0.15}>
           {/* Category Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
             <div className="flex items-center gap-3">
@@ -447,8 +448,10 @@ export default function ProductsSection() {
             <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 ${["Computer & Peripherals", "Enterprise Software Solutions", "BPO Service"].includes(activeTab) ? "lg:grid-cols-3" : ""}`}>
               {tabData[activeTab]?.length > 0 ? (
                 tabData[activeTab].map((card, index) => (
-                  <div 
-                    key={index} 
+                  <AnimateInView
+                    key={index}
+                    delay={index * 0.05}
+                    y={30}
                     className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col"
                   >
                     <div className="flex items-center gap-4 mb-8">
@@ -474,7 +477,7 @@ export default function ProductsSection() {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </AnimateInView>
                 ))
               ) : (
                 <div className="col-span-full py-12 text-center text-gray-500 bg-white rounded-xl border border-gray-200">
@@ -483,7 +486,7 @@ export default function ProductsSection() {
               )}
             </div>
           )}
-        </div>
+        </AnimateInView>
       </div>
     </section>
   );

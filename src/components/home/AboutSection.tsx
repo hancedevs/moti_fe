@@ -1,10 +1,12 @@
+import AnimateInView from "@/components/ui/AnimateInView";
+
 export default function AboutSection() {
   return (
     <section id="about" className="py-12 lg:py-32 bg-gray-50">
       <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Content */}
-          <div className="lg:w-[45%]">
+          <AnimateInView className="lg:w-[45%]">
             <h4 className="text-blue-600 font-semibold tracking-wide text-sm uppercase mb-3">
               Who We Are
             </h4>
@@ -31,10 +33,10 @@ export default function AboutSection() {
                 Contact Us
               </a>
             </div>
-          </div>
+          </AnimateInView>
 
           {/* Image */}
-          <div className="lg:w-[55%] relative w-full">
+          <AnimateInView className="lg:w-[55%] relative w-full" delay={0.15}>
             <div className="relative rounded-2xl overflow-hidden shadow-xl">
               <img 
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
@@ -50,7 +52,7 @@ export default function AboutSection() {
                 Years of Experience
               </div>
             </div>
-          </div>
+          </AnimateInView>
         </div>
       </div>
     </section>

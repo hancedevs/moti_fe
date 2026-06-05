@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AnimateInView from "@/components/ui/AnimateInView";
 
 export default function CtaSection() {
   const cards = [
@@ -40,7 +41,7 @@ export default function CtaSection() {
   return (
     <section className="py-12 lg:py-20 bg-gray-50 border-t border-gray-100">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <AnimateInView className="text-center mb-12">
           <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-blue-50/60 text-gray-900 font-semibold tracking-wider text-[10px] uppercase border border-blue-100/50 shadow-sm mb-4">
             Get Started
           </span>
@@ -48,11 +49,11 @@ export default function CtaSection() {
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
             We are here to help transform your business with cutting-edge technology solutions.
           </p>
-        </div>
+        </AnimateInView>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {cards.map((card, index) => (
-            <div key={index} className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center flex flex-col items-center hover:shadow-lg transition-shadow">
+            <AnimateInView key={index} delay={index * 0.1} y={30} className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center flex flex-col items-center hover:shadow-lg transition-shadow">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-50 text-blue-600 mb-6">
                 {card.icon}
               </div>
@@ -64,7 +65,7 @@ export default function CtaSection() {
               >
                 {card.buttonText}
               </Link>
-            </div>
+            </AnimateInView>
           ))}
         </div>
       </div>
