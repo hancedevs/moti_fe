@@ -1,8 +1,8 @@
 "use client";
 
 import { ServiceCategory } from "@/lib/servicesData";
-import { ServiceCategory } from "@/lib/servicesData";
 import Link from "next/link";
+import Image from "next/image";
 import PageHero from "@/components/layout/PageHero";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
@@ -42,7 +42,7 @@ export default function ServiceLayout({ category }: { category: ServiceCategory 
     <div className="bg-[#0b0c10] min-h-screen text-white font-sans pb-20">
       {/* Hero Section */}
       <PageHero
-        backgroundImage="/motiLogo.png" 
+        backgroundImage={category.heroImage ?? "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"}
         badgeIcon={<svg className="w-3.5 h-3.5 text-white/90 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>}
         badgeLabel="Product Portfolio"
         headingBefore={category.title}
@@ -74,42 +74,44 @@ export default function ServiceLayout({ category }: { category: ServiceCategory 
           <p className="text-gray-400 max-w-2xl mx-auto">Select a category below to explore our comprehensive range of {category.title.toLowerCase()} solutions.</p>
         </div>
 
-        <div className="flex flex-wrap justify-start gap-4 mb-16 w-full max-w-[1400px]">
-          {category.items.map((item, idx) => {
-            const isActive = activeItem.href === item.href;
-            return (
-              <Link
-                key={idx}
-                href={item.href}
-                scroll={false}
-                className={`relative flex flex-col items-center justify-center w-full sm:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)] xl:w-[calc(20%-13px)] h-32 rounded-2xl border transition-all duration-300 overflow-hidden group ${
-                  isActive 
-                    ? "bg-[#3b82f6] border-[#60a5fa] text-white shadow-xl shadow-blue-500/20" 
-                    : "bg-[#111316] border-[#1f2937] text-white hover:border-[#374151]"
-                }`}
-              >
-                {/* Large Background circle for active state */}
-                {isActive && (
-                  <div className="absolute top-0 right-0 translate-x-2/3 -translate-y-1/3 w-40 h-40 bg-white/20 rounded-full transition-transform duration-500 group-hover:scale-110"></div>
-                )}
-                
-                {/* Large Background circle for inactive state */}
-                {!isActive && (
-                  <div className="absolute top-0 right-0 translate-x-2/3 -translate-y-1/3 w-40 h-40 bg-[#1f2937]/40 rounded-full transition-transform duration-500 group-hover:scale-110"></div>
-                )}
-                
-                <div className="relative z-10 flex flex-col items-center">
-                  <div className={`mb-3 flex items-center justify-center w-12 h-12 rounded-2xl ${isActive ? "bg-white/20" : "bg-blue-900/30"}`}>
-                    {getIconForLabel(item.label, isActive)}
-                  </div>
-                  <h3 className="text-[14px] font-medium text-center px-4 mb-1 leading-tight tracking-wide">{item.label}</h3>
-                  {item.productCount !== undefined && (
-                    <p className={`text-[12px] ${isActive ? "text-blue-100" : "text-gray-400"}`}>{item.productCount} Products</p>
+        <div className="flex justify-center w-full mb-16 px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 sm:gap-10 lg:gap-12 w-fit max-w-full">
+            {category.items.map((item, idx) => {
+              const isActive = activeItem.href === item.href;
+              return (
+                <Link
+                  key={idx}
+                  href={item.href}
+                  scroll={false}
+                  className={`relative flex flex-col items-center justify-center w-full min-w-[260px] h-32 rounded-2xl border transition-all duration-300 overflow-hidden group ${
+                    isActive 
+                      ? "bg-[#3b82f6] border-[#60a5fa] text-white shadow-xl shadow-blue-500/20" 
+                      : "bg-[#111316] border-[#1f2937] text-white hover:border-[#374151]"
+                  }`}
+                >
+                  {/* Large Background circle for active state */}
+                  {isActive && (
+                    <div className="absolute top-[-20px] right-0 translate-x-1/2 w-40 h-40 bg-white/20 rounded-full transition-transform duration-500 group-hover:scale-110"></div>
                   )}
-                </div>
-              </Link>
-            );
-          })}
+                  
+                  {/* Large Background circle for inactive state */}
+                  {!isActive && (
+                    <div className="absolute top-[-20px] right-0 translate-x-1/2 w-40 h-40 bg-[#1f2937]/40 rounded-full transition-transform duration-500 group-hover:scale-110"></div>
+                  )}
+                  
+                  <div className="relative z-10 flex flex-col items-center">
+                    <div className={`mb-3 flex items-center justify-center w-12 h-12 rounded-2xl ${isActive ? "bg-white/20" : "bg-blue-900/30"}`}>
+                      {getIconForLabel(item.label, isActive)}
+                    </div>
+                    <h3 className="text-[14px] font-medium text-center px-4 mb-1 leading-tight tracking-wide">{item.label}</h3>
+                    {item.productCount !== undefined && (
+                      <p className={`text-[12px] ${isActive ? "text-blue-100" : "text-gray-400"}`}>{item.productCount} Products</p>
+                    )}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
 
         {/* Detail Section - Renders based on activeItem */}
@@ -125,44 +127,48 @@ export default function ServiceLayout({ category }: { category: ServiceCategory 
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Dummy products for the selected category */}
-          {[1, 2, 3].map((num) => (
-            <div key={`${activeItem.href}-${num}`} className="bg-[#14151a] border border-gray-800 rounded-xl overflow-hidden group">
-              <div className="h-48 bg-gray-800 relative">
-                {/* Placeholder for image */}
-                <div className="absolute inset-0 flex items-center justify-center text-gray-600">
-                  <svg className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Products for the selected category */}
+          {activeItem.products && activeItem.products.length > 0 ? (
+            activeItem.products.map((product, idx) => (
+              <div key={`${activeItem.href}-${idx}`} className="bg-[#14151a] border border-gray-800 rounded-xl overflow-hidden group hover:border-gray-700 transition-colors flex flex-col">
+                <div className="h-56 bg-gray-800 relative overflow-hidden shrink-0">
+                  <Image src={product.image} alt={product.name} fill className="object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#14151a] to-transparent"></div>
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full shadow-lg">
+                      {activeItem.label}
+                    </span>
+                  </div>
                 </div>
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-blue-600 text-white text-xs font-semibold rounded-full shadow-lg">
-                    {activeItem.label}
-                  </span>
-                </div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-white mb-3 hover:text-blue-500 cursor-pointer transition-colors">
-                  {activeItem.label} Product {num}
-                </h3>
-                <p className="text-gray-400 text-sm mb-6 line-clamp-2">
-                  Advanced solution with modern capabilities and excellent reliability. Provides extended support with live assistance.
-                </p>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="px-2 py-1 bg-gray-800 text-gray-300 text-[10px] rounded border border-gray-700">Feature A</span>
-                  <span className="px-2 py-1 bg-gray-800 text-gray-300 text-[10px] rounded border border-gray-700">Feature B</span>
-                  <span className="px-2 py-1 bg-gray-800 text-gray-300 text-[10px] rounded border border-gray-700">+2 more</span>
-                </div>
+                <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-lg font-bold text-white mb-3 hover:text-blue-500 cursor-pointer transition-colors line-clamp-2">
+                    {product.name}
+                  </h3>
+                  <p className="text-gray-400 text-sm mb-6 flex-grow">
+                    {product.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2 mb-6 mt-auto">
+                    {product.features.map((feature, fIdx) => (
+                      <span key={fIdx} className="px-2 py-1 bg-gray-800 text-gray-300 text-[10px] rounded border border-gray-700">
+                        {feature}
+                      </span>
+                    ))}
+                  </div>
 
-                <button className="w-full py-3 bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium rounded-md transition-colors flex items-center justify-center gap-2 group-hover:bg-blue-600 group-hover:text-white">
-                  Get Quote
-                  <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                </button>
+                  <button className="w-full py-3 bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium rounded-md transition-colors flex items-center justify-center gap-2 group-hover:bg-blue-600 group-hover:text-white mt-auto">
+                    Get Quote
+                    <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </button>
+                </div>
               </div>
+            ))
+          ) : (
+            <div className="col-span-1 md:col-span-2 lg:col-span-3 text-center py-16 bg-[#14151a] rounded-xl border border-gray-800">
+              <p className="text-gray-400 text-lg">Detailed products are coming soon for this solution.</p>
             </div>
-          ))}
+          )}
         </div>
       </section>
 
