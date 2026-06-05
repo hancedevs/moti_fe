@@ -122,12 +122,57 @@ export interface Project {
   updatedAt: string;
 }
 
+export interface Career {
+  id: number;
+  title: string;
+  slug: string;
+  type: "FULL_TIME" | "PART_TIME" | "REMOTE" | "CONTRACT";
+  departmentId: number;
+  description: string;
+  requirements: string;
+  location: string;
+  salary: string;
+  status: "ACTIVE" | "INACTIVE";
+  createdAt: string;
+  updatedAt: string;
+  department?: Department;
+  _count?: {
+    applications: number;
+  };
+}
+
+export interface Department {
+  id: number;
+  name: string;
+  slug: string;
+  description: string;
+  status?: string;
+  createdAt: string;
+  updatedAt: string;
+  careers?: Career[];
+  teamMembers?: any[];
+}
+
+interface CareersApiResponse {
+  data: Career[];
+  total: number;
+  page: number;
+  lastPage: number;
+}
+
+interface DepartmentsApiResponse {
+  data: Department[];
+  total: number;
+  page: number;
+  lastPage: number;
+}
+
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: process.env.NEXT_PUBLIC_API_URL,
+    baseUrl: process.env.NEXT_PUBLIC_API_URL || "https://moti-be.onrender.com",
   }),
-  tagTypes: ["Testimonials", "Projects", "Categories"],
+  tagTypes: ["Testimonials", "Projects", "Categories", "Careers", "Departments"],
   endpoints: (builder) => ({
     getTestimonials: builder.query<Testimonial[], void>({
       query: () => "/testimonials",
@@ -170,6 +215,16 @@ export const apiSlice = createApi({
       providesTags: (_result, _error, id) => [{ type: "Projects", id: String(id) }],
       transformResponse: (response: unknown) => unwrapProject(response),
     }),
+    getCareers: builder.query<Career[], void>({
+      query: () => "/careers",
+      providesTags: ["Careers"],
+      transformResponse: (response: CareersApiResponse) => response.data,
+    }),
+    getDepartments: builder.query<Department[], void>({
+      query: () => "/departments",
+      providesTags: ["Departments"],
+      transformResponse: (response: DepartmentsApiResponse) => response.data,
+    }),
   }),
 });
 
@@ -179,6 +234,8 @@ export const {
   useGetProjectCategoriesQuery,
   useGetPaginatedProjectsQuery,
   useGetProjectByIdQuery,
+  useGetCareersQuery,
+  useGetDepartmentsQuery,
 } = apiSlice;
 
 export const PROJECTS_PAGE_SIZE = 9;

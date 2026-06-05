@@ -162,15 +162,15 @@ export default function Header() {
       {/* Main Navigation Bar */}
       <div className="bg-white border-b border-gray-100 shadow-sm sticky top-0">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
-          
+
           {/* Logo - Left Section */}
           <div className="flex-shrink-0 flex items-center justify-start">
             <Link href="/" className="flex items-center">
-              <Image 
-                src="/motiLogo.png" 
-                alt="MOTI Engineering Logo" 
-                width={140} 
-                height={42} 
+              <Image
+                src="/motiLogo.png"
+                alt="MOTI Engineering Logo"
+                width={140}
+                height={42}
                 className="object-contain h-auto w-auto max-h-10"
                 priority
               />
@@ -195,13 +195,13 @@ export default function Header() {
             <NavItem href="#testimonials" label="Testimonial" dropdownItems={[{ label: "Client Feedback", href: "#testimonials" }]} onNavigate={handleSmoothNavigation} />
             <NavItem href="#services" label="Our Services" dropdownItems={[{ label: "View Services", href: "#services" }]} onNavigate={handleSmoothNavigation} />
             <NavItem href="#news" label="News & Media" dropdownItems={[{ label: "Latest Updates", href: "#news" }]} onNavigate={handleSmoothNavigation} />
-            <NavItem href="#career" label="Career" onNavigate={handleSmoothNavigation} />
+            <NavItem href="/careers" label="Career" onNavigate={handleSmoothNavigation} />
             <NavItem href="#contact" label="Contact" onNavigate={handleSmoothNavigation} />
           </nav>
 
           {/* Right Controls - Right Section */}
           <div className="hidden lg:flex items-center justify-end space-x-4 xl:space-x-5 shrink-0">
-            
+
             {/* Language Selection */}
             <div className="relative group cursor-pointer">
               <div className="flex items-center text-gray-600 hover:text-blue-600 transition-colors">
@@ -238,7 +238,7 @@ export default function Header() {
             </button>
 
             {/* IMS Portal Expanding Button */}
-            <Link 
+            <Link
               href="#ims-portal"
               className="group flex items-center h-8 bg-blue-600 text-white font-medium text-xs rounded-md shadow-sm hover:shadow-md hover:bg-blue-700 px-3 overflow-hidden transition-all duration-500 ease-out flex-shrink-0"
             >
@@ -250,7 +250,7 @@ export default function Header() {
               <div className="flex items-center whitespace-nowrap overflow-hidden transition-[max-width,opacity,margin] duration-500 ease-out max-w-0 opacity-0 group-hover:max-w-[250px] group-hover:opacity-100 group-hover:ml-2">
                 Incident Management System Portal
               </div>
-              
+
               {/* Default Text */}
               <div className="flex items-center whitespace-nowrap transition-[max-width,opacity,margin] duration-500 ease-out max-w-[70px] opacity-100 ml-2 group-hover:max-w-0 group-hover:opacity-0 group-hover:ml-0">
                 IMS Portal
@@ -261,7 +261,7 @@ export default function Header() {
 
           {/* Mobile menu button */}
           <div className="flex lg:hidden items-center">
-            <button 
+            <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-gray-500 hover:text-blue-600 p-2 focus:outline-none"
               aria-label="Toggle mobile menu"
@@ -282,14 +282,13 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu Dropdown */}
-      <div 
-        className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden bg-white shadow-lg border-b border-gray-100 ${
-          isMobileMenuOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"
-        }`}
+      <div
+        className={`lg:hidden transition-all duration-300 ease-in-out overflow-hidden bg-white shadow-lg border-b border-gray-100 ${isMobileMenuOpen ? "max-h-[80vh] opacity-100" : "max-h-0 opacity-0"
+          }`}
       >
         <div className="px-4 pt-2 pb-6 space-y-1 overflow-y-auto max-h-[80vh]">
           <Link href="/" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-          
+
           <div>
             <button onClick={() => toggleMobileDropdown("About")} className="w-full flex items-center justify-between px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50 focus:outline-none">
               About Us
@@ -316,9 +315,9 @@ export default function Header() {
           <Link href="#testimonials" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#testimonials", true)}>Testimonial</Link>
           <Link href="#services" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#services", true)}>Our Services</Link>
           <Link href="#news" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#news", true)}>News & Media</Link>
-          <Link href="#career" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#career", true)}>Career</Link>
+          <Link href="/careers" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>Career</Link>
           <Link href="#contact" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#contact", true)}>Contact</Link>
-          
+
           <div className="pt-4 pb-2 border-t border-gray-100 mt-2">
             <button
               type="button"
@@ -337,7 +336,7 @@ export default function Header() {
                 </svg>
               )}
             </button>
-            <Link 
+            <Link
               href="#ims-portal"
               className="flex items-center justify-center w-full px-4 py-3 bg-blue-600 text-white font-medium text-sm rounded-md hover:bg-blue-700 transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
