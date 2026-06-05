@@ -13,7 +13,7 @@ const JobCard: React.FC<JobCardProps> = ({ job, onViewDetails }) => {
                 <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
                     {job.title}
                 </h3>
-                <span className="bg-blue-50 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">
+                <span className="bg-blue-50 text-blue-600 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider whitespace-nowrap flex-shrink-0 self-start">
                     {job.type.replace('_', ' ')}
                 </span>
             </div>
