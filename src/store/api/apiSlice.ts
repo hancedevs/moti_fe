@@ -79,7 +79,7 @@ type ProjectsApiResponse = {
 
 function normalizePaginatedProjects(
   response: ProjectsApiResponse,
-  params: ProjectsQueryParams
+  params: ProjectsQueryParams,
 ): PaginatedProjectsResult {
   const items = response.data;
   const raw = response.meta ?? response.pagination ?? {};
@@ -238,13 +238,14 @@ interface BlogCategoriesApiResponse {
 
 function normalizePaginatedBlogPosts(
   response: BlogPostsApiResponse,
-  params: BlogPostsListParams
+  params: BlogPostsListParams,
 ): PaginatedBlogPostsResult {
   const limit = params.limit ?? (response.data.length || 1);
   const page = response.page ?? params.page ?? 1;
   const total = response.total ?? response.data.length;
   const totalPages =
-    response.lastPage ?? (limit > 0 ? Math.max(1, Math.ceil(total / limit)) : 1);
+    response.lastPage ??
+    (limit > 0 ? Math.max(1, Math.ceil(total / limit)) : 1);
 
   return {
     items: response.data,
@@ -260,7 +261,7 @@ export interface GalleryImageCategory {
 }
 
 export interface GalleryCategory extends GalleryImageCategory {
-  _count: { images: number };
+  _count?: { images: number };
   createdAt: string;
   updatedAt: string;
 }
@@ -301,7 +302,7 @@ type GalleryCategoriesApiResponse = {
 
 function normalizePaginatedGalleryImages(
   response: GalleryImagesApiResponse,
-  params: GalleryImagesListParams
+  params: GalleryImagesListParams,
 ): PaginatedGalleryImagesResult {
   const items = response.data;
   const raw = response.meta ?? {};
@@ -392,7 +393,9 @@ export const apiSlice = createApi({
     }),
     getProjectById: builder.query<Project, number>({
       query: (id) => `/projects/${id}`,
-      providesTags: (_result, _error, id) => [{ type: "Projects", id: String(id) }],
+      providesTags: (_result, _error, id) => [
+        { type: "Projects", id: String(id) },
+      ],
       transformResponse: (response: unknown) => unwrapProject(response),
     }),
     getCareers: builder.query<Career[], void>({
@@ -414,7 +417,14 @@ export const apiSlice = createApi({
       PaginatedBlogPostsResult,
       BlogPostsListParams
     >({
-      query: ({ type, page = 1, limit = 9, search, categoryId, categoryIds }) => {
+      query: ({
+        type,
+        page = 1,
+        limit = 9,
+        search,
+        categoryId,
+        categoryIds,
+      }) => {
         const params = new URLSearchParams();
         params.set("type", type);
         params.set("page", String(page));
@@ -428,14 +438,21 @@ export const apiSlice = createApi({
         }
         return `/blog-posts?${params.toString()}`;
       },
-      providesTags: (_result, _error, { type }) => [{ type: "BlogPosts", id: type }],
+      providesTags: (_result, _error, { type }) => [
+        { type: "BlogPosts", id: type },
+      ],
       transformResponse: (response: BlogPostsApiResponse, _meta, arg) =>
         normalizePaginatedBlogPosts(response, arg),
     }),
-    getGalleryCategories: builder.query<GalleryCategory[], void>({
-      query: () => "/gallery-categories",
+    getAllGalleryCategories: builder.query<GalleryCategory[], void>({
+      query: () => "/gallery-categories/all",
       providesTags: ["GalleryCategories"],
-      transformResponse: (response: GalleryCategoriesApiResponse) => response.data,
+      transformResponse: (
+        response: GalleryCategoriesApiResponse | GalleryCategory[]
+      ) => {
+        if (Array.isArray(response)) return response;
+        return response.data ?? [];
+      },
     }),
     getPaginatedGalleryImages: builder.query<
       PaginatedGalleryImagesResult,
@@ -487,7 +504,7 @@ export const {
   useGetBlogCategoriesQuery,
   useGetPaginatedBlogPostsQuery,
   useGetBlogPostBySlugQuery,
-  useGetGalleryCategoriesQuery,
+  useGetAllGalleryCategoriesQuery,
   useGetPaginatedGalleryImagesQuery,
 } = apiSlice;
 

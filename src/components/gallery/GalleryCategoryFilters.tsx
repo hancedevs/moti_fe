@@ -24,7 +24,7 @@ function splitCategories(
     : Math.min(categories.length, MAX_VISIBLE_BUTTONS - 1);
 
   if (!hasOverflow) {
-    return { visible: categories, hidden: [] as GalleryCategory[], hasOverflow: false };
+    return { visible: categories, hasOverflow: false };
   }
 
   const selected =
@@ -37,14 +37,13 @@ function splitCategories(
   if (selected && !visible.some((category) => category.id === selected.id)) {
     visible = [
       selected,
-      ...categories.filter((category) => category.id !== selected.id).slice(0, limit - 1),
+      ...categories
+        .filter((category) => category.id !== selected.id)
+        .slice(0, limit - 1),
     ];
   }
 
-  const visibleIds = new Set(visible.map((category) => category.id));
-  const hidden = categories.filter((category) => !visibleIds.has(category.id));
-
-  return { visible, hidden, hasOverflow: true };
+  return { visible, hasOverflow: true };
 }
 
 function FilterButton({
@@ -79,22 +78,33 @@ export default function GalleryCategoryFilters({
 }: GalleryCategoryFiltersProps) {
   const [expanded, setExpanded] = useState(false);
 
-  const { visible, hidden, hasOverflow } = useMemo(() => {
+  const { visible, hasOverflow, hiddenCount } = useMemo(() => {
     if (!categories?.length) {
-      return { visible: [], hidden: [] as GalleryCategory[], hasOverflow: false };
+      return { visible: [], hasOverflow: false, hiddenCount: 0 };
     }
-    return splitCategories(categories, selectedCategoryId);
+
+    const { visible, hasOverflow } = splitCategories(categories, selectedCategoryId);
+    return {
+      visible,
+      hasOverflow,
+      hiddenCount: hasOverflow ? categories.length - visible.length : 0,
+    };
   }, [categories, selectedCategoryId]);
 
   useEffect(() => {
-    if (!categories?.length) return;
-    const selectedInHidden =
-      selectedCategoryId != null &&
-      hidden.some((category) => category.id === selectedCategoryId);
-    if (selectedInHidden && !expanded) {
+    if (!categories?.length || selectedCategoryId == null) return;
+
+    const selectedInCollapsed =
+      hasOverflow &&
+      !expanded &&
+      !visible.some((category) => category.id === selectedCategoryId);
+
+    if (selectedInCollapsed) {
       setExpanded(true);
     }
-  }, [selectedCategoryId, categories, hidden, expanded]);
+  }, [selectedCategoryId, categories, visible, hasOverflow, expanded]);
+
+  const categoriesToRender = expanded ? categories ?? [] : visible;
 
   return (
     <div className="flex flex-col gap-3 items-center">
@@ -114,7 +124,7 @@ export default function GalleryCategoryFilters({
           ))}
 
         {!isLoading &&
-          visible.map((category) => (
+          categoriesToRender.map((category) => (
             <FilterButton
               key={category.id}
               label={category.name}
@@ -130,9 +140,20 @@ export default function GalleryCategoryFilters({
             className="shrink-0 px-5 py-2 rounded-full text-sm font-semibold bg-white text-blue-600 border border-blue-200 hover:bg-blue-50 transition-colors inline-flex items-center gap-1"
           >
             More
-            <span className="text-xs text-blue-500">({hidden.length})</span>
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            <span className="text-xs text-blue-500">({hiddenCount})</span>
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </button>
         )}
@@ -144,25 +165,23 @@ export default function GalleryCategoryFilters({
             className="shrink-0 px-5 py-2 rounded-full text-sm font-semibold bg-white text-gray-600 border border-gray-200 hover:bg-gray-50 transition-colors inline-flex items-center gap-1"
           >
             Show less
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden>
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 15l7-7 7 7"
+              />
             </svg>
           </button>
         )}
       </div>
-
-      {!isLoading && expanded && hidden.length > 0 && (
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 pt-3 border-t border-gray-100 w-full max-w-4xl">
-          {hidden.map((category) => (
-            <FilterButton
-              key={category.id}
-              label={category.name}
-              isActive={selectedCategoryId === category.id}
-              onClick={() => onCategoryChange(category.id)}
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 }

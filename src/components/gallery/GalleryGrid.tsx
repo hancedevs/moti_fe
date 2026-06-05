@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import {
   GALLERY_PAGE_SIZE,
-  useGetGalleryCategoriesQuery,
+  useGetAllGalleryCategoriesQuery,
   useGetPaginatedGalleryImagesQuery,
   type GalleryImage,
 } from "@/store/api/apiSlice";
@@ -23,7 +23,25 @@ export default function GalleryGrid() {
     data: categories,
     isLoading: categoriesLoading,
     isError: categoriesError,
-  } = useGetGalleryCategoriesQuery();
+  } = useGetAllGalleryCategoriesQuery();
+
+  const { data: imageCatalog } = useGetPaginatedGalleryImagesQuery({
+    page: 1,
+    limit: 100,
+  });
+
+  const categoriesWithImages = useMemo(() => {
+    if (!categories?.length) return [];
+
+    const categoryIdsFromImages = new Set(
+      imageCatalog?.items.map((image) => image.categoryId) ?? []
+    );
+
+    return categories.filter((category) => {
+      const count = category._count?.images ?? 0;
+      return count > 0 || categoryIdsFromImages.has(category.id);
+    });
+  }, [categories, imageCatalog?.items]);
 
   const {
     data,
@@ -42,6 +60,15 @@ export default function GalleryGrid() {
   useEffect(() => {
     setPage(1);
   }, [selectedCategoryId]);
+
+  useEffect(() => {
+    if (
+      selectedCategoryId != null &&
+      !categoriesWithImages.some((category) => category.id === selectedCategoryId)
+    ) {
+      setSelectedCategoryId(null);
+    }
+  }, [categoriesWithImages, selectedCategoryId]);
 
   const handlePageChange = (nextPage: number) => {
     setPage(nextPage);
@@ -69,7 +96,7 @@ export default function GalleryGrid() {
 
           <AnimateInView className="mb-10" delay={0.1}>
             <GalleryCategoryFilters
-              categories={categoriesError ? [] : categories}
+              categories={categoriesError ? [] : categoriesWithImages}
               selectedCategoryId={selectedCategoryId}
               onCategoryChange={setSelectedCategoryId}
               isLoading={categoriesLoading}
