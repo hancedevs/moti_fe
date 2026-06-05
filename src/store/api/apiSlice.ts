@@ -167,6 +167,24 @@ interface DepartmentsApiResponse {
   lastPage: number;
 }
 
+export type ContactSubject =
+  | "GENERAL_INQUIRY"
+  | "PRODUCT_QUOTE"
+  | "PARTNERSHIP"
+  | "TECHNICAL_SUPPORT"
+  | "CAREER_OPPORTUNITY"
+  | "COFFEE_EXPORT"
+  | "OTHER";
+
+export interface ContactMessagePayload {
+  fullName: string;
+  email: string;
+  phoneNumber?: string;
+  companyName?: string;
+  subject: ContactSubject;
+  message: string;
+}
+
 export const apiSlice = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
@@ -225,6 +243,13 @@ export const apiSlice = createApi({
       providesTags: ["Departments"],
       transformResponse: (response: DepartmentsApiResponse) => response.data,
     }),
+    sendContactMessage: builder.mutation<void, ContactMessagePayload>({
+      query: (body) => ({
+        url: "/contact-messages",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -236,6 +261,7 @@ export const {
   useGetProjectByIdQuery,
   useGetCareersQuery,
   useGetDepartmentsQuery,
+  useSendContactMessageMutation,
 } = apiSlice;
 
 export const PROJECTS_PAGE_SIZE = 9;

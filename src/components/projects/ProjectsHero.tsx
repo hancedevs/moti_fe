@@ -59,7 +59,7 @@ export default function ProjectsHero() {
       headingHighlight="Portfolio"
       description="Explore our successful implementations across banking, infrastructure, and enterprise solutions. Delivering excellence since 2006."
       primaryCta={{ href: "#project-grid", label: "View Projects" }}
-      secondaryCta={{ href: "/#contact", label: "Contact Us" }}
+      secondaryCta={{ href: "/contact", label: "Contact Us" }}
       stats={stats}
     />
   );

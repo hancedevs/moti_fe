@@ -58,7 +58,7 @@ export default function PartnersHero() {
       headingBefore="Strategic"
       headingHighlight="Partnerships"
       description="We collaborate with world-class technology providers to deliver cutting-edge ICT solutions. Our strategic partnerships enable us to bring the best global innovations to Ethiopia's leading organizations."
-      primaryCta={{ href: "/#contact", label: "Partner With Us" }}
+      primaryCta={{ href: "/contact", label: "Partner With Us" }}
       secondaryCta={{ href: "#partner-categories", label: "View Our Partners" }}
       stats={stats}
     />

@@ -59,7 +59,7 @@ export default function ClientsHero() {
       headingHighlight="Clients"
       description="We are committed to delivering exceptional ICT solutions and building lasting partnerships with Ethiopia's most prestigious organizations across banking, government, and enterprise sectors."
       primaryCta={{ href: "/projects", label: "View Projects" }}
-      secondaryCta={{ href: "/#contact", label: "Contact Us" }}
+      secondaryCta={{ href: "/contact", label: "Contact Us" }}
       stats={stats}
     />
   );
