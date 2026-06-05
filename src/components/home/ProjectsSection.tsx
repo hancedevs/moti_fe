@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useGetProjectsQuery } from "@/store/api/apiSlice";
 import ProjectCard from "@/components/projects/ProjectCard";
+import AnimateInView from "@/components/ui/AnimateInView";
 
 export default function ProjectsSection() {
   const { data: projects, isLoading, isError } = useGetProjectsQuery();
@@ -10,7 +11,7 @@ export default function ProjectsSection() {
   return (
     <section id="projects" className="py-20 bg-white">
       <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <AnimateInView className="text-center mb-16">
           <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-blue-50/60 text-gray-900 font-semibold tracking-wider text-[10px] uppercase border border-blue-100/50 shadow-sm mb-4">
             Our Work
           </span>
@@ -21,7 +22,7 @@ export default function ProjectsSection() {
             Discover some of our most impactful implementations across various
             sectors in Ethiopia.
           </p>
-        </div>
+        </AnimateInView>
 
         {isLoading && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -62,19 +63,21 @@ export default function ProjectsSection() {
         {projects && projects.length > 0 && (
           <>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {projects.map((project) => (
-                <ProjectCard key={project.id} project={project} compact showStatus={false} />
+              {projects.map((project, index) => (
+                <AnimateInView key={project.id} delay={index * 0.05} y={30}>
+                  <ProjectCard project={project} compact showStatus={false} />
+                </AnimateInView>
               ))}
             </div>
 
-            <div className="mt-12 text-center">
+            <AnimateInView className="mt-12 text-center" delay={0.3}>
               <Link
                 href="/projects"
                 className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-6 py-3 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 transition-colors"
               >
                 See All Projects
               </Link>
-            </div>
+            </AnimateInView>
           </>
         )}
       </div>
