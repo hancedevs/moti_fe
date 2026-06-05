@@ -183,6 +183,8 @@ export interface ContactMessagePayload {
   companyName?: string;
   subject: ContactSubject;
   message: string;
+}
+
 export type BlogPostType = "NEWS" | "BLOG";
 
 export interface BlogPostTag {
@@ -430,6 +432,7 @@ export const apiSlice = createApi({
         method: "POST",
         body,
       }),
+    }),
     getBlogCategories: builder.query<BlogPostCategory[], void>({
       query: () => "/blog-categories",
       providesTags: ["BlogCategories"],
