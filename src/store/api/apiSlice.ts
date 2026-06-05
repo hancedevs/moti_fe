@@ -167,6 +167,17 @@ interface DepartmentsApiResponse {
   lastPage: number;
 }
 
+export interface CoffeeType {
+  id: number;
+  name: string;
+  origin: string;
+  description: string;
+  imageUrl: string | null;
+  grade: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export type ContactSubject =
   | "GENERAL_INQUIRY"
   | "PRODUCT_QUOTE"
@@ -371,6 +382,7 @@ export const apiSlice = createApi({
     "BlogCategories",
     "GalleryImages",
     "GalleryCategories",
+    "CoffeeTypes",
   ],
   endpoints: (builder) => ({
     getTestimonials: builder.query<Testimonial[], void>({
@@ -496,6 +508,11 @@ export const apiSlice = createApi({
       transformResponse: (response: GalleryImagesApiResponse, _meta, arg) =>
         normalizePaginatedGalleryImages(response, arg),
     }),
+    getCoffeeTypes: builder.query<CoffeeType[], void>({
+      query: () => "/coffee-types",
+      providesTags: ["CoffeeTypes"],
+      transformResponse: (response: { data: CoffeeType[] }) => response.data,
+    }),
     getBlogPostBySlug: builder.query<BlogPost, BlogPostBySlugParams>({
       query: ({ slug, type }) => {
         const params = new URLSearchParams();
@@ -532,6 +549,7 @@ export const {
   useGetBlogPostBySlugQuery,
   useGetAllGalleryCategoriesQuery,
   useGetPaginatedGalleryImagesQuery,
+  useGetCoffeeTypesQuery,
 } = apiSlice;
 
 export const PROJECTS_PAGE_SIZE = 9;
