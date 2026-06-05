@@ -14,13 +14,19 @@ export type PageHeroProps = {
   backgroundImage: string;
   badgeIcon: ReactNode;
   badgeLabel: string;
-  headingBefore: string;
-  headingHighlight: string;
+  headingBefore?: string;
+  headingHighlight?: string;
+  heading?: string;
   description: string;
   primaryCta: { href: string; label: string };
   secondaryCta: { href: string; label: string };
   stats: PageHeroStat[];
   headingHighlightClassName?: string;
+  primaryButtonClassName?: string;
+  secondaryButtonClassName?: string;
+  statIconContainerClassName?: string;
+  statLabelClassName?: string;
+  overlayClassName?: string;
 };
 
 function ArrowIcon() {
@@ -44,11 +50,17 @@ export default function PageHero({
   badgeLabel,
   headingBefore,
   headingHighlight,
+  heading,
   description,
   primaryCta,
   secondaryCta,
   stats,
   headingHighlightClassName = "text-blue-500",
+  primaryButtonClassName = "bg-blue-600 text-white shadow-lg hover:bg-blue-500",
+  secondaryButtonClassName = "border-white/35 text-white hover:bg-white/10",
+  statIconContainerClassName = "bg-blue-600",
+  statLabelClassName = "text-blue-400",
+  overlayClassName = "from-black/60 via-black/45 to-black/20",
 }: PageHeroProps) {
   return (
     <section className="relative w-full bg-gray-900 py-12 sm:py-14 lg:py-16 flex items-center overflow-hidden">
@@ -57,7 +69,7 @@ export default function PageHero({
         style={{ backgroundImage: `url('${backgroundImage}')` }}
       />
       <div className="absolute inset-0 bg-black/45" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/45 to-black/20" />
+      <div className={`absolute inset-0 bg-gradient-to-r ${overlayClassName}`} />
 
       <div className="relative z-20 w-full max-w-7xl mx-auto pl-4 pr-4 sm:pl-6 sm:pr-8 lg:pl-8 lg:pr-12">
         <motion.div
@@ -71,10 +83,16 @@ export default function PageHero({
             {badgeLabel}
           </span>
 
-          <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-[2.65rem] leading-tight mb-3">
-            {headingBefore}{" "}
-            <span className={headingHighlightClassName}>{headingHighlight}</span>
-          </h1>
+          {heading ? (
+            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-[2.65rem] leading-tight mb-3">
+              {heading}
+            </h1>
+          ) : (
+            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-[2.65rem] leading-tight mb-3">
+              {headingBefore}{" "}
+              <span className={headingHighlightClassName}>{headingHighlight}</span>
+            </h1>
+          )}
 
           <p className="text-sm sm:text-base text-gray-300 leading-relaxed max-w-3xl mb-5">
             {description}
@@ -83,14 +101,14 @@ export default function PageHero({
           <div className="flex flex-wrap items-center gap-3 mb-6">
             <Link
               href={primaryCta.href}
-              className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-5 py-2.5 text-sm font-bold text-white shadow-lg hover:bg-blue-500 transition-colors"
+              className={`inline-flex items-center gap-2 rounded-md px-5 py-2.5 text-sm font-bold transition-colors ${primaryButtonClassName}`}
             >
               {primaryCta.label}
               <ArrowIcon />
             </Link>
             <Link
               href={secondaryCta.href}
-              className="inline-flex items-center justify-center rounded-md border border-white/35 bg-transparent px-5 py-2.5 text-sm font-bold text-white hover:bg-white/10 transition-colors"
+              className={`inline-flex items-center justify-center rounded-md border bg-transparent px-5 py-2.5 text-sm font-bold transition-colors ${secondaryButtonClassName}`}
             >
               {secondaryCta.label}
             </Link>
@@ -104,12 +122,14 @@ export default function PageHero({
           >
             {stats.map((stat, index) => (
               <div key={index} className="flex items-center gap-2.5 sm:gap-3">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white shadow-sm">
+                <div
+                  className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full shadow-sm ${statIconContainerClassName}`}
+                >
                   {stat.icon}
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm font-bold text-white leading-tight">{stat.value}</p>
-                  <p className="text-[11px] sm:text-xs font-medium text-blue-400 uppercase tracking-wider leading-tight">
+                  <p className={`text-[11px] sm:text-xs font-medium uppercase tracking-wider leading-tight ${statLabelClassName}`}>
                     {stat.label}
                   </p>
                 </div>

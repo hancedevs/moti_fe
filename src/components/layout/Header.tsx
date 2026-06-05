@@ -192,12 +192,13 @@ export default function Header() {
               { label: "Certifications & Awards", href: "/about#awards" },
             ]} onNavigate={handleSmoothNavigation} />
             <NavItem href="/projects" label="Projects" onNavigate={handleSmoothNavigation} />
+            <NavItem href="/coffee" label="Coffee Export" onNavigate={handleSmoothNavigation} />
             <NavItem href="/testimonials" label="Testimonial" dropdownItems={[
               { label: "Testimonial", href: "/testimonials#testimonials" },
               { label: "Client", href: "/clients" },
               { label: "Partner", href: "/partners" },
             ]} onNavigate={handleSmoothNavigation} />
-            <NavItem href="#services" label="Our Services" dropdownItems={[{ label: "View Services", href: "#services" }]} onNavigate={handleSmoothNavigation} />
+            <NavItem href="#services" label="Our Services" dropdownItems={[{ label: "View Services", href: "#services" }, { label: "Coffee Export", href: "/coffee" }]} onNavigate={handleSmoothNavigation} />
             <NavItem href="/news" label="News & Media" dropdownItems={[
               { label: "News", href: "/news" },
               { label: "Blog", href: "/blog" },
@@ -336,6 +337,7 @@ export default function Header() {
             )}
           </div>
           <Link href="#services" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#services", true)}>Our Services</Link>
+          <Link href="/coffee" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>Coffee Export</Link>
           <div>
             <button onClick={() => toggleMobileDropdown("News & Media")} className="w-full flex items-center justify-between px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50 focus:outline-none">
               News & Media
