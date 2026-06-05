@@ -1,3 +1,5 @@
+import AnimateInView from "@/components/ui/AnimateInView";
+
 export default function StatsBanner() {
   const stats = [
     { 
@@ -61,14 +63,14 @@ export default function StatsBanner() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-6 gap-y-10 text-center">
           {stats.map((stat, index) => (
-            <div key={index} className="flex flex-col items-center justify-center px-4 relative">
+            <AnimateInView key={index} delay={index * 0.05} y={16} className="flex flex-col items-center justify-center px-4 relative">
               {/* Optional custom border logic if needed, but clean gaps work better on mobile */}
               <div className="text-white mb-3 opacity-90 drop-shadow-sm">
                 {stat.icon}
               </div>
               <span className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-1">{stat.value}</span>
               <span className="text-xs font-medium text-blue-100 uppercase tracking-wider">{stat.label}</span>
-            </div>
+            </AnimateInView>
           ))}
         </div>
       </div>

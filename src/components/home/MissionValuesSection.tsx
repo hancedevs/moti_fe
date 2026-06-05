@@ -1,3 +1,5 @@
+import AnimateInView from "@/components/ui/AnimateInView";
+
 export default function MissionValuesSection() {
   const coreValues = [
     { 
@@ -62,7 +64,7 @@ export default function MissionValuesSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
           
           {/* Mission & Vision */}
-          <div>
+          <AnimateInView>
             <div className="mb-4">
               <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-blue-50/60 text-gray-900 font-semibold tracking-wider text-[10px] uppercase border border-blue-100/50 shadow-sm">
                 Our Purpose
@@ -111,10 +113,10 @@ export default function MissionValuesSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </AnimateInView>
 
           {/* Core Values */}
-          <div>
+          <AnimateInView delay={0.15}>
             <div className="mb-4">
               <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-blue-50/60 text-gray-900 font-semibold tracking-wider text-[10px] uppercase border border-blue-100/50 shadow-sm">
                 What Drives Us
@@ -124,16 +126,16 @@ export default function MissionValuesSection() {
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {coreValues.map((value, index) => (
-                <div key={index} className="flex flex-col p-6 rounded-xl border border-blue-100 shadow-sm shadow-blue-500/5 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/15 hover:border-blue-200 transition-all duration-300 group bg-white cursor-default">
+                <AnimateInView key={index} delay={index * 0.05} y={24} className="flex flex-col p-6 rounded-xl border border-blue-100 shadow-sm shadow-blue-500/5 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/15 hover:border-blue-200 transition-all duration-300 group bg-white cursor-default">
                   <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600 mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors">
                     {value.icon}
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{value.title}</h3>
                   <p className="text-sm text-gray-500">{value.desc}</p>
-                </div>
+                </AnimateInView>
               ))}
             </div>
-          </div>
+          </AnimateInView>
 
         </div>
       </div>

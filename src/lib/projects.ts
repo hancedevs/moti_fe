@@ -4,7 +4,7 @@ export const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
 export function resolveImageUrl(url: string): string {
   if (url.startsWith("https://") || url.startsWith("http://")) return url;
-  if (url.startsWith("/uploads")) return `${BASE_URL}${url}`;
+  if (url.startsWith("/")) return `${BASE_URL}${url}`;
   return `${BASE_URL}/${url}`;
 }
 
