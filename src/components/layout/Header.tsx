@@ -192,7 +192,11 @@ export default function Header() {
               { label: "Certifications & Awards", href: "/about#awards" },
             ]} onNavigate={handleSmoothNavigation} />
             <NavItem href="/projects" label="Projects" onNavigate={handleSmoothNavigation} />
-            <NavItem href="#testimonials" label="Testimonial" dropdownItems={[{ label: "Client Feedback", href: "#testimonials" }]} onNavigate={handleSmoothNavigation} />
+            <NavItem href="/testimonials" label="Testimonial" dropdownItems={[
+              { label: "Testimonial", href: "/testimonials#testimonials" },
+              { label: "Client", href: "/clients" },
+              { label: "Partner", href: "/partners" },
+            ]} onNavigate={handleSmoothNavigation} />
             <NavItem href="#services" label="Our Services" dropdownItems={[{ label: "View Services", href: "#services" }]} onNavigate={handleSmoothNavigation} />
             <NavItem href="#news" label="News & Media" dropdownItems={[{ label: "Latest Updates", href: "#news" }]} onNavigate={handleSmoothNavigation} />
             <NavItem href="/careers" label="Career" onNavigate={handleSmoothNavigation} />
@@ -312,7 +316,21 @@ export default function Header() {
           </div>
 
           <Link href="/projects" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>Projects</Link>
-          <Link href="#testimonials" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#testimonials", true)}>Testimonial</Link>
+          <div>
+            <button onClick={() => toggleMobileDropdown("Testimonial")} className="w-full flex items-center justify-between px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50 focus:outline-none">
+              Testimonial
+              <svg className={`ml-1 h-4 w-4 transform transition-transform ${mobileExpandedDropdown === "Testimonial" ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {mobileExpandedDropdown === "Testimonial" && (
+              <div className="pl-6 pb-2 space-y-1">
+                <Link href="/testimonials#testimonials" className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "/testimonials#testimonials", true)}>Testimonial</Link>
+                <Link href="/clients" className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>Client</Link>
+                <Link href="/partners" className="block px-3 py-2 text-sm text-gray-600 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>Partner</Link>
+              </div>
+            )}
+          </div>
           <Link href="#services" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#services", true)}>Our Services</Link>
           <Link href="#news" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#news", true)}>News & Media</Link>
           <Link href="/careers" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>Career</Link>
