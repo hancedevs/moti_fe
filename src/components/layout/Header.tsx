@@ -204,7 +204,7 @@ export default function Header() {
               { label: "Gallery", href: "/gallery" },
             ]} onNavigate={handleSmoothNavigation} />
             <NavItem href="/careers" label="Career" onNavigate={handleSmoothNavigation} />
-            <NavItem href="#contact" label="Contact" onNavigate={handleSmoothNavigation} />
+            <NavItem href="/contact" label="Contact" onNavigate={handleSmoothNavigation} />
           </nav>
 
           {/* Right Controls - Right Section */}
@@ -352,7 +352,7 @@ export default function Header() {
             )}
           </div>
           <Link href="/careers" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>Career</Link>
-          <Link href="#contact" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#contact", true)}>Contact</Link>
+          <Link href="/contact" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
 
           <div className="pt-4 pb-2 border-t border-gray-100 mt-2">
             <button
