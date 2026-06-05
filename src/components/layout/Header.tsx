@@ -4,7 +4,7 @@ import { useEffect, useState, type MouseEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-
+import { servicesData } from "@/lib/servicesData";
 type DropdownItem = {
   label: string;
   href: string;
@@ -45,6 +45,52 @@ function NavItem({
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+function ServicesMegaMenu({ onNavigate }: { onNavigate: (event: MouseEvent<HTMLAnchorElement>, href: string) => void }) {
+  return (
+    <div className="group h-full flex items-center">
+      <Link
+        href="#services"
+        onClick={(event) => onNavigate(event, "#services")}
+        className="flex items-center text-[13px] font-medium text-gray-600 hover:text-blue-600 h-20 transition-colors whitespace-nowrap"
+      >
+        Our Services
+        <svg className="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </Link>
+
+      <div className="absolute left-0 right-0 mx-auto w-[calc(100%-2rem)] max-w-7xl top-full pt-4 hidden group-hover:block z-50">
+        <div className="bg-white shadow-2xl shadow-blue-900/5 border border-gray-100 rounded-2xl py-8 px-4 sm:px-6 lg:px-8 grid grid-cols-7 gap-6">
+          {servicesData.map((category) => (
+            <div key={category.id} className="flex flex-col">
+              <Link
+                href={category.href}
+                onClick={(event) => onNavigate(event, category.href)}
+                className="text-[13px] font-bold text-gray-900 mb-4 hover:text-blue-600 pb-2 border-b border-gray-100"
+              >
+                {category.title}
+              </Link>
+              <ul className="space-y-3">
+                {category.items.map((item, idx) => (
+                  <li key={idx}>
+                    <Link
+                      href={item.href}
+                      onClick={(event) => onNavigate(event, item.href)}
+                      className="text-xs text-gray-600 hover:text-blue-600 hover:underline transition-colors block"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
@@ -160,7 +206,7 @@ export default function Header() {
       </div>
 
       {/* Main Navigation Bar */}
-      <div className="bg-white border-b border-gray-100 shadow-sm sticky top-0">
+      <div className="bg-white border-b border-gray-100 shadow-sm sticky top-0 relative">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
 
           {/* Logo - Left Section */}
@@ -192,13 +238,12 @@ export default function Header() {
               { label: "Certifications & Awards", href: "/about#awards" },
             ]} onNavigate={handleSmoothNavigation} />
             <NavItem href="/projects" label="Projects" onNavigate={handleSmoothNavigation} />
-            <NavItem href="/coffee" label="Coffee Export" onNavigate={handleSmoothNavigation} />
             <NavItem href="/testimonials" label="Testimonial" dropdownItems={[
               { label: "Testimonial", href: "/testimonials#testimonials" },
               { label: "Client", href: "/clients" },
               { label: "Partner", href: "/partners" },
             ]} onNavigate={handleSmoothNavigation} />
-            <NavItem href="#services" label="Our Services" dropdownItems={[{ label: "View Services", href: "#services" }, { label: "Coffee Export", href: "/coffee" }]} onNavigate={handleSmoothNavigation} />
+            <ServicesMegaMenu onNavigate={handleSmoothNavigation} />
             <NavItem href="/news" label="News & Media" dropdownItems={[
               { label: "News", href: "/news" },
               { label: "Blog", href: "/blog" },
