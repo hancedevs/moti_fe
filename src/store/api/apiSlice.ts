@@ -167,6 +167,24 @@ interface DepartmentsApiResponse {
   lastPage: number;
 }
 
+export type ContactSubject =
+  | "GENERAL_INQUIRY"
+  | "PRODUCT_QUOTE"
+  | "PARTNERSHIP"
+  | "TECHNICAL_SUPPORT"
+  | "CAREER_OPPORTUNITY"
+  | "COFFEE_EXPORT"
+  | "OTHER";
+
+export interface ContactMessagePayload {
+  fullName: string;
+  email: string;
+  phoneNumber?: string;
+  companyName?: string;
+  subject: ContactSubject;
+  message: string;
+}
+
 export type BlogPostType = "NEWS" | "BLOG";
 
 export interface BlogPostTag {
@@ -408,6 +426,13 @@ export const apiSlice = createApi({
       providesTags: ["Departments"],
       transformResponse: (response: DepartmentsApiResponse) => response.data,
     }),
+    sendContactMessage: builder.mutation<void, ContactMessagePayload>({
+      query: (body) => ({
+        url: "/contact-messages",
+        method: "POST",
+        body,
+      }),
+    }),
     getBlogCategories: builder.query<BlogPostCategory[], void>({
       query: () => "/blog-categories",
       providesTags: ["BlogCategories"],
@@ -501,6 +526,7 @@ export const {
   useGetProjectByIdQuery,
   useGetCareersQuery,
   useGetDepartmentsQuery,
+  useSendContactMessageMutation,
   useGetBlogCategoriesQuery,
   useGetPaginatedBlogPostsQuery,
   useGetBlogPostBySlugQuery,
