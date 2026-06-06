@@ -381,8 +381,41 @@ export default function Header() {
               </div>
             )}
           </div>
-          <Link href="#services" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={(event) => handleSmoothNavigation(event, "#services", true)}>Our Services</Link>
-          <Link href="/coffee" className="block px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50" onClick={() => setIsMobileMenuOpen(false)}>Coffee Export</Link>
+          <div>
+            <button onClick={() => toggleMobileDropdown("Services")} className="w-full flex items-center justify-between px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50 focus:outline-none">
+              Our Services
+              <svg className={`ml-1 h-4 w-4 transform transition-transform ${mobileExpandedDropdown === "Services" ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {mobileExpandedDropdown === "Services" && (
+              <div className="pl-6 pb-2 space-y-3">
+                {servicesData.map((category) => (
+                  <div key={category.id}>
+                    <Link
+                      href={category.href}
+                      className="block px-3 py-2 text-sm font-bold text-gray-700 hover:text-blue-600 rounded-md hover:bg-gray-50 transition-colors"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {category.title}
+                    </Link>
+                    <div className="pl-4 space-y-1">
+                      {category.items.map((item, idx) => (
+                        <Link
+                          key={idx}
+                          href={item.href}
+                          className="block px-3 py-1.5 text-xs text-gray-600 hover:text-blue-600 rounded-md hover:bg-gray-50 transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
           <div>
             <button onClick={() => toggleMobileDropdown("News & Media")} className="w-full flex items-center justify-between px-3 py-3 text-base font-medium text-gray-900 hover:text-blue-600 rounded-md hover:bg-gray-50 focus:outline-none">
               News & Media

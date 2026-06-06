@@ -1074,7 +1074,7 @@ export const servicesData: ServiceCategory[] = [
     href: "/export",
     heroImage: "/cofee_hero.webp.webp",
     items: [
-      { label: "Coffee", href: "/export/coffee" },
+      { label: "Coffee", href: "/coffee" },
       { label: "Coffee Export", href: "/export/coffee-export" },
     ],
   },
