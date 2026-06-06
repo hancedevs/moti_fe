@@ -75,7 +75,7 @@ export default function ServiceLayout({ category }: { category: ServiceCategory 
         </div>
 
         <div className="flex justify-center w-full mb-16 px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 sm:gap-10 lg:gap-12 w-fit max-w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 sm:gap-10 lg:gap-12 lg:gap-y-16 w-fit max-w-full">
             {category.items.map((item, idx) => {
               const isActive = activeItem.href === item.href;
               return (
