@@ -43,8 +43,13 @@ body {
   background-color: #0b1626;
 }
 
+.dark .bg-gray-200 {
+  background-color: #1a2d47;
+}
+
 .dark .bg-gray-100,
 .dark .bg-gray-100\/80,
+.dark .hover\:bg-gray-100:hover,
 .dark .hover\:bg-gray-50:hover,
 .dark .hover\:bg-white\/50:hover {
   background-color: #14243a;

@@ -12,7 +12,7 @@ import { getCoffeeDetail } from "@/lib/coffee";
 
 function PlaceholderImage() {
   return (
-    <div className="w-full h-full min-h-[320px] bg-[#EAEAEA] flex items-center justify-center rounded-2xl">
+    <div className="w-full h-full min-h-[320px] bg-[#EAEAEA] dark:bg-gray-700 flex items-center justify-center rounded-2xl">
       <Coffee01Icon className="w-16 h-16 text-gray-300" />
     </div>
   );
@@ -25,9 +25,9 @@ type SpecBoxProps = {
 
 function SpecBox({ label, value }: SpecBoxProps) {
   return (
-    <div className="border border-[#E0E6ED] rounded-xl p-4 bg-white">
-      <p className="text-xs text-[#8D8D8D] mb-0.5">{label}</p>
-      <p className="text-sm font-semibold text-[#161616]">{value}</p>
+    <div className="border border-[#E0E6ED] dark:border-gray-700 rounded-xl p-4 bg-white dark:bg-gray-800">
+      <p className="text-xs text-[#8D8D8D] dark:text-gray-400 mb-0.5">{label}</p>
+      <p className="text-sm font-semibold text-[#161616] dark:text-white">{value}</p>
     </div>
   );
 }
@@ -68,28 +68,28 @@ function CoffeeCard({ item }: CoffeeCardProps) {
         </div>
 
         <div className="lg:col-span-7">
-          <h2 className="text-2xl font-bold text-[#161616] mb-3">
+          <h2 className="text-2xl font-bold text-[#161616] dark:text-white mb-3">
             {item.name}
           </h2>
 
           <div className="flex flex-wrap gap-3 mb-5">
-            <span className="inline-flex items-center gap-1.5 bg-[#EDF5FF] text-[#0082B4] text-xs font-semibold px-3 py-1.5 rounded-full">
+            <span className="inline-flex items-center gap-1.5 bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0082B4] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full">
               <Location01Icon className="w-3.5 h-3.5" />
               {detail.region}
             </span>
-            <span className="inline-flex items-center gap-1.5 bg-[#EDF5FF] text-[#0082B4] text-xs font-semibold px-3 py-1.5 rounded-full">
+            <span className="inline-flex items-center gap-1.5 bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0082B4] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full">
               <MountainIcon className="w-3.5 h-3.5" />
               Altitude: {detail.altitude}
             </span>
           </div>
 
-          <div className="text-[#525252] text-sm leading-relaxed space-y-3 mb-6">
+          <div className="text-[#525252] dark:text-gray-300 text-sm leading-relaxed space-y-3 mb-6">
             {item.description.split("\n").map((para, i) => (
               <p key={i}>{para}</p>
             ))}
           </div>
 
-          <hr className="border-[#E0E6ED] mb-6" />
+          <hr className="border-[#E0E6ED] dark:border-gray-700 mb-6" />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <SpecBox label="Processing" value={detail.processing} />
@@ -106,14 +106,14 @@ function CoffeeCard({ item }: CoffeeCardProps) {
             </div>
           </div>
 
-          <p className="text-sm font-semibold text-[#161616] mb-2">
+          <p className="text-sm font-semibold text-[#161616] dark:text-white mb-2">
             Tasting Notes
           </p>
           <div className="flex flex-wrap gap-2 mb-6">
             {detail.tastingNotes.map((note) => (
               <span
                 key={note}
-                className="inline-flex items-center px-3 py-1 rounded-full bg-[#EDF5FF] text-[#0082B4] text-xs font-medium"
+                className="inline-flex items-center px-3 py-1 rounded-full bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0082B4] dark:text-blue-400 text-xs font-medium"
               >
                 {note}
               </span>
@@ -173,16 +173,16 @@ export default function CoffeePortfolio() {
   const { data, isLoading, isError, refetch } = useGetCoffeeTypesQuery();
 
   return (
-    <section id="portfolio" className="py-16 lg:py-20 bg-white">
+    <section id="portfolio" className="py-16 lg:py-20 bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimateInView className="text-center mb-14">
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#0F62FE]/10 text-[#0F62FE] font-semibold tracking-wider text-xs uppercase border border-[#0F62FE]/20 mb-4">
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#0F62FE]/10 dark:bg-blue-500/10 text-[#0F62FE] dark:text-blue-400 font-semibold tracking-wider text-xs uppercase border border-[#0F62FE]/20 dark:border-blue-500/20 mb-4">
             Our Coffee
           </span>
-          <h2 className="text-3xl font-extrabold text-[#001D6C] sm:text-4xl">
+          <h2 className="text-3xl font-extrabold text-[#001D6C] dark:text-blue-200 sm:text-4xl">
             Ethiopian Coffee Portfolio
           </h2>
-          <p className="mt-3 text-sm text-[#525252] max-w-2xl mx-auto">
+          <p className="mt-3 text-sm text-[#525252] dark:text-gray-300 max-w-2xl mx-auto">
             Discover our premium selection of single-origin Ethiopian green coffee
             beans, each with distinct flavor profiles.
           </p>
@@ -192,7 +192,7 @@ export default function CoffeePortfolio() {
           <LoadingSkeleton />
         ) : isError ? (
           <div className="text-center py-16">
-            <p className="text-[#525252] mb-4">
+            <p className="text-[#525252] dark:text-gray-300 mb-4">
               Unable to load coffee varieties. Please try again.
             </p>
             <button
@@ -205,7 +205,7 @@ export default function CoffeePortfolio() {
         ) : !data || data.length === 0 ? (
           <div className="text-center py-16">
             <Coffee01Icon className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <p className="text-[#525252]">
+            <p className="text-[#525252] dark:text-gray-300">
               No coffee varieties available at this time.
             </p>
           </div>

@@ -37,16 +37,16 @@ const features = [
 
 export default function WhyPartnerWithUs() {
   return (
-    <section className="py-16 lg:py-20 bg-[#F4F7FB]">
+    <section className="py-16 lg:py-20 bg-[#F4F7FB] dark:bg-gray-900">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimateInView className="text-center mb-12 max-w-3xl mx-auto">
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#EDF5FF] text-[#0082B4] text-xs font-semibold tracking-wide border border-[#D1E8F2] mb-3">
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0082B4] dark:text-blue-400 text-xs font-semibold tracking-wide border border-[#D1E8F2] dark:border-gray-700 mb-3">
             Our Advantage
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#161616] tracking-tight mb-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#161616] dark:text-white tracking-tight mb-4">
             Why Partner With Us?
           </h2>
-          <p className="text-[#525252] text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+          <p className="text-[#525252] dark:text-gray-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
             We combine decades of logistics expertise with deep knowledge of
             Ethiopia&apos;s coffee regions.
           </p>
@@ -55,19 +55,19 @@ export default function WhyPartnerWithUs() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full max-w-7xl mx-auto px-4 md:px-6">
           {features.map((feature, index) => (
             <AnimateInView key={feature.title} delay={index * 0.1} y={30}>
-              <div className="bg-white border border-[#E0E6ED] rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col justify-start items-start gap-4 text-left">
-                <div className="w-12 h-12 rounded-xl bg-[#EDF5FF] flex items-center justify-center shrink-0">
+              <div className="bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow h-full flex flex-col justify-start items-start gap-4 text-left">
+                <div className="w-12 h-12 rounded-xl bg-[#EDF5FF] dark:bg-blue-900/20 flex items-center justify-center shrink-0">
                   {feature.icon}
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#161616]">
+                  <h3 className="text-xl font-bold text-[#161616] dark:text-white">
                     {feature.title}
                   </h3>
-                  <span className="text-xs font-medium text-[#0082B4] uppercase tracking-wider">
+                  <span className="text-xs font-medium text-[#0082B4] dark:text-blue-400 uppercase tracking-wider">
                     {feature.techLabel}
                   </span>
                 </div>
-                <p className="text-[#525252] text-sm leading-relaxed">
+                <p className="text-[#525252] dark:text-gray-300 text-sm leading-relaxed">
                   {feature.desc}
                 </p>
               </div>

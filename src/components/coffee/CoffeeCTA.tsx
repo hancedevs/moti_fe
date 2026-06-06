@@ -30,16 +30,16 @@ const cards = [
 
 export default function CoffeeCTA() {
   return (
-    <section className="py-16 lg:py-20 bg-[#F4F7FB]">
+    <section className="py-16 lg:py-20 bg-[#F4F7FB] dark:bg-gray-900">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimateInView className="text-center mb-12">
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#0F62FE]/10 text-[#0F62FE] font-semibold tracking-wider text-xs uppercase border border-[#0F62FE]/20 mb-4">
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#0F62FE]/10 dark:bg-blue-500/10 text-[#0F62FE] dark:text-blue-400 font-semibold tracking-wider text-xs uppercase border border-[#0F62FE]/20 dark:border-blue-500/20 mb-4">
             Get Started
           </span>
-          <h2 className="text-3xl font-extrabold text-[#001D6C] sm:text-4xl">
+          <h2 className="text-3xl font-extrabold text-[#001D6C] dark:text-blue-200 sm:text-4xl">
             Ready to import Ethiopian coffee?
           </h2>
-          <p className="mt-3 text-sm text-[#525252] max-w-2xl mx-auto">
+          <p className="mt-3 text-sm text-[#525252] dark:text-gray-300 max-w-2xl mx-auto">
             Take the next step toward sourcing exceptional Ethiopian green coffee
             beans for your business.
           </p>
@@ -48,14 +48,14 @@ export default function CoffeeCTA() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {cards.map((card, index) => (
             <AnimateInView key={card.title} delay={index * 0.1} y={30}>
-              <div className="bg-white rounded-2xl p-8 border border-[#E0E6ED] text-center flex flex-col items-center shadow-sm hover:shadow-md transition-shadow h-full">
-                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-[#EDF5FF] mb-6">
+              <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-[#E0E6ED] dark:border-gray-700 text-center flex flex-col items-center shadow-sm hover:shadow-md transition-shadow h-full">
+                <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-[#EDF5FF] dark:bg-blue-900/20 mb-6">
                   {card.icon}
                 </div>
-                <h3 className="text-xl font-bold text-[#001D6C] mb-3">
+                <h3 className="text-xl font-bold text-[#001D6C] dark:text-blue-200 mb-3">
                   {card.title}
                 </h3>
-                <p className="text-sm text-[#525252] mb-8 flex-grow leading-relaxed">
+                <p className="text-sm text-[#525252] dark:text-gray-300 mb-8 flex-grow leading-relaxed">
                   {card.desc}
                 </p>
                 <Link

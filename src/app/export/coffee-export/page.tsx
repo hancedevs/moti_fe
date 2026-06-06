@@ -7,14 +7,19 @@ import { useGetCoffeeTypesQuery } from "@/store/api/apiSlice";
 import PageHero from "@/components/layout/PageHero";
 import AnimateInView from "@/components/ui/AnimateInView";
 import {
-  Leaf01Icon,
-  Shield01Icon,
-  ChartIncreaseIcon,
-  PackageIcon,
-  Coffee01Icon,
   ArrowRight02Icon,
+  Award01Icon,
+  Building01Icon,
+  ChartIncreaseIcon,
+  Coffee02Icon,
+  GlobeIcon,
+  Leaf01Icon,
   Location01Icon,
   MountainIcon,
+  PackageIcon,
+  Shield01Icon,
+  TruckIcon,
+  UserGroupIcon,
 } from "hugeicons-react";
 
 interface CoffeeTypeDetailed {
@@ -245,7 +250,7 @@ export default function CoffeeExportPage() {
   };
 
   return (
-    <div className="w-full bg-white font-sans text-gray-900 overflow-x-hidden">
+    <div className="w-full bg-white dark:bg-gray-900 font-sans text-gray-900 dark:text-gray-100 overflow-x-hidden">
       {/* 1. Hero Section */}
       <PageHero
         backgroundImage="/cofee_hero.webp.webp"
@@ -280,49 +285,41 @@ export default function CoffeeExportPage() {
       />
 
       {/* 2. Elevating the Heritage of Ethiopian Coffee */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <AnimateInView className="mb-4">
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#EDF5FF] text-[#0082B4] text-xs font-semibold tracking-wide border border-blue-100">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0082B4] dark:text-blue-400 text-xs font-semibold tracking-wide border border-blue-100 dark:border-gray-700">
               About Our Coffee Division
             </span>
           </AnimateInView>
 
           <AnimateInView className="mb-6">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] tracking-tight leading-tight">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] dark:text-blue-200 tracking-tight leading-tight">
               Elevating the Heritage of Ethiopian Coffee
             </h2>
           </AnimateInView>
 
           <AnimateInView className="max-w-3xl mx-auto mb-4">
-            <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed">
               At Moti Engineering PLC, we bridge the gap between Ethiopia's rich coffee heritage and the global market. While we have built a reputation for excellence in engineering, our coffee division is driven by the same precision, integrity, and commitment to quality.
             </p>
           </AnimateInView>
 
           <AnimateInView className="max-w-3xl mx-auto mb-10">
-            <p className="text-gray-600 text-base md:text-lg leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-300 text-base md:text-lg leading-relaxed">
               We specialize in <strong>high-volume Grades 3, 4, and 5</strong>, providing consistent, reliable supplies for roasters and wholesalers worldwide.
             </p>
           </AnimateInView>
 
-          <AnimateInView className="inline-flex items-center gap-6 bg-[#0F62FE] text-white px-8 py-5 rounded-2xl font-bold shadow-lg shadow-blue-500/10 mb-16">
-            {/* Ribbon Badge SVG */}
-            <svg className="w-8 h-8 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15a4 4 0 100-8 4 4 0 000 8z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v6l-2-2-2 2v-6" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v6l2-2 2 2v-6" />
-            </svg>
+          <AnimateInView className="inline-flex items-center gap-6 bg-[#0F62FE] dark:bg-blue-700 text-white px-8 py-5 rounded-2xl font-bold shadow-lg shadow-blue-500/10 mb-16">
+            <Award01Icon className="w-8 h-8 text-white shrink-0" />
             
             <div className="text-left">
               <p className="text-[10px] text-white/75 font-semibold uppercase tracking-wider mb-0.5">Certified Export Grades</p>
               <p className="text-3xl font-extrabold tracking-tight">G3 - G5</p>
             </div>
             
-            {/* Shield SVG */}
-            <svg className="w-8 h-8 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
+            <Shield01Icon className="w-8 h-8 text-white shrink-0" />
           </AnimateInView>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
@@ -330,48 +327,31 @@ export default function CoffeeExportPage() {
               {
                 value: "7",
                 label: "Varieties",
-                icon: (
-                  <svg className="w-7 h-7 text-[#0F62FE]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 8h2a2 2 0 012 2v1a2 2 0 01-2 2h-2m0-5V6a3 3 0 00-3-3H6a3 3 0 00-3 3v7a6 6 0 006 6h4a6 6 0 006-6V8zm-2 11h-8" />
-                  </svg>
-                ),
+                icon: <PackageIcon className="w-7 h-7 text-[#0F62FE] dark:text-blue-400" />,
               },
               {
                 value: "500+",
                 label: "Partner Farmers",
-                icon: (
-                  <svg className="w-7 h-7 text-[#0F62FE]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                ),
+                icon: <UserGroupIcon className="w-7 h-7 text-[#0F62FE] dark:text-blue-400" />,
               },
               {
                 value: "20+",
                 label: "Export Countries",
-                icon: (
-                  <svg className="w-7 h-7 text-[#0F62FE]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.6 9h16.8M3.6 15h16.8M12 3a15.3 15.3 0 014 9 15.3 15.3 0 01-4 9 15.3 15.3 0 01-4-9 15.3 15.3 0 014-9z" />
-                  </svg>
-                ),
+                icon: <GlobeIcon className="w-7 h-7 text-[#0F62FE] dark:text-blue-400" />,
               },
               {
                 value: "7",
                 label: "Regions",
-                icon: (
-                  <svg className="w-7 h-7 text-[#0F62FE]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 20h18M3 20l7-14 4 8 2-4 5 10" />
-                  </svg>
-                ),
+                icon: <MountainIcon className="w-7 h-7 text-[#0F62FE] dark:text-blue-400" />,
               },
             ].map((stat, i) => (
               <AnimateInView key={i} delay={i * 0.1} y={20}>
-                <div className="bg-white border border-[#E0E6ED] p-8 rounded-2xl flex flex-col items-center text-center hover:shadow-md hover:border-blue-100 transition-all duration-300">
-                  <div className="w-14 h-14 rounded-full bg-[#EDF5FF] flex items-center justify-center mb-5 border border-blue-50/50">
+                <div className="bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 p-8 rounded-2xl flex flex-col items-center text-center hover:shadow-md hover:border-blue-100 dark:hover:border-gray-600 transition-all duration-300">
+                  <div className="w-14 h-14 rounded-full bg-[#EDF5FF] dark:bg-blue-900/20 flex items-center justify-center mb-5 border border-blue-50/50 dark:border-gray-600">
                     {stat.icon}
                   </div>
-                  <p className="text-3xl font-extrabold text-[#001D6C] mb-1">{stat.value}</p>
-                  <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">{stat.label}</p>
+                  <p className="text-3xl font-extrabold text-[#001D6C] dark:text-blue-200 mb-1">{stat.value}</p>
+                  <p className="text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">{stat.label}</p>
                 </div>
               </AnimateInView>
             ))}
@@ -380,16 +360,16 @@ export default function CoffeeExportPage() {
       </section>
 
       {/* 3. Ethiopian Coffee Portfolio (Sticky Sidebar Section) */}
-      <section id="portfolio" className="w-full bg-[#F4F7FB] py-20 border-t border-b border-[#E0E6ED]">
+      <section id="portfolio" className="w-full bg-[#F4F7FB] dark:bg-gray-900 py-20 border-t border-b border-[#E0E6ED] dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-6">
           <AnimateInView className="text-center mb-16">
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#0F62FE]/10 text-[#0F62FE] text-xs font-semibold tracking-wide uppercase border border-blue-500/10 mb-4">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#0F62FE]/10 dark:bg-blue-500/10 text-[#0F62FE] dark:text-blue-400 text-xs font-semibold tracking-wide uppercase border border-blue-500/10 dark:border-blue-500/20 mb-4">
               Our Catalog
             </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] dark:text-blue-200 tracking-tight">
               Ethiopian Coffee Portfolio
             </h2>
-            <p className="mt-4 text-gray-600 text-base max-w-2xl mx-auto leading-relaxed">
+            <p className="mt-4 text-gray-600 dark:text-gray-300 text-base max-w-2xl mx-auto leading-relaxed">
               Explore our range of premium single-origin Ethiopian coffee varieties, each boasting distinct flavor profiles, unique growing elevations, and meticulous processing methods.
             </p>
           </AnimateInView>
@@ -400,11 +380,9 @@ export default function CoffeeExportPage() {
             {/* LEFT COLUMN TRACK: Houses the Sticky Card Container */}
             <div className="lg:col-span-4 h-full">
               {/* THE STICKY SIDEBAR CARD */}
-              <div className="sticky top-24 self-start bg-white border border-[#E0E6ED] rounded-2xl shadow-sm z-10 overflow-hidden">
-                <div className="bg-[#0F62FE] px-5 py-4 text-white flex items-center gap-3">
-                  <svg className="w-5 h-5 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v1a2 2 0 01-2 2h-2m0-5V6a3 3 0 00-3-3H6a3 3 0 00-3 3v7a6 6 0 006 6h4a6 6 0 006-6V8zm-2 11h-8" />
-                  </svg>
+              <div className="sticky top-24 self-start bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm z-10 overflow-hidden">
+                <div className="bg-[#0F62FE] dark:bg-blue-700 px-5 py-4 text-white flex items-center gap-3">
+                  <Coffee02Icon className="w-5 h-5 text-white shrink-0" />
                   <h3 className="text-base font-bold text-white">
                     Coffee Types
                   </h3>
@@ -420,17 +398,17 @@ export default function CoffeeExportPage() {
                         onClick={() => setSelectedId(item.id)}
                         className={`w-full text-left p-3.5 rounded-xl flex items-center gap-4.5 transition-all duration-300 ${
                           isActive 
-                            ? "bg-[#0F62FE] text-white shadow-md shadow-blue-500/10" 
-                            : "bg-transparent text-gray-900 hover:bg-gray-50"
+                            ? "bg-[#0F62FE] dark:bg-blue-700 text-white shadow-md shadow-blue-500/10" 
+                            : "bg-transparent text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700"
                         }`}
                       >
                         <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-sm font-extrabold ${
-                          isActive ? "bg-white/20 text-white" : "bg-[#EDF5FF] text-[#0F62FE]"
+                          isActive ? "bg-white/20 text-white" : "bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0F62FE] dark:text-blue-400"
                         }`}>
                           {idx + 1}
                         </div>
                         <div className="min-w-0">
-                          <p className={`text-sm font-bold truncate ${isActive ? "text-white" : "text-gray-900"}`}>
+                          <p className={`text-sm font-bold truncate ${isActive ? "text-white" : "text-gray-900 dark:text-gray-100"}`}>
                             {item.name}
                           </p>
                           <p className={`text-xs truncate ${isActive ? "text-white/80" : "text-gray-400"}`}>
@@ -449,33 +427,33 @@ export default function CoffeeExportPage() {
               {activeCoffee && (
                 <AnimateInView key={activeCoffee.id} y={20} className="w-full">
                   {/* Main Visual Display Block (Farm Photo) */}
-                  <div className="rounded-2xl overflow-hidden shadow-sm relative h-[380px] w-full border border-[#E0E6ED]">
+                  <div className="rounded-2xl overflow-hidden shadow-sm relative h-[380px] w-full border border-[#E0E6ED] dark:border-gray-700">
                     <img 
                       src={getImageUrl(activeCoffee.imageUrl)} 
                       alt={activeCoffee.name} 
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
                     />
-                    <div className="absolute top-4 left-4 bg-[#0082B4] text-white px-4 py-1.5 text-xs font-bold rounded-lg uppercase tracking-wider shadow-md">
+                    <div className="absolute top-4 left-4 bg-[#0082B4] dark:bg-blue-700 text-white px-4 py-1.5 text-xs font-bold rounded-lg uppercase tracking-wider shadow-md">
                       {activeCoffee.badgeText || "Specialty"}
                     </div>
                   </div>
 
                   {/* Technical Data Display Segment Card */}
-                  <div className="bg-white p-8 border border-[#E0E6ED] rounded-2xl shadow-sm mt-6">
-                    <h2 className="text-3xl font-extrabold text-[#001D6C]">{activeCoffee.name}</h2>
-                    <div className="flex flex-wrap gap-4 mt-2 mb-6 text-sm text-gray-500 border-b border-[#E0E6ED] pb-4">
-                      <span className="flex items-center gap-1.5 text-[#0082B4] font-semibold">
+                  <div className="bg-white dark:bg-gray-800 p-8 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm mt-6">
+                    <h2 className="text-3xl font-extrabold text-[#001D6C] dark:text-blue-200">{activeCoffee.name}</h2>
+                    <div className="flex flex-wrap gap-4 mt-2 mb-6 text-sm text-gray-500 dark:text-gray-400 border-b border-[#E0E6ED] dark:border-gray-700 pb-4">
+                      <span className="flex items-center gap-1.5 text-[#0082B4] dark:text-blue-400 font-semibold">
                         <Location01Icon className="w-4 h-4" />
                         {activeCoffee.origin}
                       </span>
-                      <span className="hidden sm:inline text-gray-300">|</span>
+                      <span className="hidden sm:inline text-gray-300 dark:text-gray-600">|</span>
                       <span className="flex items-center gap-1.5 font-medium">
                         <MountainIcon className="w-4 h-4" />
                         {activeCoffee.altitude}
                       </span>
                     </div>
                     
-                    <p className="text-gray-600 leading-relaxed mb-8 text-base">
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8 text-base">
                       {activeCoffee.description}
                     </p>
 
@@ -490,20 +468,20 @@ export default function CoffeeExportPage() {
                         },
                         { label: "Grades Available", value: activeCoffee.grade || "G3, G4, G5" },
                       ].map((spec, sIdx) => (
-                        <div key={sIdx} className="bg-[#F4F7FB] border border-[#E0E6ED] rounded-xl p-4">
-                          <p className="text-[10px] uppercase font-bold text-gray-400 tracking-wider mb-1">{spec.label}</p>
-                          <p className="text-sm font-bold text-[#001D6C] truncate">{spec.value}</p>
+                        <div key={sIdx} className="bg-[#F4F7FB] dark:bg-gray-900 border border-[#E0E6ED] dark:border-gray-700 rounded-xl p-4">
+                          <p className="text-[10px] uppercase font-bold text-gray-400 dark:text-gray-500 tracking-wider mb-1">{spec.label}</p>
+                          <p className="text-sm font-bold text-[#001D6C] dark:text-blue-200 truncate">{spec.value}</p>
                         </div>
                       ))}
                     </div>
 
                     <div className="mb-8">
-                      <p className="text-sm font-bold text-[#161616] mb-3">Tasting Notes</p>
+                      <p className="text-sm font-bold text-[#161616] dark:text-white mb-3">Tasting Notes</p>
                       <div className="flex flex-wrap gap-2">
                         {(activeCoffee.tastingNotes || []).map((note, nIdx) => (
                           <span 
                             key={nIdx}
-                            className="bg-[#EDF5FF] text-[#0082B4] text-xs font-semibold px-3 py-1.5 rounded-full border border-blue-100/50"
+                            className="bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0082B4] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full border border-blue-100/50 dark:border-gray-600"
                           >
                             {note}
                           </span>
@@ -513,7 +491,7 @@ export default function CoffeeExportPage() {
                     
                     <Link
                       href={`/contact?subject=PRODUCT_QUOTE&message=I%20would%20like%20to%20request%20a%20sample%20of%20${encodeURIComponent(activeCoffee.name)}%20coffee.`}
-                      className="inline-flex items-center gap-2 bg-[#0F62FE] text-white px-6 py-3 rounded-xl text-sm font-bold shadow-md hover:bg-[#0B4FCD] hover:shadow-lg transition-all duration-300"
+                      className="inline-flex items-center gap-2 bg-[#0F62FE] dark:bg-blue-700 text-white px-6 py-3 rounded-xl text-sm font-bold shadow-md hover:bg-[#0B4FCD] hover:shadow-lg transition-all duration-300"
                     >
                       Request Coffee Sample
                       <ArrowRight02Icon className="w-4 h-4" />
@@ -553,54 +531,37 @@ export default function CoffeeExportPage() {
                 step: "1",
                 title: "Harvesting",
                 desc: "Hand-picked ripe cherries",
-                icon: (
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M12 5v14M12 9c2-1 4-1 5 1m-5 3c-2-1-4-1-5 1" />
-                  </svg>
-                ),
+                icon: <Leaf01Icon className="w-6 h-6 text-white" />,
               },
               {
                 step: "2",
                 title: "Processing",
                 desc: "Washed & natural processing",
-                icon: (
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M6 3h12v4H6zM6 7v10a4 4 0 004 4h4a4 4 0 004-4V7" />
-                  </svg>
-                ),
+                icon: <PackageIcon className="w-6 h-6 text-white" />,
               },
               {
                 step: "3",
                 title: "Quality Control",
                 desc: "Rigorous grading",
-                icon: (
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                ),
+                icon: <Shield01Icon className="w-6 h-6 text-white" />,
               },
               {
                 step: "4",
                 title: "Export",
                 desc: "Global shipping",
-                icon: (
-                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zm11 0a2 2 0 11-4 0 2 2 0 014 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M5 17H3V6a2 2 0 012-2h9v13m0 0h2m-6 0h4m2 0h2v-4h3l3.5-4.5V17M14 8h6" />
-                  </svg>
-                ),
+                icon: <TruckIcon className="w-6 h-6 text-white" />,
               },
             ].map((card, i) => (
               <AnimateInView key={i} delay={i * 0.1} y={30}>
-                <div className="bg-white border border-gray-100 rounded-2xl p-6 text-center flex flex-col items-center shadow-sm hover:shadow-md transition-all duration-300">
-                  <div className="w-14 h-14 rounded-full bg-[#0F62FE] flex items-center justify-center mb-4 shadow-sm shadow-blue-500/10">
+                <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl p-6 text-center flex flex-col items-center shadow-sm hover:shadow-md transition-all duration-300">
+                  <div className="w-14 h-14 rounded-full bg-[#0F62FE] dark:bg-blue-700 flex items-center justify-center mb-4 shadow-sm shadow-blue-500/10">
                     {card.icon}
                   </div>
-                  <span className="text-xs font-bold text-[#0F62FE] uppercase tracking-wider mb-1">
+                  <span className="text-xs font-bold text-[#0F62FE] dark:text-blue-400 uppercase tracking-wider mb-1">
                     Step {card.step}
                   </span>
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">{card.title}</h3>
-                  <p className="text-gray-500 text-xs leading-relaxed">{card.desc}</p>
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{card.title}</h3>
+                  <p className="text-gray-500 dark:text-gray-400 text-xs leading-relaxed">{card.desc}</p>
                 </div>
               </AnimateInView>
             ))}
@@ -609,13 +570,13 @@ export default function CoffeeExportPage() {
       </section>
 
       {/* 5. Why Partner with Moti Engineering? */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 max-w-3xl mx-auto">
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#EDF5FF] text-[#0082B4] text-xs font-semibold tracking-wide border border-blue-100 mb-4">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0082B4] dark:text-blue-400 text-xs font-semibold tracking-wide border border-blue-100 dark:border-gray-700 mb-4">
               Our Advantage
             </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] dark:text-blue-200 tracking-tight">
               Why Partner with Moti Engineering?
             </h2>
           </div>
@@ -629,13 +590,7 @@ export default function CoffeeExportPage() {
                   { label: "Grading", val: "Grades 3, 4 & 5 standards" },
                   { label: "Traceability", val: "Farm to container" },
                 ],
-                icon: (
-                  <svg className="w-5 h-5 text-[#0F62FE]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15a4 4 0 100-8 4 4 0 000 8z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v6l-2-2-2 2v-6" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v6l2-2 2 2v-6" />
-                  </svg>
-                ),
+                icon: <Award01Icon className="w-5 h-5 text-[#0F62FE] dark:text-blue-400" />,
               },
               {
                 title: "Strategic Logistics",
@@ -644,27 +599,22 @@ export default function CoffeeExportPage() {
                   { label: "Shipping", val: "Djibouti corridor" },
                   { label: "Compliance", val: "EUDR ready" },
                 ],
-                icon: (
-                  <svg className="w-5 h-5 text-[#0F62FE]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zm11 0a2 2 0 11-4 0 2 2 0 014 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M5 17H3V6a2 2 0 012-2h9v13m0 0h2m-6 0h4m2 0h2v-4h3l3.5-4.5V17M14 8h6" />
-                  </svg>
-                ),
+                icon: <TruckIcon className="w-5 h-5 text-[#0F62FE] dark:text-blue-400" />,
               },
             ].map((box, i) => (
               <AnimateInView key={i} delay={i * 0.1} y={30}>
-                <div className="bg-white border border-[#E0E6ED] p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-blue-100 transition-all duration-300">
+                <div className="bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-blue-100 dark:hover:border-gray-600 transition-all duration-300">
                   <div className="flex items-center mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-[#EDF5FF] flex items-center justify-center mr-3 border border-blue-100/50">
+                    <div className="w-10 h-10 rounded-xl bg-[#EDF5FF] dark:bg-blue-900/20 flex items-center justify-center mr-3 border border-blue-100/50 dark:border-gray-600">
                       {box.icon}
                     </div>
-                    <h3 className="text-xl font-bold text-[#001D6C]">{box.title}</h3>
+                    <h3 className="text-xl font-bold text-[#001D6C] dark:text-blue-200">{box.title}</h3>
                   </div>
                   <div className="space-y-3">
                     {box.features.map((feat, fIdx) => (
-                      <div key={fIdx} className="bg-[#F4F7FB] rounded-xl px-5 py-3.5 flex justify-between items-center text-sm">
-                        <span className="text-gray-700 font-medium">{feat.label}</span>
-                        <span className="text-[#0F62FE] font-bold text-right">{feat.val}</span>
+                      <div key={fIdx} className="bg-[#F4F7FB] dark:bg-gray-900 rounded-xl px-5 py-3.5 flex justify-between items-center text-sm">
+                        <span className="text-gray-700 dark:text-gray-300 font-medium">{feat.label}</span>
+                        <span className="text-[#0F62FE] dark:text-blue-400 font-bold text-right">{feat.val}</span>
                       </div>
                     ))}
                   </div>
@@ -725,7 +675,7 @@ export default function CoffeeExportPage() {
                     {/* Header: Cup icon + Name & Origin */}
                     <div className="flex items-center gap-3 mb-4">
                       <div className="w-12 h-12 rounded-full bg-[#F97316] flex items-center justify-center shadow-md shrink-0">
-                        <Coffee01Icon className="w-5 h-5 text-white" />
+                        <Coffee02Icon className="w-5 h-5 text-white" />
                       </div>
                       <div>
                         <h4 className="text-lg font-bold text-white leading-tight">{item.name}</h4>
@@ -820,17 +770,17 @@ export default function CoffeeExportPage() {
           <div className="text-center mt-16">
             <Link
               href="/contact?subject=PRODUCT_QUOTE&message=I%20would%20like%20to%20request%20a%20custom%20order%20for%20Ethiopian%20coffee."
-              className="inline-flex items-center justify-center gap-2 bg-white text-[#0F62FE] px-8 py-3.5 rounded-xl font-bold shadow-lg hover:bg-gray-50 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-white dark:bg-gray-800 text-[#0F62FE] dark:text-blue-400 px-8 py-3.5 rounded-xl font-bold shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               Request Custom Order
-              <ArrowRight02Icon className="w-4 h-4 text-[#0F62FE]" />
+              <ArrowRight02Icon className="w-4 h-4 text-[#0F62FE] dark:text-blue-400" />
             </Link>
           </div>
         </div>
       </section>
 
       {/* 7. Quality Control Checklist */}
-      <section className="bg-[#0F62FE] py-20 text-white border-t border-blue-500/20">
+      <section className="bg-[#0F62FE] dark:bg-blue-800 py-20 text-white border-t border-blue-500/20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-white text-xs font-semibold tracking-wide uppercase border border-white/20 mb-4">
@@ -863,16 +813,16 @@ export default function CoffeeExportPage() {
       </section>
 
       {/* 8. Ready to Import Ethiopian Coffee? */}
-      <section className="py-20 bg-[#F4F7FB]">
+      <section className="py-20 bg-[#F4F7FB] dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 max-w-3xl mx-auto">
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#0F62FE]/10 text-[#0F62FE] text-xs font-semibold tracking-wide uppercase border border-blue-500/10 mb-4">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#0F62FE]/10 dark:bg-blue-500/10 text-[#0F62FE] dark:text-blue-400 text-xs font-semibold tracking-wide uppercase border border-blue-500/10 dark:border-blue-500/20 mb-4">
               Contact
             </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] tracking-tight mb-4">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] dark:text-blue-200 tracking-tight mb-4">
               Ready to Import Ethiopian Coffee?
             </h2>
-            <p className="text-gray-600 text-sm md:text-base">
+            <p className="text-gray-600 dark:text-gray-300 text-sm md:text-base">
               Contact our team today to discuss sourcing, pricing, or to request coffee samples.
             </p>
           </div>
@@ -884,43 +834,35 @@ export default function CoffeeExportPage() {
                 desc: "For general questions about our coffee division, sourcing capacities, or business operations.",
                 btnText: "Contact Us",
                 href: "/contact?subject=GENERAL_INQUIRY",
-                icon: (
-                  <svg className="w-6 h-6 text-[#0F62FE]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 20h18M3 20l7-14 4 8 2-4 5 10" />
-                  </svg>
-                ),
+                icon: <ChartIncreaseIcon className="w-6 h-6 text-[#0F62FE] dark:text-blue-400" />,
               },
               {
                 title: "Sample Requests",
                 desc: "Request green coffee samples to evaluate grading, moisture, and cup profiles for your roasting needs.",
                 btnText: "Order Samples",
                 href: "/contact?subject=PRODUCT_QUOTE",
-                icon: <PackageIcon className="w-6 h-6 text-[#0F62FE]" />,
+                icon: <PackageIcon className="w-6 h-6 text-[#0F62FE] dark:text-blue-400" />,
               },
               {
                 title: "Visit Our Farm",
                 desc: "Schedule a visit to our sourcing partners and washing stations to experience our process firsthand.",
                 btnText: "Book a Visit",
                 href: "/contact?subject=OTHER",
-                icon: (
-                  <svg className="w-6 h-6 text-[#0F62FE]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                  </svg>
-                ),
+                icon: <Building01Icon className="w-6 h-6 text-[#0F62FE] dark:text-blue-400" />,
               },
             ].map((card, i) => (
               <AnimateInView key={i} delay={i * 0.1} y={30}>
-                <div className="bg-white border border-[#E0E6ED] rounded-2xl p-8 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition-shadow h-full">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EDF5FF] mb-6 border border-blue-100">
+                <div className="bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl p-8 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition-shadow h-full">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EDF5FF] dark:bg-blue-900/20 mb-6 border border-blue-100 dark:border-gray-600">
                     {card.icon}
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-[#001D6C] mb-3">{card.title}</h3>
-                    <p className="text-sm text-gray-500 mb-8 leading-relaxed">{card.desc}</p>
+                    <h3 className="text-xl font-bold text-[#001D6C] dark:text-blue-200 mb-3">{card.title}</h3>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-8 leading-relaxed">{card.desc}</p>
                   </div>
                   <Link
                     href={card.href}
-                    className="w-full inline-flex justify-center items-center bg-[#0F62FE] px-5 py-3 rounded-xl text-sm font-bold text-white shadow-sm hover:bg-[#0B4FCD] transition-colors"
+                    className="w-full inline-flex justify-center items-center bg-[#0F62FE] dark:bg-blue-700 px-5 py-3 rounded-xl text-sm font-bold text-white shadow-sm hover:bg-[#0B4FCD] transition-colors"
                   >
                     {card.btnText}
                   </Link>

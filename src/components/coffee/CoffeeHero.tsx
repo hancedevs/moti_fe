@@ -34,7 +34,7 @@ const badgeIcon = (
 export default function CoffeeHero() {
   return (
     <PageHero
-      backgroundImage="/cofee_hero.webp"
+      backgroundImage="/cofee_hero.webp.webp"
       badgeIcon={badgeIcon}
       badgeLabel="Export Division"
       heading="Premium Ethiopian Green Coffee Beans"
@@ -42,11 +42,6 @@ export default function CoffeeHero() {
       primaryCta={{ href: "#portfolio", label: "Explore Our Coffee" }}
       secondaryCta={{ href: "/contact", label: "Get Quote" }}
       stats={stats}
-      overlayClassName="from-[#005B94]/90 via-[#0073B2]/85 to-transparent"
-      primaryButtonClassName="bg-white text-[#0F62FE] hover:bg-white/95 font-semibold"
-      secondaryButtonClassName="bg-transparent text-white border-white/40 hover:bg-white/10 hover:border-white/60 font-medium"
-      statIconContainerClassName="bg-white/10 border border-white/20"
-      statLabelClassName="text-white/70"
     />
   );
 }
