@@ -8,7 +8,7 @@ export default function CoffeeGradingTable() {
     <section className="py-16 lg:py-20 bg-[#F4F7FB] dark:bg-gray-900">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <AnimateInView className="text-center mb-12">
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#0F62FE]/10 dark:bg-blue-500/10 text-[#0F62FE] dark:text-blue-400 font-semibold tracking-wider text-xs uppercase border border-[#0F62FE]/20 dark:border-blue-500/20 mb-4">
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#5A8CD0]/10 dark:bg-blue-500/10 text-[#5A8CD0] dark:text-blue-400 font-semibold tracking-wider text-xs uppercase border border-[#5A8CD0]/20 dark:border-blue-500/20 mb-4">
             Grading Standards
           </span>
           <h2 className="text-3xl font-extrabold text-[#001D6C] dark:text-blue-200 sm:text-4xl">
@@ -24,7 +24,7 @@ export default function CoffeeGradingTable() {
           <div className="overflow-x-auto rounded-xl border border-[#E0E6ED] dark:border-gray-700">
             <table className="w-full text-sm">
               <thead>
-                <tr className="bg-[#1152CA] text-white">
+                <tr className="bg-[#4A7AB8] text-white">
                   <th className="text-left px-5 py-3.5 font-bold">Grade</th>
                   <th className="text-left px-5 py-3.5 font-bold">Total Defects</th>
                   <th className="text-left px-5 py-3.5 font-bold">Unwashed File</th>
@@ -50,7 +50,7 @@ export default function CoffeeGradingTable() {
                     <td className="px-5 py-3.5">
                       <a
                         href="/contact"
-                        className="text-[#0F62FE] dark:text-blue-400 font-medium hover:underline"
+                        className="text-[#5A8CD0] dark:text-blue-400 font-medium hover:underline"
                       >
                         View File
                       </a>

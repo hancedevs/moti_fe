@@ -62,7 +62,7 @@ function CoffeeCard({ item }: CoffeeCardProps) {
               <PlaceholderImage />
             )}
           </div>
-          <span className="absolute top-4 left-4 bg-[#0082B4] text-white px-4 py-1.5 text-sm rounded-lg font-semibold">
+          <span className="absolute top-4 left-4 bg-[#5A8CD0] text-white px-4 py-1.5 text-sm rounded-lg font-semibold">
             {detail.badgeText}
           </span>
         </div>
@@ -73,11 +73,11 @@ function CoffeeCard({ item }: CoffeeCardProps) {
           </h2>
 
           <div className="flex flex-wrap gap-3 mb-5">
-            <span className="inline-flex items-center gap-1.5 bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0082B4] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full">
+            <span className="inline-flex items-center gap-1.5 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full">
               <Location01Icon className="w-3.5 h-3.5" />
               {detail.region}
             </span>
-            <span className="inline-flex items-center gap-1.5 bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0082B4] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full">
+            <span className="inline-flex items-center gap-1.5 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full">
               <MountainIcon className="w-3.5 h-3.5" />
               Altitude: {detail.altitude}
             </span>
@@ -113,14 +113,14 @@ function CoffeeCard({ item }: CoffeeCardProps) {
             {detail.tastingNotes.map((note) => (
               <span
                 key={note}
-                className="inline-flex items-center px-3 py-1 rounded-full bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0082B4] dark:text-blue-400 text-xs font-medium"
+                className="inline-flex items-center px-3 py-1 rounded-full bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-medium"
               >
                 {note}
               </span>
             ))}
           </div>
 
-          <button className="inline-flex items-center gap-2 bg-[#0F62FE] text-white px-6 py-3 rounded-xl text-sm font-bold shadow-sm hover:bg-[#0B4FCD] transition-colors">
+          <button className="inline-flex items-center gap-2 bg-[#5A8CD0] text-white px-6 py-3 rounded-xl text-sm font-bold shadow-sm hover:bg-[#4A7AB8] transition-colors">
             {detail.buttonText}
             <ArrowRight02Icon className="w-4 h-4" />
           </button>
@@ -176,7 +176,7 @@ export default function CoffeePortfolio() {
     <section id="portfolio" className="py-16 lg:py-20 bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimateInView className="text-center mb-14">
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#0F62FE]/10 dark:bg-blue-500/10 text-[#0F62FE] dark:text-blue-400 font-semibold tracking-wider text-xs uppercase border border-[#0F62FE]/20 dark:border-blue-500/20 mb-4">
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#5A8CD0]/10 dark:bg-blue-500/10 text-[#5A8CD0] dark:text-blue-400 font-semibold tracking-wider text-xs uppercase border border-[#5A8CD0]/20 dark:border-blue-500/20 mb-4">
             Our Coffee
           </span>
           <h2 className="text-3xl font-extrabold text-[#001D6C] dark:text-blue-200 sm:text-4xl">
@@ -197,7 +197,7 @@ export default function CoffeePortfolio() {
             </p>
             <button
               onClick={refetch}
-              className="inline-flex items-center gap-2 rounded-full bg-[#0F62FE] px-6 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-[#0B4FCD] transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-[#5A8CD0] px-6 py-2.5 text-sm font-bold text-white shadow-sm hover:bg-[#4A7AB8] transition-colors"
             >
               Retry
             </button>
