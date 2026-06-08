@@ -69,7 +69,7 @@ export default function StatsBanner() {
               </div>
               <div className="text-left">
                 <span className="text-2xl md:text-3xl font-bold text-white tracking-tight block leading-none mb-1">{stat.value}</span>
-                <span className="text-xs font-medium text-blue-100 uppercase tracking-wider">{stat.label}</span>
+                <span className="text-xs font-medium text-blue-100 uppercase tracking-wider whitespace-nowrap">{stat.label}</span>
               </div>
             </AnimateInView>
           ))}
