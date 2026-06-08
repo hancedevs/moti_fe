@@ -59,7 +59,7 @@ export default function ProjectsCta() {
               key={index}
               className="bg-gray-50 rounded-2xl p-8 shadow-sm border border-gray-100 text-center flex flex-col items-center hover:shadow-lg transition-shadow"
             >
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-50 text-blue-600 mb-6">
+              <div className="flex h-16 w-16 items-center justify-center text-blue-600 mb-6">
                 {card.icon}
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">

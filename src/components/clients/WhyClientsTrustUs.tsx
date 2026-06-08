@@ -58,7 +58,7 @@ export default function WhyClientsTrustUs() {
           {features.map((feature, index) => (
             <AnimateInView key={feature.title} delay={index * 0.1} y={30}>
               <div className="bg-white border border-gray-100 rounded-xl p-6 text-center shadow-sm hover:shadow-lg transition-shadow h-full">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-50 text-blue-600 mx-auto mb-4">
+                <div className="flex h-12 w-12 items-center justify-center text-blue-600 mx-auto mb-4">
                   {feature.icon}
                 </div>
                 <h3 className="text-base font-bold text-gray-900 mb-2">{feature.title}</h3>

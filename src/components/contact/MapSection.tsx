@@ -124,7 +124,7 @@ export default function MapSection() {
           {infoCards.map((card) => {
             const content = (
               <div className="bg-gray-50 rounded-xl p-6 flex items-center gap-4 border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+                <div className="flex-shrink-0 w-12 h-12 text-blue-600 flex items-center justify-center">
                   {card.icon}
                 </div>
                 <div>

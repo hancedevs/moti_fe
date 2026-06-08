@@ -75,7 +75,7 @@ export default function WhyChooseUs() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-white rounded-2xl p-8 text-center shadow-sm border border-gray-100 hover:shadow-lg transition-shadow"
             >
-              <div className="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 mx-auto mb-6">
+              <div className="w-14 h-14 flex items-center justify-center text-blue-600 mx-auto mb-6">
                 {feature.icon}
               </div>
               <h3 className="text-lg font-bold text-gray-900 mb-3">

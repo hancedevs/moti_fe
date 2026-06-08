@@ -72,7 +72,7 @@ export default function PointsOfPresence() {
         </motion.div>
 
         {/* Main Content Area */}
-        <div className="flex flex-col xl:flex-row gap-8 items-start">
+        <div className="flex flex-col xl:flex-row gap-8 items-stretch">
           
           {/* Map Left Side */}
           <motion.div 
@@ -80,15 +80,14 @@ export default function PointsOfPresence() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-full xl:w-[55%] bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex items-center justify-center"
+            className="w-full xl:w-[55%] bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col"
           >
-            <div className="relative w-full rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center">
+            <div className="relative w-full h-full min-h-[300px] rounded-xl overflow-hidden bg-gray-50">
               <Image 
                 src="/ethiopia-map.webp" 
                 alt="MOTI Points of Presence Map" 
-                width={800}
-                height={600}
-                className="w-full h-auto object-contain"
+                fill
+                className="object-cover"
                 priority
               />
             </div>
@@ -123,28 +122,28 @@ export default function PointsOfPresence() {
               ))}
             </div>
 
-            {/* Maintenance Coverage Card */}
-            <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm mt-2">
-              <h3 className="text-center font-bold text-gray-900 text-sm mb-6 pb-4 border-b border-gray-50">
-                Maintenance Services Coverage
-              </h3>
-              
-              <div className="grid grid-cols-2 gap-y-8 gap-x-4">
-                <div className="text-center">
-                  <p className="text-2xl font-black text-blue-600 mb-1">12,000+</p>
-                  <p className="text-[10px] text-gray-500 uppercase font-medium tracking-wide">ATM Installations</p>
+            {/* Maintenance Coverage Card - Full Width Horizontal */}
+            <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex items-center gap-2 mb-4">
+                <div className="w-2.5 h-2.5 rounded-full bg-blue-600 shadow-sm"></div>
+                <h3 className="font-bold text-gray-900 text-sm">Maintenance Services Coverage</h3>
+              </div>
+              <div className="flex flex-wrap gap-4 justify-between">
+                <div className="text-center flex-1 min-w-[100px] bg-gray-50 rounded-lg p-3">
+                  <p className="text-lg font-black text-blue-600">12,000+</p>
+                  <p className="text-[10px] text-gray-500 uppercase font-medium">ATM Installations</p>
                 </div>
-                <div className="text-center border-l border-gray-100">
-                  <p className="text-2xl font-black text-blue-600 mb-1">772+</p>
-                  <p className="text-[10px] text-gray-500 uppercase font-medium tracking-wide">Cities Covered</p>
+                <div className="text-center flex-1 min-w-[100px] bg-gray-50 rounded-lg p-3">
+                  <p className="text-lg font-black text-blue-600">772+</p>
+                  <p className="text-[10px] text-gray-500 uppercase font-medium">Cities Covered</p>
                 </div>
-                <div className="text-center pt-2">
-                  <p className="text-2xl font-black text-blue-600 mb-1">24/7</p>
-                  <p className="text-[10px] text-gray-500 uppercase font-medium tracking-wide">Support</p>
+                <div className="text-center flex-1 min-w-[100px] bg-gray-50 rounded-lg p-3">
+                  <p className="text-lg font-black text-blue-600">24/7</p>
+                  <p className="text-[10px] text-gray-500 uppercase font-medium">Support</p>
                 </div>
-                <div className="text-center border-l border-gray-100 pt-2">
-                  <p className="text-2xl font-black text-blue-600 mb-1">99.5%</p>
-                  <p className="text-[10px] text-gray-500 uppercase font-medium tracking-wide">Uptime Rate</p>
+                <div className="text-center flex-1 min-w-[100px] bg-gray-50 rounded-lg p-3">
+                  <p className="text-lg font-black text-blue-600">99.5%</p>
+                  <p className="text-[10px] text-gray-500 uppercase font-medium">Uptime Rate</p>
                 </div>
               </div>
             </div>

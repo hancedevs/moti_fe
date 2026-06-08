@@ -54,7 +54,7 @@ export default function CtaSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {cards.map((card, index) => (
             <AnimateInView key={index} delay={index * 0.1} y={30} className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center flex flex-col items-center hover:shadow-lg transition-shadow">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-50 text-blue-600 mb-6">
+              <div className="flex h-16 w-16 items-center justify-center text-blue-600 mb-6">
                 {card.icon}
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">{card.title}</h3>

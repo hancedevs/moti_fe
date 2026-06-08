@@ -88,7 +88,7 @@ export default function HeroSection() {
             key={currentSlide} // Force re-render for animation
             className="animate-fade-in-up"
           >
-            <span className="inline-flex items-center mb-6 rounded-full bg-gray-600/80 px-2 py-1 text-[10px] font-semibold text-white backdrop-blur-sm border border-gray-500/30 uppercase tracking-widest shadow-sm">
+            <span className="inline-flex items-center mb-6 px-2 py-1 text-[10px] font-semibold text-white uppercase tracking-widest">
               <svg className="w-3 h-3 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 2l2 4-2 4-2-4 2-4z" />
               </svg>
@@ -125,7 +125,7 @@ export default function HeroSection() {
       <div className="absolute bottom-8 left-0 right-0 z-20 flex justify-center items-center space-x-6">
         <button 
           onClick={prevSlide}
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white shadow-lg border border-white/10 hover:bg-white/40 transition-all hover:scale-110"
+          className="flex h-10 w-10 items-center justify-center rounded-full text-white hover:bg-white/10 transition-all hover:scale-110"
           aria-label="Previous slide"
         >
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
@@ -146,7 +146,7 @@ export default function HeroSection() {
 
         <button 
           onClick={nextSlide}
-          className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md text-white shadow-lg border border-white/10 hover:bg-white/40 transition-all hover:scale-110"
+          className="flex h-10 w-10 items-center justify-center rounded-full text-white hover:bg-white/10 transition-all hover:scale-110"
           aria-label="Next slide"
         >
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>

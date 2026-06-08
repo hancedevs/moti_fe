@@ -75,7 +75,7 @@ export default function ContactForm() {
 
               {isSuccess ? (
                 <div className="text-center py-12">
-                  <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4">
                     <svg
                       className="w-8 h-8 text-green-600"
                       fill="none"
@@ -421,7 +421,7 @@ export default function ContactForm() {
                     href="https://linkedin.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-blue-100 text-gray-600 hover:text-blue-600 flex items-center justify-center transition-all"
+                    className="w-10 h-10 text-gray-600 hover:text-blue-600 flex items-center justify-center transition-all"
                     aria-label="LinkedIn"
                   >
                     <svg
@@ -436,7 +436,7 @@ export default function ContactForm() {
                     href="https://twitter.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-blue-100 text-gray-600 hover:text-blue-600 flex items-center justify-center transition-all"
+                    className="w-10 h-10 text-gray-600 hover:text-blue-600 flex items-center justify-center transition-all"
                     aria-label="Twitter"
                   >
                     <svg
@@ -451,7 +451,7 @@ export default function ContactForm() {
                     href="https://facebook.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-lg bg-gray-100 hover:bg-blue-100 text-gray-600 hover:text-blue-600 flex items-center justify-center transition-all"
+                    className="w-10 h-10 text-gray-600 hover:text-blue-600 flex items-center justify-center transition-all"
                     aria-label="Facebook"
                   >
                     <svg
