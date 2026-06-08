@@ -2,9 +2,9 @@ import AnimateInView from "@/components/ui/AnimateInView";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-12 lg:py-32 bg-gray-50">
+    <section id="about" className="py-8 lg:py-16 bg-gray-50">
       <div className="mx-auto max-w-[90rem] px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
           {/* Content */}
           <AnimateInView className="lg:w-[45%]">
             <h4 className="text-blue-600 font-semibold tracking-wide text-sm uppercase mb-3">
@@ -13,10 +13,10 @@ export default function AboutSection() {
             <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl lg:text-[40px] mb-6 leading-tight">
               Ethiopia's Leading ICT Solution Provider
             </h2>
-            <p className="text-lg text-gray-600 mb-10 leading-relaxed">
+            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
               Founded in 2006, MOTI Engineering has become the leading ICT solution provider for financial, governmental, and private institutions. As Ethiopia's largest system integrator and ATM supplier, we hold a significant market share, bolstered by over twenty years of experience.
             </p>
-            <div className="flex flex-wrap gap-4 mt-8">
+            <div className="flex flex-wrap gap-4 mt-6">
               <a
                 href="#about"
                 className="inline-flex items-center justify-center rounded-md bg-blue-600 px-6 py-2 text-sm font-bold text-white shadow-lg hover:bg-blue-500 hover:-translate-y-0.5 transition-all duration-300"
@@ -41,7 +41,7 @@ export default function AboutSection() {
               <img 
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
                 alt="Business Meeting" 
-                className="w-full h-[400px] lg:h-[500px] object-cover"
+                className="w-full h-[360px] lg:h-[440px] object-cover"
               />
             </div>
             

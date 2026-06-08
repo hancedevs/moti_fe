@@ -288,7 +288,7 @@ export default function CoffeeExportPage() {
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <AnimateInView className="mb-4">
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0082B4] dark:text-blue-400 text-xs font-semibold tracking-wide border border-blue-100 dark:border-gray-700">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold tracking-wide border border-blue-100 dark:border-gray-700">
               About Our Coffee Division
             </span>
           </AnimateInView>
@@ -311,7 +311,7 @@ export default function CoffeeExportPage() {
             </p>
           </AnimateInView>
 
-          <AnimateInView className="inline-flex items-center gap-6 bg-[#0F62FE] dark:bg-blue-700 text-white px-8 py-5 rounded-2xl font-bold shadow-lg shadow-blue-500/10 mb-16">
+          <AnimateInView className="inline-flex items-center gap-6 bg-[#5A8CD0] dark:bg-blue-700 text-white px-8 py-5 rounded-2xl font-bold shadow-lg shadow-blue-500/10 mb-16">
             <Award01Icon className="w-8 h-8 text-white shrink-0" />
             
             <div className="text-left">
@@ -327,27 +327,27 @@ export default function CoffeeExportPage() {
               {
                 value: "7",
                 label: "Varieties",
-                icon: <PackageIcon className="w-7 h-7 text-[#0F62FE] dark:text-blue-400" />,
+                icon: <PackageIcon className="w-7 h-7 text-[#5A8CD0] dark:text-blue-400" />,
               },
               {
                 value: "500+",
                 label: "Partner Farmers",
-                icon: <UserGroupIcon className="w-7 h-7 text-[#0F62FE] dark:text-blue-400" />,
+                icon: <UserGroupIcon className="w-7 h-7 text-[#5A8CD0] dark:text-blue-400" />,
               },
               {
                 value: "20+",
                 label: "Export Countries",
-                icon: <GlobeIcon className="w-7 h-7 text-[#0F62FE] dark:text-blue-400" />,
+                icon: <GlobeIcon className="w-7 h-7 text-[#5A8CD0] dark:text-blue-400" />,
               },
               {
                 value: "7",
                 label: "Regions",
-                icon: <MountainIcon className="w-7 h-7 text-[#0F62FE] dark:text-blue-400" />,
+                icon: <MountainIcon className="w-7 h-7 text-[#5A8CD0] dark:text-blue-400" />,
               },
             ].map((stat, i) => (
               <AnimateInView key={i} delay={i * 0.1} y={20}>
                 <div className="bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 p-8 rounded-2xl flex flex-col items-center text-center hover:shadow-md hover:border-blue-100 dark:hover:border-gray-600 transition-all duration-300">
-                  <div className="w-14 h-14 rounded-full bg-[#EDF5FF] dark:bg-blue-900/20 flex items-center justify-center mb-5 border border-blue-50/50 dark:border-gray-600">
+                  <div className="w-14 h-14 rounded-full bg-[#E9F0F8] dark:bg-blue-900/20 flex items-center justify-center mb-5 border border-blue-50/50 dark:border-gray-600">
                     {stat.icon}
                   </div>
                   <p className="text-3xl font-extrabold text-[#001D6C] dark:text-blue-200 mb-1">{stat.value}</p>
@@ -363,7 +363,7 @@ export default function CoffeeExportPage() {
       <section id="portfolio" className="w-full bg-[#F4F7FB] dark:bg-gray-900 py-20 border-t border-b border-[#E0E6ED] dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-6">
           <AnimateInView className="text-center mb-16">
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#0F62FE]/10 dark:bg-blue-500/10 text-[#0F62FE] dark:text-blue-400 text-xs font-semibold tracking-wide uppercase border border-blue-500/10 dark:border-blue-500/20 mb-4">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#5A8CD0]/10 dark:bg-blue-500/10 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold tracking-wide uppercase border border-blue-500/10 dark:border-blue-500/20 mb-4">
               Our Catalog
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] dark:text-blue-200 tracking-tight">
@@ -381,7 +381,7 @@ export default function CoffeeExportPage() {
             <div className="lg:col-span-4 h-full">
               {/* THE STICKY SIDEBAR CARD */}
               <div className="sticky top-24 self-start bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm z-10 overflow-hidden">
-                <div className="bg-[#0F62FE] dark:bg-blue-700 px-5 py-4 text-white flex items-center gap-3">
+                <div className="bg-[#5A8CD0] dark:bg-blue-700 px-5 py-4 text-white flex items-center gap-3">
                   <Coffee02Icon className="w-5 h-5 text-white shrink-0" />
                   <h3 className="text-base font-bold text-white">
                     Coffee Types
@@ -398,12 +398,12 @@ export default function CoffeeExportPage() {
                         onClick={() => setSelectedId(item.id)}
                         className={`w-full text-left p-3.5 rounded-xl flex items-center gap-4.5 transition-all duration-300 ${
                           isActive 
-                            ? "bg-[#0F62FE] dark:bg-blue-700 text-white shadow-md shadow-blue-500/10" 
+                            ? "bg-[#5A8CD0] dark:bg-blue-700 text-white shadow-md shadow-blue-500/10" 
                             : "bg-transparent text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700"
                         }`}
                       >
                         <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-sm font-extrabold ${
-                          isActive ? "bg-white/20 text-white" : "bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0F62FE] dark:text-blue-400"
+                          isActive ? "bg-white/20 text-white" : "bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400"
                         }`}>
                           {idx + 1}
                         </div>
@@ -433,7 +433,7 @@ export default function CoffeeExportPage() {
                       alt={activeCoffee.name} 
                       className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
                     />
-                    <div className="absolute top-4 left-4 bg-[#0082B4] dark:bg-blue-700 text-white px-4 py-1.5 text-xs font-bold rounded-lg uppercase tracking-wider shadow-md">
+                    <div className="absolute top-4 left-4 bg-[#5A8CD0] dark:bg-blue-700 text-white px-4 py-1.5 text-xs font-bold rounded-lg uppercase tracking-wider shadow-md">
                       {activeCoffee.badgeText || "Specialty"}
                     </div>
                   </div>
@@ -442,7 +442,7 @@ export default function CoffeeExportPage() {
                   <div className="bg-white dark:bg-gray-800 p-8 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm mt-6">
                     <h2 className="text-3xl font-extrabold text-[#001D6C] dark:text-blue-200">{activeCoffee.name}</h2>
                     <div className="flex flex-wrap gap-4 mt-2 mb-6 text-sm text-gray-500 dark:text-gray-400 border-b border-[#E0E6ED] dark:border-gray-700 pb-4">
-                      <span className="flex items-center gap-1.5 text-[#0082B4] dark:text-blue-400 font-semibold">
+                      <span className="flex items-center gap-1.5 text-[#5A8CD0] dark:text-blue-400 font-semibold">
                         <Location01Icon className="w-4 h-4" />
                         {activeCoffee.origin}
                       </span>
@@ -481,7 +481,7 @@ export default function CoffeeExportPage() {
                         {(activeCoffee.tastingNotes || []).map((note, nIdx) => (
                           <span 
                             key={nIdx}
-                            className="bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0082B4] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full border border-blue-100/50 dark:border-gray-600"
+                            className="bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full border border-blue-100/50 dark:border-gray-600"
                           >
                             {note}
                           </span>
@@ -491,7 +491,7 @@ export default function CoffeeExportPage() {
                     
                     <Link
                       href={`/contact?subject=PRODUCT_QUOTE&message=I%20would%20like%20to%20request%20a%20sample%20of%20${encodeURIComponent(activeCoffee.name)}%20coffee.`}
-                      className="inline-flex items-center gap-2 bg-[#0F62FE] dark:bg-blue-700 text-white px-6 py-3 rounded-xl text-sm font-bold shadow-md hover:bg-[#0B4FCD] hover:shadow-lg transition-all duration-300"
+                      className="inline-flex items-center gap-2 bg-[#5A8CD0] dark:bg-blue-700 text-white px-6 py-3 rounded-xl text-sm font-bold shadow-md hover:bg-[#4A7AB8] hover:shadow-lg transition-all duration-300"
                     >
                       Request Coffee Sample
                       <ArrowRight02Icon className="w-4 h-4" />
@@ -510,11 +510,11 @@ export default function CoffeeExportPage() {
         className="relative py-28 text-white bg-cover bg-center bg-no-repeat overflow-hidden"
         style={{ backgroundImage: `url('/From Farm to Export.png')` }}
       >
-        <div className="absolute inset-0 bg-[#0F62FE]/70 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-[#5A8CD0]/70 backdrop-blur-[1px]" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 max-w-3xl mx-auto">
-            <span className="inline-flex items-center px-4 py-1 rounded-full bg-white text-[#0F62FE] text-xs font-semibold tracking-wide uppercase border border-white/20 mb-4">
+            <span className="inline-flex items-center px-4 py-1 rounded-full bg-white text-[#5A8CD0] text-xs font-semibold tracking-wide uppercase border border-white/20 mb-4">
               Our Process
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
@@ -554,10 +554,10 @@ export default function CoffeeExportPage() {
             ].map((card, i) => (
               <AnimateInView key={i} delay={i * 0.1} y={30}>
                 <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl p-6 text-center flex flex-col items-center shadow-sm hover:shadow-md transition-all duration-300">
-                  <div className="w-14 h-14 rounded-full bg-[#0F62FE] dark:bg-blue-700 flex items-center justify-center mb-4 shadow-sm shadow-blue-500/10">
+                  <div className="w-14 h-14 rounded-full bg-[#5A8CD0] dark:bg-blue-700 flex items-center justify-center mb-4 shadow-sm shadow-blue-500/10">
                     {card.icon}
                   </div>
-                  <span className="text-xs font-bold text-[#0F62FE] dark:text-blue-400 uppercase tracking-wider mb-1">
+                  <span className="text-xs font-bold text-[#5A8CD0] dark:text-blue-400 uppercase tracking-wider mb-1">
                     Step {card.step}
                   </span>
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{card.title}</h3>
@@ -573,7 +573,7 @@ export default function CoffeeExportPage() {
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 max-w-3xl mx-auto">
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#EDF5FF] dark:bg-blue-900/20 text-[#0082B4] dark:text-blue-400 text-xs font-semibold tracking-wide border border-blue-100 dark:border-gray-700 mb-4">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold tracking-wide border border-blue-100 dark:border-gray-700 mb-4">
               Our Advantage
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] dark:text-blue-200 tracking-tight">
@@ -590,7 +590,7 @@ export default function CoffeeExportPage() {
                   { label: "Grading", val: "Grades 3, 4 & 5 standards" },
                   { label: "Traceability", val: "Farm to container" },
                 ],
-                icon: <Award01Icon className="w-5 h-5 text-[#0F62FE] dark:text-blue-400" />,
+                icon: <Award01Icon className="w-5 h-5 text-[#5A8CD0] dark:text-blue-400" />,
               },
               {
                 title: "Strategic Logistics",
@@ -599,13 +599,13 @@ export default function CoffeeExportPage() {
                   { label: "Shipping", val: "Djibouti corridor" },
                   { label: "Compliance", val: "EUDR ready" },
                 ],
-                icon: <TruckIcon className="w-5 h-5 text-[#0F62FE] dark:text-blue-400" />,
+                icon: <TruckIcon className="w-5 h-5 text-[#5A8CD0] dark:text-blue-400" />,
               },
             ].map((box, i) => (
               <AnimateInView key={i} delay={i * 0.1} y={30}>
                 <div className="bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-blue-100 dark:hover:border-gray-600 transition-all duration-300">
                   <div className="flex items-center mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-[#EDF5FF] dark:bg-blue-900/20 flex items-center justify-center mr-3 border border-blue-100/50 dark:border-gray-600">
+                    <div className="w-10 h-10 rounded-xl bg-[#E9F0F8] dark:bg-blue-900/20 flex items-center justify-center mr-3 border border-blue-100/50 dark:border-gray-600">
                       {box.icon}
                     </div>
                     <h3 className="text-xl font-bold text-[#001D6C] dark:text-blue-200">{box.title}</h3>
@@ -614,7 +614,7 @@ export default function CoffeeExportPage() {
                     {box.features.map((feat, fIdx) => (
                       <div key={fIdx} className="bg-[#F4F7FB] dark:bg-gray-900 rounded-xl px-5 py-3.5 flex justify-between items-center text-sm">
                         <span className="text-gray-700 dark:text-gray-300 font-medium">{feat.label}</span>
-                        <span className="text-[#0F62FE] dark:text-blue-400 font-bold text-right">{feat.val}</span>
+                        <span className="text-[#5A8CD0] dark:text-blue-400 font-bold text-right">{feat.val}</span>
                       </div>
                     ))}
                   </div>
@@ -630,7 +630,7 @@ export default function CoffeeExportPage() {
         className="relative py-24 text-white bg-cover bg-center bg-no-repeat overflow-hidden"
         style={{ backgroundImage: `url('/Coffee Export.png')` }}
       >
-        <div className="absolute inset-0 bg-[#0F62FE]/85 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-[#5A8CD0]/85 backdrop-blur-[2px]" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-6">
           <div className="text-center mb-12 max-w-3xl mx-auto">
@@ -770,17 +770,17 @@ export default function CoffeeExportPage() {
           <div className="text-center mt-16">
             <Link
               href="/contact?subject=PRODUCT_QUOTE&message=I%20would%20like%20to%20request%20a%20custom%20order%20for%20Ethiopian%20coffee."
-              className="inline-flex items-center justify-center gap-2 bg-white dark:bg-gray-800 text-[#0F62FE] dark:text-blue-400 px-8 py-3.5 rounded-xl font-bold shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              className="inline-flex items-center justify-center gap-2 bg-white dark:bg-gray-800 text-[#5A8CD0] dark:text-blue-400 px-8 py-3.5 rounded-xl font-bold shadow-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
             >
               Request Custom Order
-              <ArrowRight02Icon className="w-4 h-4 text-[#0F62FE] dark:text-blue-400" />
+              <ArrowRight02Icon className="w-4 h-4 text-[#5A8CD0] dark:text-blue-400" />
             </Link>
           </div>
         </div>
       </section>
 
       {/* 7. Quality Control Checklist */}
-      <section className="bg-[#0F62FE] dark:bg-blue-800 py-20 text-white border-t border-blue-500/20">
+      <section className="bg-[#5A8CD0] dark:bg-blue-800 py-20 text-white border-t border-blue-500/20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 max-w-3xl mx-auto">
             <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-white text-xs font-semibold tracking-wide uppercase border border-white/20 mb-4">
@@ -816,7 +816,7 @@ export default function CoffeeExportPage() {
       <section className="py-20 bg-[#F4F7FB] dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 max-w-3xl mx-auto">
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#0F62FE]/10 dark:bg-blue-500/10 text-[#0F62FE] dark:text-blue-400 text-xs font-semibold tracking-wide uppercase border border-blue-500/10 dark:border-blue-500/20 mb-4">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#5A8CD0]/10 dark:bg-blue-500/10 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold tracking-wide uppercase border border-blue-500/10 dark:border-blue-500/20 mb-4">
               Contact
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] dark:text-blue-200 tracking-tight mb-4">
@@ -834,26 +834,26 @@ export default function CoffeeExportPage() {
                 desc: "For general questions about our coffee division, sourcing capacities, or business operations.",
                 btnText: "Contact Us",
                 href: "/contact?subject=GENERAL_INQUIRY",
-                icon: <ChartIncreaseIcon className="w-6 h-6 text-[#0F62FE] dark:text-blue-400" />,
+                icon: <ChartIncreaseIcon className="w-6 h-6 text-[#5A8CD0] dark:text-blue-400" />,
               },
               {
                 title: "Sample Requests",
                 desc: "Request green coffee samples to evaluate grading, moisture, and cup profiles for your roasting needs.",
                 btnText: "Order Samples",
                 href: "/contact?subject=PRODUCT_QUOTE",
-                icon: <PackageIcon className="w-6 h-6 text-[#0F62FE] dark:text-blue-400" />,
+                icon: <PackageIcon className="w-6 h-6 text-[#5A8CD0] dark:text-blue-400" />,
               },
               {
                 title: "Visit Our Farm",
                 desc: "Schedule a visit to our sourcing partners and washing stations to experience our process firsthand.",
                 btnText: "Book a Visit",
                 href: "/contact?subject=OTHER",
-                icon: <Building01Icon className="w-6 h-6 text-[#0F62FE] dark:text-blue-400" />,
+                icon: <Building01Icon className="w-6 h-6 text-[#5A8CD0] dark:text-blue-400" />,
               },
             ].map((card, i) => (
               <AnimateInView key={i} delay={i * 0.1} y={30}>
                 <div className="bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl p-8 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition-shadow h-full">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#EDF5FF] dark:bg-blue-900/20 mb-6 border border-blue-100 dark:border-gray-600">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E9F0F8] dark:bg-blue-900/20 mb-6 border border-blue-100 dark:border-gray-600">
                     {card.icon}
                   </div>
                   <div>
@@ -862,7 +862,7 @@ export default function CoffeeExportPage() {
                   </div>
                   <Link
                     href={card.href}
-                    className="w-full inline-flex justify-center items-center bg-[#0F62FE] dark:bg-blue-700 px-5 py-3 rounded-xl text-sm font-bold text-white shadow-sm hover:bg-[#0B4FCD] transition-colors"
+                    className="w-full inline-flex justify-center items-center bg-[#5A8CD0] dark:bg-blue-700 px-5 py-3 rounded-xl text-sm font-bold text-white shadow-sm hover:bg-[#4A7AB8] transition-colors"
                   >
                     {card.btnText}
                   </Link>
