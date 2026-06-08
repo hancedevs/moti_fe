@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Career } from '@/store/api/apiSlice';
 import { Cancel01Icon, CheckmarkCircle02Icon, Target02Icon, ArrowRight01Icon } from 'hugeicons-react';
 
@@ -85,10 +86,10 @@ const JobDetailModal: React.FC<JobDetailModalProps> = ({ job, isOpen, onClose })
 
                 {/* Footer */}
                 <div className="p-8 border-t border-gray-100 bg-gray-50/50">
-                    <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all group">
+                    <Link href="/contact" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all group">
                         Apply for This Position
                         <ArrowRight01Icon size={20} className="group-hover:translate-x-1 transition-transform" />
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>
