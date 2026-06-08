@@ -1,10 +1,13 @@
 "use client";
 
+import { useState, useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { useGetCoffeeTypesQuery } from "@/store/api/apiSlice";
 import AnimateInView from "@/components/ui/AnimateInView";
 import {
   Coffee01Icon,
   ArrowRight02Icon,
+  ArrowLeft02Icon,
   Location01Icon,
   MountainIcon,
 } from "hugeicons-react";
@@ -48,85 +51,83 @@ function CoffeeCard({ item }: CoffeeCardProps) {
   const detail = getCoffeeDetail(item.name);
 
   return (
-    <AnimateInView y={30}>
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        <div className="lg:col-span-5 relative">
-          <div className="rounded-2xl overflow-hidden">
-            {item.imageUrl ? (
-              <img
-                src={item.imageUrl}
-                alt={item.name}
-                className="w-full min-h-[320px] object-cover"
-              />
-            ) : (
-              <PlaceholderImage />
-            )}
-          </div>
-          <span className="absolute top-4 left-4 bg-[#5A8CD0] text-white px-4 py-1.5 text-sm rounded-lg font-semibold">
-            {detail.badgeText}
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="lg:col-span-5 relative">
+        <div className="rounded-2xl overflow-hidden">
+          {item.imageUrl ? (
+            <img
+              src={item.imageUrl}
+              alt={item.name}
+              className="w-full min-h-[320px] object-cover"
+            />
+          ) : (
+            <PlaceholderImage />
+          )}
+        </div>
+        <span className="absolute top-4 left-4 bg-[#5A8CD0] text-white px-4 py-1.5 text-sm rounded-lg font-semibold">
+          {detail.badgeText}
+        </span>
+      </div>
+
+      <div className="lg:col-span-7">
+        <h2 className="text-2xl font-bold text-[#161616] dark:text-white mb-3">
+          {item.name}
+        </h2>
+
+        <div className="flex flex-wrap gap-3 mb-5">
+          <span className="inline-flex items-center gap-1.5 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full">
+            <Location01Icon className="w-3.5 h-3.5" />
+            {detail.region}
+          </span>
+          <span className="inline-flex items-center gap-1.5 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full">
+            <MountainIcon className="w-3.5 h-3.5" />
+            Altitude: {detail.altitude}
           </span>
         </div>
 
-        <div className="lg:col-span-7">
-          <h2 className="text-2xl font-bold text-[#161616] dark:text-white mb-3">
-            {item.name}
-          </h2>
-
-          <div className="flex flex-wrap gap-3 mb-5">
-            <span className="inline-flex items-center gap-1.5 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full">
-              <Location01Icon className="w-3.5 h-3.5" />
-              {detail.region}
-            </span>
-            <span className="inline-flex items-center gap-1.5 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full">
-              <MountainIcon className="w-3.5 h-3.5" />
-              Altitude: {detail.altitude}
-            </span>
-          </div>
-
-          <div className="text-[#525252] dark:text-gray-300 text-sm leading-relaxed space-y-3 mb-6">
-            {item.description.split("\n").map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
-          </div>
-
-          <hr className="border-[#E0E6ED] dark:border-gray-700 mb-6" />
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            <SpecBox label="Processing" value={detail.processing} />
-            <SpecBox label="Acidity" value={detail.acidity} />
-            <SpecBox label="Body" value={detail.body} />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-6">
-            <div className="md:col-span-5">
-              <SpecBox label="Harvest Season" value={detail.harvestSeason} />
-            </div>
-            <div className="md:col-span-7">
-              <SpecBox label="Grades Available" value={detail.gradesAvailable} />
-            </div>
-          </div>
-
-          <p className="text-sm font-semibold text-[#161616] dark:text-white mb-2">
-            Tasting Notes
-          </p>
-          <div className="flex flex-wrap gap-2 mb-6">
-            {detail.tastingNotes.map((note) => (
-              <span
-                key={note}
-                className="inline-flex items-center px-3 py-1 rounded-full bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-medium"
-              >
-                {note}
-              </span>
-            ))}
-          </div>
-
-          <button className="inline-flex items-center gap-2 bg-[#5A8CD0] text-white px-6 py-3 rounded-xl text-sm font-bold shadow-sm hover:bg-[#4A7AB8] transition-colors">
-            {detail.buttonText}
-            <ArrowRight02Icon className="w-4 h-4" />
-          </button>
+        <div className="text-[#525252] dark:text-gray-300 text-sm leading-relaxed space-y-3 mb-6">
+          {item.description.split("\n").map((para, i) => (
+            <p key={i}>{para}</p>
+          ))}
         </div>
+
+        <hr className="border-[#E0E6ED] dark:border-gray-700 mb-6" />
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <SpecBox label="Processing" value={detail.processing} />
+          <SpecBox label="Acidity" value={detail.acidity} />
+          <SpecBox label="Body" value={detail.body} />
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-6">
+          <div className="md:col-span-5">
+            <SpecBox label="Harvest Season" value={detail.harvestSeason} />
+          </div>
+          <div className="md:col-span-7">
+            <SpecBox label="Grades Available" value={detail.gradesAvailable} />
+          </div>
+        </div>
+
+        <p className="text-sm font-semibold text-[#161616] dark:text-white mb-2">
+          Tasting Notes
+        </p>
+        <div className="flex flex-wrap gap-2 mb-6">
+          {detail.tastingNotes.map((note) => (
+            <span
+              key={note}
+              className="inline-flex items-center px-3 py-1 rounded-full bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-medium"
+            >
+              {note}
+            </span>
+          ))}
+        </div>
+
+        <button className="inline-flex items-center gap-2 bg-[#5A8CD0] text-white px-6 py-3 rounded-xl text-sm font-bold shadow-sm hover:bg-[#4A7AB8] transition-colors">
+          {detail.buttonText}
+          <ArrowRight02Icon className="w-4 h-4" />
+        </button>
       </div>
-    </AnimateInView>
+    </div>
   );
 }
 
@@ -165,6 +166,80 @@ function LoadingSkeleton() {
           </div>
         </div>
       ))}
+    </div>
+  );
+}
+
+function CoffeeCarousel({ data }: { data: NonNullable<ReturnType<typeof useGetCoffeeTypesQuery>['data']> }) {
+  const [current, setCurrent] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    if (paused || !data.length) return;
+    intervalRef.current = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % data.length);
+    }, 6000);
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, [paused, data.length]);
+
+  const goTo = (index: number) => setCurrent(index);
+  const next = () => setCurrent((prev) => (prev + 1) % data.length);
+  const prev = () => setCurrent((prev) => (prev - 1 + data.length) % data.length);
+
+  return (
+    <div
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      className="relative"
+    >
+      <div className="overflow-hidden rounded-2xl">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            initial={{ opacity: 0, x: 80 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -80 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+          >
+            <CoffeeCard item={data[current]} index={current} />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      <div className="flex items-center justify-between mt-6 max-w-xs mx-auto">
+        <button
+          onClick={prev}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-[#5A8CD0] transition-colors"
+          aria-label="Previous"
+        >
+          <ArrowLeft02Icon className="w-4 h-4" />
+        </button>
+
+        <div className="flex items-center gap-2">
+          {data.map((_: unknown, i: number) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === current
+                  ? "bg-[#5A8CD0] w-5"
+                  : "bg-gray-300 hover:bg-gray-400 w-2"
+              }`}
+            />
+          ))}
+        </div>
+
+        <button
+          onClick={next}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-[#5A8CD0] transition-colors"
+          aria-label="Next"
+        >
+          <ArrowRight02Icon className="w-4 h-4" />
+        </button>
+      </div>
     </div>
   );
 }
@@ -210,11 +285,7 @@ export default function CoffeePortfolio() {
             </p>
           </div>
         ) : (
-          <div className="space-y-16 lg:space-y-20">
-            {data.map((item, index) => (
-              <CoffeeCard key={item.id} item={item} index={index} />
-            ))}
-          </div>
+          <CoffeeCarousel data={data} />
         )}
       </div>
     </section>

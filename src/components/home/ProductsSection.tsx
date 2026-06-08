@@ -346,7 +346,7 @@ export default function ProductsSection() {
                 onMouseEnter={() => setActiveTab(category)}
                 className={`snap-center shrink-0 relative px-6 py-2.5 text-sm font-medium transition-all duration-300 rounded-lg md:rounded-full ${
                   activeTab === category 
-                    ? "bg-white text-gray-900 shadow-sm font-medium" 
+                    ? "bg-blue-600 text-white shadow-sm font-medium" 
                     : "text-gray-600 hover:text-gray-900 font-normal hover:bg-white/50"
                 }`}
               >
