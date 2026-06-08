@@ -7,6 +7,18 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'cbefayda.cbe.com.et',
+      },
+      {
+        protocol: 'https',
+        hostname: 'play-lh.googleusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'upload.wikimedia.org',
+      },
     ],
   },
 };
