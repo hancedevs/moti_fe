@@ -46,7 +46,7 @@ export default function CareerHero() {
             headingHighlight="Career With Us"
             description="Join a team of 850+ professionals working on cutting-edge technology solutions across Ethiopia. We offer competitive salaries, growth opportunities, and a collaborative work environment."
             primaryCta={{ href: "#openings", label: "View Open Positions" }}
-            secondaryCta={{ href: "#submit-cv", label: "Submit Your CV" }}
+            secondaryCta={{ href: "/contact", label: "Submit Your CV" }}
             stats={stats}
             headingHighlightClassName="text-[#FFB300]"
             primaryButtonClassName="bg-white text-[#0055D4] hover:bg-gray-100 font-semibold"

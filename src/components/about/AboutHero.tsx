@@ -59,8 +59,8 @@ export default function AboutHero() {
       headingBefore="Who"
       headingHighlight="We Are"
       description="Ethiopia's leading ICT solution provider with 20+ years of experience in banking equipment, enterprise infrastructure, and technology solutions."
-      primaryCta={{ href: "#about", label: "Learn More" }}
-      secondaryCta={{ href: "#contact", label: "Contact Us" }}
+      primaryCta={{ href: "/about", label: "Learn More" }}
+      secondaryCta={{ href: "/contact", label: "Contact Us" }}
       stats={stats}
     />
   );

@@ -53,8 +53,8 @@ function ServicesMegaMenu({ onNavigate }: { onNavigate: (event: MouseEvent<HTMLA
   return (
     <div className="group h-full flex items-center">
       <Link
-        href="#services"
-        onClick={(event) => onNavigate(event, "#services")}
+        href="/services/banking-equipment"
+        onClick={(event) => onNavigate(event, "/services/banking-equipment")}
         className="flex items-center text-[13px] font-medium text-gray-600 hover:text-blue-600 h-20 transition-colors whitespace-nowrap"
       >
         Our Services
@@ -292,8 +292,10 @@ export default function Header() {
             </button>
 
             {/* IMS Portal Expanding Button */}
-            <Link
-              href="#ims-portal"
+            <a
+              href="https://ims.motiengineering.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex items-center h-8 bg-blue-600 text-white font-medium text-xs rounded-md shadow-sm hover:shadow-md hover:bg-blue-700 px-3 overflow-hidden transition-all duration-500 ease-out flex-shrink-0"
             >
               <svg className="w-3.5 h-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -309,7 +311,7 @@ export default function Header() {
               <div className="flex items-center whitespace-nowrap transition-[max-width,opacity,margin] duration-500 ease-out max-w-[70px] opacity-100 ml-2 group-hover:max-w-0 group-hover:opacity-0 group-hover:ml-0">
                 IMS Portal
               </div>
-            </Link>
+            </a>
 
           </div>
 
@@ -452,13 +454,14 @@ export default function Header() {
                 </svg>
               )}
             </button>
-            <Link
-              href="#ims-portal"
+            <a
+              href="https://ims.motiengineering.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center w-full px-4 py-3 bg-blue-600 text-white font-medium text-sm rounded-md hover:bg-blue-700 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
             >
               Incident Management System Portal
-            </Link>
+            </a>
           </div>
         </div>
       </div>

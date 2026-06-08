@@ -1,3 +1,4 @@
+import Link from "next/link";
 import AnimateInView from "@/components/ui/AnimateInView";
 
 export default function AboutSection() {
@@ -17,21 +18,21 @@ export default function AboutSection() {
               Founded in 2006, MOTI Engineering has become the leading ICT solution provider for financial, governmental, and private institutions. As Ethiopia's largest system integrator and ATM supplier, we hold a significant market share, bolstered by over twenty years of experience.
             </p>
             <div className="flex flex-wrap gap-4 mt-6">
-              <a
-                href="#about"
+              <Link
+                href="/about"
                 className="inline-flex items-center justify-center rounded-md bg-blue-600 px-6 py-2 text-sm font-bold text-white shadow-lg hover:bg-blue-500 hover:-translate-y-0.5 transition-all duration-300"
               >
                 Learn More About Us
                 <svg className="ml-2 -mr-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
-              </a>
-              <a
-                href="#contact"
+              </Link>
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center rounded-md border border-blue-600/20 bg-white px-6 py-2 text-sm font-bold text-blue-600 shadow-sm hover:bg-blue-50 hover:-translate-y-0.5 transition-all duration-300"
               >
                 Contact Us
-              </a>
+              </Link>
             </div>
           </AnimateInView>
 

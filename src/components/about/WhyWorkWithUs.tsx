@@ -92,7 +92,7 @@ export default function WhyWorkWithUs() {
           className="text-center"
         >
           <Link 
-            href="#contact" 
+            href="/contact" 
             className="inline-flex items-center justify-center rounded-md bg-white px-8 py-3.5 text-sm font-bold text-blue-600 shadow-lg hover:bg-gray-50 transition-colors"
           >
             Start Partnership &rarr;

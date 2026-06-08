@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import AnimateInView from "@/components/ui/AnimateInView";
 
 type CardContent = {
@@ -382,12 +383,15 @@ export default function ProductsSection() {
               </h3>
             </div>
             
-            <button className="flex items-center gap-2 px-4 py-1.5 border border-gray-200 rounded-md text-sm text-gray-700 hover:bg-gray-50 bg-white transition-colors w-fit">
+            <Link
+              href={activeTab === "Export" ? "/export/coffee-export" : "/services/banking-equipment"}
+              className="flex items-center gap-2 px-4 py-1.5 border border-gray-200 rounded-md text-sm text-gray-700 hover:bg-gray-50 bg-white transition-colors w-fit"
+            >
               {activeTab === "Export" ? "Visit Coffee Export Page" : "View All"} 
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
-            </button>
+            </Link>
           </div>
 
           {/* Conditional Rendering for Export Tab */}
@@ -405,12 +409,15 @@ export default function ProductsSection() {
                   <p className="text-gray-600 mb-6 max-w-3xl leading-relaxed">
                     Leveraging 20 years of leadership to deliver premium Green Coffee Beans with banking-grade precision. We export the finest Ethiopian coffee varieties to global markets.
                   </p>
-                  <button className="px-6 py-2 bg-orange-500 text-white font-medium text-sm rounded shadow hover:bg-orange-600 transition-colors inline-flex items-center gap-2">
+                  <Link
+                    href="/export/coffee-export"
+                    className="px-6 py-2 bg-orange-500 text-white font-medium text-sm rounded shadow hover:bg-orange-600 transition-colors inline-flex items-center gap-2"
+                  >
                     Visit Coffee Export Page
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
-                  </button>
+                  </Link>
                 </div>
               </div>
 

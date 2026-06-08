@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function ProjectsAndTestimonials() {
   // Testimonial State & Logic
@@ -115,12 +116,12 @@ export default function ProjectsAndTestimonials() {
                   <div className="p-4 flex flex-col flex-grow">
                     <h3 className="text-sm font-bold text-gray-900 mb-1">{project.title}</h3>
                     <div className="mt-auto pt-2">
-                      <a href="#" className="inline-flex items-center text-blue-600 font-semibold text-xs hover:text-blue-700">
+                      <Link href="/projects" className="inline-flex items-center text-blue-600 font-semibold text-xs hover:text-blue-700">
                         View Details
                         <svg className="ml-1 w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -128,9 +129,9 @@ export default function ProjectsAndTestimonials() {
             </div>
             
             <div className="mt-6">
-              <button className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline">
+              <Link href="/projects" className="text-sm font-medium text-blue-600 hover:text-blue-700 hover:underline">
                 See All Projects &rarr;
-              </button>
+              </Link>
             </div>
           </div>
 

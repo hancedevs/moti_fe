@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const benefits = [
     {
@@ -99,9 +100,9 @@ const EmployeeBenefits = () => {
                 </div>
 
                 <div className="text-center">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-bold transition-all shadow-lg">
+                    <Link href="/careers#openings" className="bg-blue-500 hover:bg-blue-700 text-white px-8 py-3 rounded-full font-bold transition-all shadow-lg">
                         Current Openings →
-                    </button>
+                    </Link>
                 </div>
             </div>
         </section>

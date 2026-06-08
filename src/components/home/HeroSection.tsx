@@ -9,7 +9,7 @@ const slides = [
     title: "Banking Equipment & E-payment",
     desc: "Complete ATM solutions, POS systems, card printers, and payment solutions. 12,000+ ATM installations across Ethiopia with 24/7 support and maintenance services.",
     buttonText: "Discover More",
-    buttonLink: "#services",
+    buttonLink: "/services/banking-equipment",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
   },
   {
@@ -17,7 +17,7 @@ const slides = [
     title: "Computer & Peripherals",
     desc: "Business desktops, laptops, tablets, printers, meeting room solutions, and networking devices. Complete office technology solutions for modern businesses.",
     buttonText: "View Products",
-    buttonLink: "#products",
+    buttonLink: "/services/computer-peripherals",
     image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
   },
   {
@@ -25,7 +25,7 @@ const slides = [
     title: "Enterprise Software Solutions",
     desc: "Digital banking, CRM, ERP, loan management, contact center, and e-commerce solutions. Transforming businesses with cutting-edge technology.",
     buttonText: "Explore Solutions",
-    buttonLink: "#software",
+    buttonLink: "/services/enterprise-software",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
   },
   {
@@ -33,7 +33,7 @@ const slides = [
     title: "Computer & Peripherals",
     desc: "Business desktops, laptops, tablets, printers, meeting room solutions, and networking devices. Complete office technology solutions for modern businesses.",
     buttonText: "Learn More",
-    buttonLink: "#products",
+    buttonLink: "/services/computer-peripherals",
     image: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
   },
   {
@@ -41,7 +41,7 @@ const slides = [
     title: "Export - Premium Coffee",
     desc: "Premium Ethiopian coffee export including Yirgacheffe, Guji, Sidama, Limmu, and Jimma varieties. From farm to global markets with banking-grade precision.",
     buttonText: "See Export",
-    buttonLink: "#export",
+    buttonLink: "/export/coffee-export",
     image: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
   }
 ];
@@ -111,7 +111,7 @@ export default function HeroSection() {
                 </svg>
               </Link>
               <Link
-                href="#contact"
+                href="/contact"
                 className="inline-flex items-center justify-center rounded-md border border-white/30 bg-white/10 backdrop-blur-sm px-10 py-3 sm:py-2 text-sm font-bold text-white shadow-lg hover:bg-white/20 hover:-translate-y-0.5 transition-all duration-300 w-full sm:w-auto"
               >
                 Contact Us

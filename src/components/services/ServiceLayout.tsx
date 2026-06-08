@@ -152,10 +152,10 @@ export default function ServiceLayout({ category }: { category: ServiceCategory 
                     ))}
                   </div>
 
-                  <button className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 text-sm font-medium rounded-md transition-colors flex items-center justify-center gap-2 group-hover:bg-blue-600 group-hover:text-white mt-auto">
+                  <Link href="/contact" className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 text-sm font-medium rounded-md transition-colors flex items-center justify-center gap-2 group-hover:bg-blue-600 group-hover:text-white mt-auto">
                     Get Quote
                     <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-                  </button>
+                  </Link>
                 </div>
               </div>
             ))
@@ -227,7 +227,7 @@ export default function ServiceLayout({ category }: { category: ServiceCategory 
               </div>
               <h3 className="text-gray-900 font-bold mb-2">Contact Sales</h3>
               <p className="text-gray-500 text-sm mb-6 flex-grow">Get in touch with our sales team for product inquiries.</p>
-              <button className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition-colors">Contact Sales</button>
+              <Link href="/contact" className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition-colors">Contact Sales</Link>
             </div>
             
             <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col items-center text-center hover:border-gray-300 transition-colors">
@@ -236,7 +236,7 @@ export default function ServiceLayout({ category }: { category: ServiceCategory 
               </div>
               <h3 className="text-gray-900 font-bold mb-2">Request Quote</h3>
               <p className="text-gray-500 text-sm mb-6 flex-grow">Request pricing and customized solutions.</p>
-              <button className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition-colors">Request Quote</button>
+              <Link href="/contact" className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition-colors">Request Quote</Link>
             </div>
             
             <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col items-center text-center hover:border-gray-300 transition-colors">
@@ -245,7 +245,7 @@ export default function ServiceLayout({ category }: { category: ServiceCategory 
               </div>
               <h3 className="text-gray-900 font-bold mb-2">All Products</h3>
               <p className="text-gray-500 text-sm mb-6 flex-grow">Explore our complete range of solutions.</p>
-              <button className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition-colors">View Products</button>
+              <Link href="/services/computer-peripherals" className="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition-colors">View Products</Link>
             </div>
           </div>
         </div>

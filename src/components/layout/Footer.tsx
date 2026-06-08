@@ -32,9 +32,9 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-blue-100">
               <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="#services" className="hover:text-white transition-colors">Services</Link></li>
+              <li><Link href="/services/banking-equipment" className="hover:text-white transition-colors">Services</Link></li>
               <li><Link href="/projects" className="hover:text-white transition-colors">Projects</Link></li>
-              <li><Link href="#contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
 
@@ -42,11 +42,11 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-6">Our Services</h3>
             <ul className="space-y-3 text-sm text-blue-100">
-              <li><Link href="#" className="hover:text-white transition-colors">Banking Equipment & E-payment</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Telecom Solutions</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Enterprise Solutions</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Power Solutions</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Data Center Infrastructures</Link></li>
+              <li><Link href="/services/banking-equipment" className="hover:text-white transition-colors">Banking Equipment & E-payment</Link></li>
+              <li><Link href="/services/telecom" className="hover:text-white transition-colors">Telecom Solutions</Link></li>
+              <li><Link href="/services/enterprise-software" className="hover:text-white transition-colors">Enterprise Solutions</Link></li>
+              <li><Link href="/services/power" className="hover:text-white transition-colors">Power Solutions</Link></li>
+              <li><Link href="/services/enterprise-it/data-center" className="hover:text-white transition-colors">Data Center Infrastructures</Link></li>
             </ul>
           </div>
 
@@ -76,9 +76,9 @@ export default function Footer() {
           </p>
           <div className="flex gap-4">
             {/* Social Icons Placeholders */}
-            <a href="#" className="text-blue-200 hover:text-white"><span className="sr-only">Facebook</span><div className="w-5 h-5 rounded-full bg-current"></div></a>
-            <a href="#" className="text-blue-200 hover:text-white"><span className="sr-only">Twitter</span><div className="w-5 h-5 rounded-full bg-current"></div></a>
-            <a href="#" className="text-blue-200 hover:text-white"><span className="sr-only">LinkedIn</span><div className="w-5 h-5 rounded-full bg-current"></div></a>
+            <a href="https://facebook.com/MOTIEngineering" className="text-blue-200 hover:text-white"><span className="sr-only">Facebook</span><div className="w-5 h-5 rounded-full bg-current"></div></a>
+            <a href="https://twitter.com/MOTIEngineering" className="text-blue-200 hover:text-white"><span className="sr-only">Twitter</span><div className="w-5 h-5 rounded-full bg-current"></div></a>
+            <a href="https://linkedin.com/company/motiengineering" className="text-blue-200 hover:text-white"><span className="sr-only">LinkedIn</span><div className="w-5 h-5 rounded-full bg-current"></div></a>
           </div>
         </div>
       </div>

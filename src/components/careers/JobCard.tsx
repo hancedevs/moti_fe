@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import { Career } from '@/store/api/apiSlice';
 
 interface JobCardProps {
@@ -57,9 +58,9 @@ const JobCard: React.FC<JobCardProps> = ({ job, onViewDetails }) => {
                 >
                     View Details
                 </button>
-                <button className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all text-sm">
+                <Link href="/careers#apply" className="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-all text-sm">
                     Apply Now
-                </button>
+                </Link>
             </div>
         </div>
     );

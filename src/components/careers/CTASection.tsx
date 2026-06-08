@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const CTASection = () => {
     return (
@@ -16,12 +17,12 @@ const CTASection = () => {
                         <p className="text-gray-600 text-lg mb-10 leading-relaxed">
                             Send us your CV and we will contact you when a suitable position comes up. We're always on the lookout for exceptional talent.
                         </p>
-                        <button className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-blue-500/30 flex items-center gap-3 mx-auto">
+                        <Link href="/contact" className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-blue-500/30 flex items-center gap-3 mx-auto">
                             Submit Your CV
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                             </svg>
-                        </button>
+                        </Link>
                     </div>
                 </div>
 
@@ -44,9 +45,9 @@ const CTASection = () => {
                             </div>
                             <h3 className="text-xl font-bold mb-2">Contact Us</h3>
                             <p className="text-gray-500 text-sm mb-6">Get in touch with our team for any inquiries or support.</p>
-                            <button className="text-blue-600 font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                            <Link href="/contact" className="text-blue-600 font-bold flex items-center gap-2 hover:gap-3 transition-all">
                                 Connect Now →
-                            </button>
+                            </Link>
                         </div>
                         <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
                             <div className="w-12 h-12 flex items-center justify-center text-blue-600 mb-6">
@@ -56,9 +57,9 @@ const CTASection = () => {
                             </div>
                             <h3 className="text-xl font-bold mb-2">View Open Positions</h3>
                             <p className="text-gray-500 text-sm mb-6">Browse our open roles and find your perfect fit.</p>
-                            <button className="text-blue-600 font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                            <Link href="#openings" className="text-blue-600 font-bold flex items-center gap-2 hover:gap-3 transition-all">
                                 View Positions →
-                            </button>
+                            </Link>
                         </div>
                         <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
                             <div className="w-12 h-12 flex items-center justify-center text-blue-600 mb-6">
@@ -68,9 +69,9 @@ const CTASection = () => {
                             </div>
                             <h3 className="text-xl font-bold mb-2">About Us</h3>
                             <p className="text-gray-500 text-sm mb-6">Learn more about our mission, vision and values.</p>
-                            <button className="text-blue-600 font-bold flex items-center gap-2 hover:gap-3 transition-all">
+                            <Link href="/about" className="text-blue-600 font-bold flex items-center gap-2 hover:gap-3 transition-all">
                                 Learn More →
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </div>
