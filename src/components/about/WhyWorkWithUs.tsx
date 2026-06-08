@@ -45,27 +45,27 @@ export default function WhyWorkWithUs() {
   ];
 
   return (
-    <section id="why-work-with-us" className="py-12 bg-blue-600">
+    <section id="why-work-with-us" className="py-8 bg-blue-600">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-10"
+          className="text-center mb-6"
         >
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold tracking-wider uppercase border border-white/20 mb-4">
+          <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-white/10 text-white text-[10px] font-semibold tracking-wider uppercase border border-white/20 mb-3">
             Partner With Us
           </span>
-          <h2 className="text-3xl font-extrabold text-white sm:text-4xl mb-3">
+          <h2 className="text-2xl font-extrabold text-white sm:text-3xl mb-2">
             Why Work With Us?
           </h2>
-          <p className="text-base text-blue-100 max-w-2xl mx-auto">
+          <p className="text-sm text-blue-100 max-w-2xl mx-auto">
             Discover why leading organizations choose Moti Engineering as their trusted technology partner.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
           {features.map((feature, index) => (
             <motion.div 
               key={index}
@@ -73,13 +73,13 @@ export default function WhyWorkWithUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center flex flex-col items-center hover:bg-white/15 transition-colors duration-300"
+              className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-center flex flex-col items-center hover:bg-white/15 transition-colors duration-300"
             >
-              <div className="w-12 h-12 flex items-center justify-center text-yellow-400 mb-4">
+              <div className="w-10 h-10 flex items-center justify-center text-white mb-3">
                 {feature.icon}
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">{feature.title}</h3>
-              <p className="text-sm text-blue-100 leading-relaxed">{feature.desc}</p>
+              <h3 className="text-sm font-bold text-white mb-1">{feature.title}</h3>
+              <p className="text-xs text-blue-100 leading-relaxed">{feature.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -93,7 +93,7 @@ export default function WhyWorkWithUs() {
         >
           <Link 
             href="/contact" 
-            className="inline-flex items-center justify-center rounded-md bg-white px-8 py-3.5 text-sm font-bold text-blue-600 shadow-lg hover:bg-gray-50 transition-colors"
+            className="inline-flex items-center justify-center rounded-md bg-white px-6 py-2.5 text-xs font-bold text-blue-600 shadow-lg hover:bg-gray-50 transition-colors"
           >
             Start Partnership &rarr;
           </Link>

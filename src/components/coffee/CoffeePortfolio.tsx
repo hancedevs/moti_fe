@@ -1,13 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { useGetCoffeeTypesQuery } from "@/store/api/apiSlice";
 import AnimateInView from "@/components/ui/AnimateInView";
 import {
   Coffee01Icon,
   ArrowRight02Icon,
-  ArrowLeft02Icon,
   Location01Icon,
   MountainIcon,
 } from "hugeicons-react";
@@ -170,87 +167,13 @@ function LoadingSkeleton() {
   );
 }
 
-function CoffeeCarousel({ data }: { data: NonNullable<ReturnType<typeof useGetCoffeeTypesQuery>['data']> }) {
-  const [current, setCurrent] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  useEffect(() => {
-    if (paused || !data.length) return;
-    intervalRef.current = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % data.length);
-    }, 6000);
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, [paused, data.length]);
-
-  const goTo = (index: number) => setCurrent(index);
-  const next = () => setCurrent((prev) => (prev + 1) % data.length);
-  const prev = () => setCurrent((prev) => (prev - 1 + data.length) % data.length);
-
-  return (
-    <div
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      className="relative"
-    >
-      <div className="overflow-hidden rounded-2xl">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, x: 80 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -80 }}
-            transition={{ duration: 0.4, ease: "easeInOut" }}
-          >
-            <CoffeeCard item={data[current]} index={current} />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      <div className="flex items-center justify-between mt-6 max-w-xs mx-auto">
-        <button
-          onClick={prev}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-[#5A8CD0] transition-colors"
-          aria-label="Previous"
-        >
-          <ArrowLeft02Icon className="w-4 h-4" />
-        </button>
-
-        <div className="flex items-center gap-2">
-          {data.map((_: unknown, i: number) => (
-            <button
-              key={i}
-              onClick={() => goTo(i)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                i === current
-                  ? "bg-[#5A8CD0] w-5"
-                  : "bg-gray-300 hover:bg-gray-400 w-2"
-              }`}
-            />
-          ))}
-        </div>
-
-        <button
-          onClick={next}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 text-gray-600 hover:bg-gray-50 hover:text-[#5A8CD0] transition-colors"
-          aria-label="Next"
-        >
-          <ArrowRight02Icon className="w-4 h-4" />
-        </button>
-      </div>
-    </div>
-  );
-}
-
 export default function CoffeePortfolio() {
   const { data, isLoading, isError, refetch } = useGetCoffeeTypesQuery();
 
   return (
     <section id="portfolio" className="py-16 lg:py-20 bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimateInView className="text-center mb-14">
+        <AnimateInView className="text-center mb-10">
           <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#5A8CD0]/10 dark:bg-blue-500/10 text-[#5A8CD0] dark:text-blue-400 font-semibold tracking-wider text-xs uppercase border border-[#5A8CD0]/20 dark:border-blue-500/20 mb-4">
             Our Coffee
           </span>
@@ -285,7 +208,20 @@ export default function CoffeePortfolio() {
             </p>
           </div>
         ) : (
-          <CoffeeCarousel data={data} />
+          <>
+            <style dangerouslySetInnerHTML={{__html: `
+                .hide-scrollbar::-webkit-scrollbar {
+                  display: none;
+                }
+              `}} />
+            <div className="max-h-[600px] overflow-y-auto space-y-10 hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              {data.map((item, index) => (
+                <AnimateInView key={item.id} y={30}>
+                  <CoffeeCard item={item} index={index} />
+                </AnimateInView>
+              ))}
+            </div>
+          </>
         )}
       </div>
     </section>

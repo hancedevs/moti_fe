@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useGetCoffeeTypesQuery } from "@/store/api/apiSlice";
 import PageHero from "@/components/layout/PageHero";
 import AnimateInView from "@/components/ui/AnimateInView";
+import CoffeePortfolio from "@/components/coffee/CoffeePortfolio";
 import {
   ArrowRight02Icon,
   Award01Icon,
@@ -359,151 +360,8 @@ export default function CoffeeExportPage() {
         </div>
       </section>
 
-      {/* 3. Ethiopian Coffee Portfolio (Sticky Sidebar Section) */}
-      <section id="portfolio" className="w-full bg-[#F4F7FB] dark:bg-gray-900 py-20 border-t border-b border-[#E0E6ED] dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-6">
-          <AnimateInView className="text-center mb-16">
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#5A8CD0]/10 dark:bg-blue-500/10 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold tracking-wide uppercase border border-blue-500/10 dark:border-blue-500/20 mb-4">
-              Our Catalog
-            </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] dark:text-blue-200 tracking-tight">
-              Ethiopian Coffee Portfolio
-            </h2>
-            <p className="mt-4 text-gray-600 dark:text-gray-300 text-base max-w-2xl mx-auto leading-relaxed">
-              Explore our range of premium single-origin Ethiopian coffee varieties, each boasting distinct flavor profiles, unique growing elevations, and meticulous processing methods.
-            </p>
-          </AnimateInView>
-
-          {/* 2-Column Core Workspace Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
-            
-            {/* LEFT COLUMN TRACK: Houses the Sticky Card Container */}
-            <div className="lg:col-span-4 h-full">
-              {/* THE STICKY SIDEBAR CARD */}
-              <div className="sticky top-24 self-start bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm z-10 overflow-hidden">
-                <div className="bg-[#5A8CD0] dark:bg-blue-700 px-5 py-4 text-white flex items-center gap-3">
-                  <Coffee02Icon className="w-5 h-5 text-white shrink-0" />
-                  <h3 className="text-base font-bold text-white">
-                    Coffee Types
-                  </h3>
-                </div>
-                
-                {/* Scrollable list container - constrained to show only the first 6 (approx 390px) */}
-                <div className="p-3 flex flex-col gap-2 overflow-y-auto h-[390px] scrollbar-thin">
-                  {coffeeTypes.map((item, idx) => {
-                    const isActive = item.id === selectedId;
-                    return (
-                      <button
-                        key={item.id}
-                        onClick={() => setSelectedId(item.id)}
-                        className={`w-full text-left p-3.5 rounded-xl flex items-center gap-4.5 transition-all duration-300 ${
-                          isActive 
-                            ? "bg-[#5A8CD0] dark:bg-blue-700 text-white shadow-md shadow-blue-500/10" 
-                            : "bg-transparent text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700"
-                        }`}
-                      >
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-sm font-extrabold ${
-                          isActive ? "bg-white/20 text-white" : "bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400"
-                        }`}>
-                          {idx + 1}
-                        </div>
-                        <div className="min-w-0">
-                          <p className={`text-sm font-bold truncate ${isActive ? "text-white" : "text-gray-900 dark:text-gray-100"}`}>
-                            {item.name}
-                          </p>
-                          <p className={`text-xs truncate ${isActive ? "text-white/80" : "text-gray-400"}`}>
-                            {item.badgeText}
-                          </p>
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-
-            {/* RIGHT COLUMN PANEL: Tall dynamic scrollable content area */}
-            <div className="lg:col-span-8 flex flex-col gap-6">
-              {activeCoffee && (
-                <AnimateInView key={activeCoffee.id} y={20} className="w-full">
-                  {/* Main Visual Display Block (Farm Photo) */}
-                  <div className="rounded-2xl overflow-hidden shadow-sm relative h-[380px] w-full border border-[#E0E6ED] dark:border-gray-700">
-                    <img 
-                      src={getImageUrl(activeCoffee.imageUrl)} 
-                      alt={activeCoffee.name} 
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
-                    />
-                    <div className="absolute top-4 left-4 bg-[#5A8CD0] dark:bg-blue-700 text-white px-4 py-1.5 text-xs font-bold rounded-lg uppercase tracking-wider shadow-md">
-                      {activeCoffee.badgeText || "Specialty"}
-                    </div>
-                  </div>
-
-                  {/* Technical Data Display Segment Card */}
-                  <div className="bg-white dark:bg-gray-800 p-8 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm mt-6">
-                    <h2 className="text-3xl font-extrabold text-[#001D6C] dark:text-blue-200">{activeCoffee.name}</h2>
-                    <div className="flex flex-wrap gap-4 mt-2 mb-6 text-sm text-gray-500 dark:text-gray-400 border-b border-[#E0E6ED] dark:border-gray-700 pb-4">
-                      <span className="flex items-center gap-1.5 text-[#5A8CD0] dark:text-blue-400 font-semibold">
-                        <Location01Icon className="w-4 h-4" />
-                        {activeCoffee.origin}
-                      </span>
-                      <span className="hidden sm:inline text-gray-300 dark:text-gray-600">|</span>
-                      <span className="flex items-center gap-1.5 font-medium">
-                        <MountainIcon className="w-4 h-4" />
-                        {activeCoffee.altitude}
-                      </span>
-                    </div>
-                    
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8 text-base">
-                      {activeCoffee.description}
-                    </p>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-8">
-                      {[
-                        { label: "Processing", value: formatProcessing(activeCoffee.processing) },
-                        { label: "Acidity", value: activeCoffee.acidity },
-                        { label: "Body", value: activeCoffee.body },
-                        {
-                          label: "Harvest Season",
-                          value: formatHarvestSeason(activeCoffee.harvestSeason),
-                        },
-                        { label: "Grades Available", value: activeCoffee.grade || "G3, G4, G5" },
-                      ].map((spec, sIdx) => (
-                        <div key={sIdx} className="bg-[#F4F7FB] dark:bg-gray-900 border border-[#E0E6ED] dark:border-gray-700 rounded-xl p-4">
-                          <p className="text-[10px] uppercase font-bold text-gray-400 dark:text-gray-500 tracking-wider mb-1">{spec.label}</p>
-                          <p className="text-sm font-bold text-[#001D6C] dark:text-blue-200 truncate">{spec.value}</p>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="mb-8">
-                      <p className="text-sm font-bold text-[#161616] dark:text-white mb-3">Tasting Notes</p>
-                      <div className="flex flex-wrap gap-2">
-                        {(activeCoffee.tastingNotes || []).map((note, nIdx) => (
-                          <span 
-                            key={nIdx}
-                            className="bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full border border-blue-100/50 dark:border-gray-600"
-                          >
-                            {note}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <Link
-                      href={`/contact?subject=PRODUCT_QUOTE&message=I%20would%20like%20to%20request%20a%20sample%20of%20${encodeURIComponent(activeCoffee.name)}%20coffee.`}
-                      className="inline-flex items-center gap-2 bg-[#5A8CD0] dark:bg-blue-700 text-white px-6 py-3 rounded-xl text-sm font-bold shadow-md hover:bg-[#4A7AB8] hover:shadow-lg transition-all duration-300"
-                    >
-                      Request Coffee Sample
-                      <ArrowRight02Icon className="w-4 h-4" />
-                    </Link>
-                  </div>
-                </AnimateInView>
-              )}
-            </div>
-
-          </div>
-        </div>
-      </section>
+      {/* 3. Ethiopian Coffee Portfolio */}
+      <CoffeePortfolio />
 
       {/* 4. From Farm to Export Section */}
       <section 
@@ -662,7 +520,7 @@ export default function CoffeeExportPage() {
             ))}
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
             {coffeeTypes.map((item) => {
               const isExpanded = !!expandedIds[item.id];
               return (
@@ -674,7 +532,7 @@ export default function CoffeeExportPage() {
                   <div>
                     {/* Header: Cup icon + Name & Origin */}
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-[#F97316] flex items-center justify-center shadow-md shrink-0">
+                      <div className="w-12 h-12 rounded-full bg-[#5A8CD0] flex items-center justify-center shadow-md shrink-0">
                         <Coffee02Icon className="w-5 h-5 text-white" />
                       </div>
                       <div>
@@ -686,21 +544,14 @@ export default function CoffeeExportPage() {
                       </div>
                     </div>
 
-                    {/* Bottom Row showing badges and toggle link */}
+                    {/* Bottom Row showing grade label and toggle link */}
                     <div className="flex items-center justify-between mt-6">
-                      <div className="flex items-center gap-1.5">
-                        {["G3", "G4", "G5"].map((grade) => (
-                          <span 
-                            key={grade}
-                            className="bg-green-500/15 text-green-300 text-[10px] font-bold border border-green-500/30 px-2.5 py-0.5 rounded-full"
-                          >
-                            {grade}
-                          </span>
-                        ))}
-                      </div>
+                      <span className="text-[10px] font-bold text-white/60 uppercase tracking-wider border border-white/20 px-2.5 py-0.5 rounded-full">
+                        G3 - G5
+                      </span>
                       <button 
                         type="button"
-                        className="text-white hover:text-[#F97316] text-xs font-semibold flex items-center gap-1 transition-colors"
+                        className="text-white hover:text-[#5A8CD0] text-xs font-semibold flex items-center gap-1 transition-colors"
                       >
                         {isExpanded ? "Collapse" : "Details"}
                         <span className={`transform transition-transform ${isExpanded ? "rotate-90" : ""}`}>→</span>
@@ -753,7 +604,7 @@ export default function CoffeeExportPage() {
 
                           <Link
                             href={`/contact?subject=PRODUCT_QUOTE&message=I%20would%20like%20to%20request%20samples%20and%20pricing%20for%20${encodeURIComponent(item.name)}%20coffee.`}
-                            className="w-full justify-center py-2.5 bg-[#F97316] hover:bg-[#EA580C] text-white text-xs font-bold rounded-xl transition-colors shadow-md flex items-center gap-1.5"
+                            className="w-full justify-center py-2.5 bg-[#5A8CD0] hover:bg-[#4A7AB8] text-white text-xs font-bold rounded-xl transition-colors shadow-md flex items-center gap-1.5"
                           >
                             Request a Sample
                             <span>→</span>
@@ -780,18 +631,18 @@ export default function CoffeeExportPage() {
       </section>
 
       {/* 7. Quality Control Checklist */}
-      <section className="bg-[#5A8CD0] dark:bg-blue-800 py-20 text-white border-t border-blue-500/20">
+      <section className="bg-[#5A8CD0] dark:bg-blue-800 py-12 text-white border-t border-blue-500/20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16 max-w-3xl mx-auto">
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 text-white text-xs font-semibold tracking-wide uppercase border border-white/20 mb-4">
+          <div className="text-center mb-8 max-w-3xl mx-auto">
+            <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold tracking-wide uppercase border border-white/20 mb-3">
               QC Checklist
             </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
               Quality Control Checklist
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
             {[
               { title: "Moisture", value: "10.5% - 12.0%" },
               { title: "Defects", value: "Under 1%" },
@@ -799,12 +650,12 @@ export default function CoffeeExportPage() {
               { title: "Color", value: "Uniform Green" },
             ].map((check, i) => (
               <AnimateInView key={i} delay={i * 0.08} y={20}>
-                <div className="border border-white/20 bg-white/10 rounded-2xl p-6 flex flex-col items-center justify-center text-center hover:bg-white/15 transition-all duration-300">
-                  <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center border border-green-400/30 mb-4">
-                    <span className="text-green-400 font-bold">✓</span>
+                <div className="border border-white/20 bg-white/10 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/15 transition-all duration-300">
+                  <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center border border-green-400/30 mb-3">
+                    <span className="text-green-400 font-bold text-xs">✓</span>
                   </div>
-                  <p className="text-xs text-white/60 font-bold uppercase tracking-wider mb-1">{check.title}</p>
-                  <p className="text-base font-extrabold text-white">{check.value}</p>
+                  <p className="text-[10px] text-white/60 font-bold uppercase tracking-wider mb-0.5">{check.title}</p>
+                  <p className="text-sm font-extrabold text-white">{check.value}</p>
                 </div>
               </AnimateInView>
             ))}
