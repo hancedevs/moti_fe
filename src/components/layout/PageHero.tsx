@@ -58,7 +58,7 @@ export default function PageHero({
   headingHighlightClassName = "text-blue-500",
   primaryButtonClassName = "bg-blue-600 text-white shadow-lg hover:bg-blue-500",
   secondaryButtonClassName = "border-white/35 text-white hover:bg-white/10",
-  statIconContainerClassName = "",
+  statIconContainerClassName = "text-white",
   statLabelClassName = "text-blue-400",
   overlayClassName = "from-black/60 via-black/45 to-black/20",
 }: PageHeroProps) {
