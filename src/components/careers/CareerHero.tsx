@@ -51,7 +51,7 @@ export default function CareerHero() {
             headingHighlightClassName="text-[#FFB300]"
             primaryButtonClassName="bg-white text-[#0055D4] hover:bg-gray-100 font-semibold"
             secondaryButtonClassName="bg-white/10 border-white/20 text-white hover:bg-white/20 font-medium"
-            statIconContainerClassName="bg-white/10 border border-white/5"
+            statIconContainerClassName="bg-blue-600"
             statLabelClassName="text-gray-400"
             overlayClassName="from-black/70 via-black/50 to-black/30"
         />
