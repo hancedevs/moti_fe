@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useGetCoffeeTypesQuery } from "@/store/api/apiSlice";
 import PageHero from "@/components/layout/PageHero";
 import AnimateInView from "@/components/ui/AnimateInView";
-import CoffeePortfolio from "@/components/coffee/CoffeePortfolio";
 import {
   ArrowRight02Icon,
   Award01Icon,
@@ -360,8 +359,136 @@ export default function CoffeeExportPage() {
         </div>
       </section>
 
-      {/* 3. Ethiopian Coffee Portfolio */}
-      <CoffeePortfolio />
+      {/* 3. Ethiopian Coffee Portfolio (Sticky Sidebar Section) */}
+      <section id="portfolio" className="w-full bg-[#f8f9fb] dark:bg-gray-900 py-20 border-t border-b border-[#E0E6ED] dark:border-gray-700">
+        <div className="max-w-7xl mx-auto px-6">
+          <AnimateInView className="text-center mb-16">
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#5A8CD0]/10 dark:bg-blue-500/10 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold tracking-wide uppercase border border-blue-500/10 dark:border-blue-500/20 mb-4">
+              Our Catalog
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] dark:text-blue-200 tracking-tight">
+              Ethiopian Coffee Portfolio
+            </h2>
+            <p className="mt-4 text-gray-600 dark:text-gray-300 text-base max-w-2xl mx-auto leading-relaxed">
+              Explore our range of premium single-origin Ethiopian coffee varieties, each boasting distinct flavor profiles, unique growing elevations, and meticulous processing methods.
+            </p>
+          </AnimateInView>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
+            
+            <div className="lg:col-span-4 h-full">
+              <div className="sticky top-24 self-start bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm z-10 overflow-hidden">
+                <div className="bg-[#5A8CD0] dark:bg-blue-700 px-5 py-4 text-white flex items-center gap-3">
+                  <Coffee02Icon className="w-5 h-5 text-white shrink-0" />
+                  <h3 className="text-base font-bold text-white">Coffee Types</h3>
+                </div>
+                
+                <div className="p-3 flex flex-col gap-2">
+                  {coffeeTypes.map((item, idx) => {
+                    const isActive = item.id === selectedId;
+                    return (
+                      <button
+                        key={item.id}
+                        onClick={() => setSelectedId(item.id)}
+                        className={`w-full text-left p-3.5 rounded-xl flex items-center gap-4.5 transition-all duration-300 ${
+                          isActive 
+                            ? "bg-[#5A8CD0] dark:bg-blue-700 text-white shadow-md shadow-blue-500/10" 
+                            : "bg-transparent text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700"
+                        }`}
+                      >
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-sm font-extrabold ${
+                          isActive ? "bg-white/20 text-white" : "bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400"
+                        }`}>
+                          {idx + 1}
+                        </div>
+                        <div className="min-w-0">
+                          <p className={`text-sm font-bold truncate ${isActive ? "text-white" : "text-gray-900 dark:text-gray-100"}`}>
+                            {item.name}
+                          </p>
+                          <p className={`text-xs truncate ${isActive ? "text-white/80" : "text-gray-400"}`}>
+                            {item.badgeText}
+                          </p>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-8 flex flex-col gap-6">
+              {activeCoffee && (
+                <AnimateInView key={activeCoffee.id} y={20} className="w-full">
+                  <div className="rounded-2xl overflow-hidden shadow-sm relative h-[380px] w-full border border-[#E0E6ED] dark:border-gray-700">
+                    <img 
+                      src={getImageUrl(activeCoffee.imageUrl)} 
+                      alt={activeCoffee.name} 
+                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+                    />
+                    <div className="absolute top-4 left-4 bg-[#5A8CD0] dark:bg-blue-700 text-white px-4 py-1.5 text-xs font-bold rounded-lg uppercase tracking-wider shadow-md">
+                      {activeCoffee.badgeText || "Specialty"}
+                    </div>
+                  </div>
+
+                  <div className="bg-white dark:bg-gray-800 p-8 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm mt-6">
+                    <h2 className="text-3xl font-extrabold text-[#001D6C] dark:text-blue-200">{activeCoffee.name}</h2>
+                    <div className="flex flex-wrap gap-4 mt-2 mb-6 text-sm text-gray-500 dark:text-gray-400 border-b border-[#E0E6ED] dark:border-gray-700 pb-4">
+                      <span className="flex items-center gap-1.5 text-[#5A8CD0] dark:text-blue-400 font-semibold">
+                        <Location01Icon className="w-4 h-4" />
+                        {activeCoffee.origin}
+                      </span>
+                      <span className="hidden sm:inline text-gray-300 dark:text-gray-600">|</span>
+                      <span className="flex items-center gap-1.5 font-medium">
+                        <MountainIcon className="w-4 h-4" />
+                        {activeCoffee.altitude}
+                      </span>
+                    </div>
+                    
+                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8 text-base">
+                      {activeCoffee.description}
+                    </p>
+
+                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-8">
+                      {[
+                        { label: "Processing", value: formatProcessing(activeCoffee.processing) },
+                        { label: "Acidity", value: activeCoffee.acidity },
+                        { label: "Body", value: activeCoffee.body },
+                        { label: "Harvest Season", value: formatHarvestSeason(activeCoffee.harvestSeason) },
+                        { label: "Grades Available", value: activeCoffee.grade || "G3, G4, G5" },
+                      ].map((spec, sIdx) => (
+                        <div key={sIdx} className="bg-[#f8f9fb] dark:bg-gray-900 border border-[#E0E6ED] dark:border-gray-700 rounded-xl p-4">
+                          <p className="text-[10px] uppercase font-bold text-gray-400 dark:text-gray-500 tracking-wider mb-1">{spec.label}</p>
+                          <p className="text-sm font-bold text-[#001D6C] dark:text-blue-200 truncate">{spec.value}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="mb-8">
+                      <p className="text-sm font-bold text-[#161616] dark:text-white mb-3">Tasting Notes</p>
+                      <div className="flex flex-wrap gap-2">
+                        {(activeCoffee.tastingNotes || []).map((note, nIdx) => (
+                          <span key={nIdx} className="bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full border border-blue-100/50 dark:border-gray-600">
+                            {note}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <Link
+                      href={`/contact?subject=PRODUCT_QUOTE&message=I%20would%20like%20to%20request%20a%20sample%20of%20${encodeURIComponent(activeCoffee.name)}%20coffee.`}
+                      className="inline-flex items-center gap-2 bg-[#5A8CD0] dark:bg-blue-700 text-white px-6 py-3 rounded-xl text-sm font-bold shadow-md hover:bg-[#4A7AB8] hover:shadow-lg transition-all duration-300"
+                    >
+                      Request Coffee Sample
+                      <ArrowRight02Icon className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </AnimateInView>
+              )}
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       {/* 4. From Farm to Export Section */}
       <section 
