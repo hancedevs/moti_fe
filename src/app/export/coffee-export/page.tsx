@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useGetCoffeeTypesQuery } from "@/store/api/apiSlice";
@@ -238,8 +238,6 @@ export default function CoffeeExportPage() {
     document.title = "Premium Ethiopian Coffee Export | MOTI Engineering";
   }, []);
 
-  const activeCoffee = coffeeTypes.find((c) => c.id === selectedId) || coffeeTypes[0];
-
   const getImageUrl = (url: string | null) => {
     if (!url) return "/cofee_hero.webp.webp";
     if (url.startsWith("http")) return url;
@@ -247,6 +245,30 @@ export default function CoffeeExportPage() {
       return `https://moti-be.onrender.com${url}`;
     }
     return url;
+  };
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback(() => {
+    if (scrollRef.current && coffeeTypes.length) {
+      const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
+      const itemHeight = scrollHeight / coffeeTypes.length;
+      const newIndex = Math.round(scrollTop / itemHeight);
+      const clamped = Math.min(newIndex, coffeeTypes.length - 1);
+      if (coffeeTypes[clamped] && coffeeTypes[clamped].id !== selectedId) {
+        setSelectedId(coffeeTypes[clamped].id);
+      }
+    }
+  }, [coffeeTypes, selectedId]);
+
+  const scrollToCoffee = (id: number) => {
+    if (scrollRef.current && coffeeTypes.length) {
+      const idx = coffeeTypes.findIndex(c => c.id === id);
+      if (idx !== -1) {
+        const itemHeight = scrollRef.current.scrollHeight / coffeeTypes.length;
+        scrollRef.current.scrollTo({ top: itemHeight * idx, behavior: "smooth" });
+      }
+    }
   };
 
   return (
@@ -360,9 +382,9 @@ export default function CoffeeExportPage() {
       </section>
 
       {/* 3. Ethiopian Coffee Portfolio (Sticky Sidebar Section) */}
-      <section id="portfolio" className="w-full bg-[#f8f9fb] dark:bg-gray-900 py-20 border-t border-b border-[#E0E6ED] dark:border-gray-700">
+      <section id="portfolio" className="w-full bg-[#f8f9fb] dark:bg-gray-900 py-14 border-t border-b border-[#E0E6ED] dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-6">
-          <AnimateInView className="text-center mb-16">
+          <AnimateInView className="text-center mb-8">
             <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#5A8CD0]/10 dark:bg-blue-500/10 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold tracking-wide uppercase border border-blue-500/10 dark:border-blue-500/20 mb-4">
               Our Catalog
             </span>
@@ -374,38 +396,38 @@ export default function CoffeeExportPage() {
             </p>
           </AnimateInView>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            <div className="lg:col-span-4 h-full">
-              <div className="sticky top-24 self-start bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm z-10 overflow-hidden">
-                <div className="bg-[#5A8CD0] dark:bg-blue-700 px-5 py-4 text-white flex items-center gap-3">
-                  <Coffee02Icon className="w-5 h-5 text-white shrink-0" />
-                  <h3 className="text-base font-bold text-white">Coffee Types</h3>
+            <div className="lg:col-span-4">
+              <div className="sticky top-24 bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm z-10 overflow-hidden">
+                <div className="bg-[#5A8CD0] dark:bg-blue-700 px-4 py-3 text-white flex items-center gap-2">
+                  <Coffee02Icon className="w-4 h-4 text-white shrink-0" />
+                  <h3 className="text-sm font-bold text-white">Coffee Types</h3>
                 </div>
                 
-                <div className="p-3 flex flex-col gap-2">
+                <div className="p-2 flex flex-col gap-1.5">
                   {coffeeTypes.map((item, idx) => {
                     const isActive = item.id === selectedId;
                     return (
                       <button
                         key={item.id}
-                        onClick={() => setSelectedId(item.id)}
-                        className={`w-full text-left p-3.5 rounded-xl flex items-center gap-4.5 transition-all duration-300 ${
+                        onClick={() => scrollToCoffee(item.id)}
+                        className={`w-full text-left p-2.5 rounded-lg flex items-center gap-3 transition-all duration-300 ${
                           isActive 
-                            ? "bg-[#5A8CD0] dark:bg-blue-700 text-white shadow-md shadow-blue-500/10" 
+                            ? "bg-[#5A8CD0] dark:bg-blue-700 text-white shadow-sm" 
                             : "bg-transparent text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700"
                         }`}
                       >
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-sm font-extrabold ${
+                        <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 text-xs font-extrabold ${
                           isActive ? "bg-white/20 text-white" : "bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400"
                         }`}>
                           {idx + 1}
                         </div>
                         <div className="min-w-0">
-                          <p className={`text-sm font-bold truncate ${isActive ? "text-white" : "text-gray-900 dark:text-gray-100"}`}>
+                          <p className={`text-xs font-bold truncate ${isActive ? "text-white" : "text-gray-900 dark:text-gray-100"}`}>
                             {item.name}
                           </p>
-                          <p className={`text-xs truncate ${isActive ? "text-white/80" : "text-gray-400"}`}>
+                          <p className={`text-[10px] truncate ${isActive ? "text-white/70" : "text-gray-400"}`}>
                             {item.badgeText}
                           </p>
                         </div>
@@ -416,74 +438,84 @@ export default function CoffeeExportPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-8 flex flex-col gap-6">
-              {activeCoffee && (
-                <AnimateInView key={activeCoffee.id} y={20} className="w-full">
-                  <div className="rounded-2xl overflow-hidden shadow-sm relative h-[380px] w-full border border-[#E0E6ED] dark:border-gray-700">
-                    <img 
-                      src={getImageUrl(activeCoffee.imageUrl)} 
-                      alt={activeCoffee.name} 
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
-                    />
-                    <div className="absolute top-4 left-4 bg-[#5A8CD0] dark:bg-blue-700 text-white px-4 py-1.5 text-xs font-bold rounded-lg uppercase tracking-wider shadow-md">
-                      {activeCoffee.badgeText || "Specialty"}
-                    </div>
-                  </div>
-
-                  <div className="bg-white dark:bg-gray-800 p-8 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm mt-6">
-                    <h2 className="text-3xl font-extrabold text-[#001D6C] dark:text-blue-200">{activeCoffee.name}</h2>
-                    <div className="flex flex-wrap gap-4 mt-2 mb-6 text-sm text-gray-500 dark:text-gray-400 border-b border-[#E0E6ED] dark:border-gray-700 pb-4">
-                      <span className="flex items-center gap-1.5 text-[#5A8CD0] dark:text-blue-400 font-semibold">
-                        <Location01Icon className="w-4 h-4" />
-                        {activeCoffee.origin}
-                      </span>
-                      <span className="hidden sm:inline text-gray-300 dark:text-gray-600">|</span>
-                      <span className="flex items-center gap-1.5 font-medium">
-                        <MountainIcon className="w-4 h-4" />
-                        {activeCoffee.altitude}
-                      </span>
-                    </div>
-                    
-                    <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8 text-base">
-                      {activeCoffee.description}
-                    </p>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mb-8">
-                      {[
-                        { label: "Processing", value: formatProcessing(activeCoffee.processing) },
-                        { label: "Acidity", value: activeCoffee.acidity },
-                        { label: "Body", value: activeCoffee.body },
-                        { label: "Harvest Season", value: formatHarvestSeason(activeCoffee.harvestSeason) },
-                        { label: "Grades Available", value: activeCoffee.grade || "G3, G4, G5" },
-                      ].map((spec, sIdx) => (
-                        <div key={sIdx} className="bg-[#f8f9fb] dark:bg-gray-900 border border-[#E0E6ED] dark:border-gray-700 rounded-xl p-4">
-                          <p className="text-[10px] uppercase font-bold text-gray-400 dark:text-gray-500 tracking-wider mb-1">{spec.label}</p>
-                          <p className="text-sm font-bold text-[#001D6C] dark:text-blue-200 truncate">{spec.value}</p>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="mb-8">
-                      <p className="text-sm font-bold text-[#161616] dark:text-white mb-3">Tasting Notes</p>
-                      <div className="flex flex-wrap gap-2">
-                        {(activeCoffee.tastingNotes || []).map((note, nIdx) => (
-                          <span key={nIdx} className="bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold px-3 py-1.5 rounded-full border border-blue-100/50 dark:border-gray-600">
-                            {note}
-                          </span>
-                        ))}
+            <style dangerouslySetInnerHTML={{__html: `
+              .hide-scrollbar::-webkit-scrollbar { display: none; }
+            `}} />
+            <div
+              ref={scrollRef}
+              onScroll={handleScroll}
+              className="lg:col-span-8 overflow-y-scroll snap-y snap-mandatory hide-scrollbar"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none", height: "740px" }}
+            >
+              {coffeeTypes.map((item) => (
+                <div key={item.id} className="snap-start snap-always min-h-full flex items-center py-6">
+                  <div className="w-full">
+                    <div className="rounded-xl overflow-hidden shadow-sm relative h-[280px] w-full border border-[#E0E6ED] dark:border-gray-700">
+                      <img 
+                        src={getImageUrl(item.imageUrl)} 
+                        alt={item.name} 
+                        className="w-full h-full object-cover" 
+                      />
+                      <div className="absolute top-3 left-3 bg-[#5A8CD0] dark:bg-blue-700 text-white px-3 py-1 text-[10px] font-bold rounded-lg uppercase tracking-wider">
+                        {item.badgeText || "Specialty"}
                       </div>
                     </div>
-                    
-                    <Link
-                      href={`/contact?subject=PRODUCT_QUOTE&message=I%20would%20like%20to%20request%20a%20sample%20of%20${encodeURIComponent(activeCoffee.name)}%20coffee.`}
-                      className="inline-flex items-center gap-2 bg-[#5A8CD0] dark:bg-blue-700 text-white px-6 py-3 rounded-xl text-sm font-bold shadow-md hover:bg-[#4A7AB8] hover:shadow-lg transition-all duration-300"
-                    >
-                      Request Coffee Sample
-                      <ArrowRight02Icon className="w-4 h-4" />
-                    </Link>
+
+                    <div className="bg-white dark:bg-gray-800 p-6 border border-[#E0E6ED] dark:border-gray-700 rounded-xl shadow-sm mt-4">
+                      <h2 className="text-2xl font-extrabold text-[#001D6C] dark:text-blue-200">{item.name}</h2>
+                      <div className="flex flex-wrap gap-3 mt-1.5 mb-4 text-sm text-gray-500 dark:text-gray-400 border-b border-[#E0E6ED] dark:border-gray-700 pb-3">
+                        <span className="flex items-center gap-1 text-[#5A8CD0] dark:text-blue-400 font-semibold text-xs">
+                          <Location01Icon className="w-3.5 h-3.5" />
+                          {item.origin}
+                        </span>
+                        <span className="hidden sm:inline text-gray-300 dark:text-gray-600">|</span>
+                        <span className="flex items-center gap-1 font-medium text-xs">
+                          <MountainIcon className="w-3.5 h-3.5" />
+                          {item.altitude}
+                        </span>
+                      </div>
+                      
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-5 text-sm">
+                        {item.description}
+                      </p>
+
+                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-5">
+                        {[
+                          { label: "Processing", value: formatProcessing(item.processing) },
+                          { label: "Acidity", value: item.acidity },
+                          { label: "Body", value: item.body },
+                          { label: "Harvest", value: formatHarvestSeason(item.harvestSeason) },
+                          { label: "Grades", value: item.grade || "G3, G4, G5" },
+                        ].map((spec, sIdx) => (
+                          <div key={sIdx} className="bg-[#f8f9fb] dark:bg-gray-900 border border-[#E0E6ED] dark:border-gray-700 rounded-lg p-3">
+                            <p className="text-[10px] uppercase font-bold text-gray-400 dark:text-gray-500 tracking-wider mb-0.5">{spec.label}</p>
+                            <p className="text-xs font-bold text-[#001D6C] dark:text-blue-200 truncate">{spec.value}</p>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="mb-5">
+                        <p className="text-xs font-bold text-[#161616] dark:text-white mb-2">Tasting Notes</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {(item.tastingNotes || []).map((note, nIdx) => (
+                            <span key={nIdx} className="bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-[11px] font-semibold px-2.5 py-1 rounded-full border border-blue-100/50 dark:border-gray-600">
+                              {note}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <Link
+                        href={`/contact?subject=PRODUCT_QUOTE&message=I%20would%20like%20to%20request%20a%20sample%20of%20${encodeURIComponent(item.name)}%20coffee.`}
+                        className="inline-flex items-center gap-2 bg-[#5A8CD0] dark:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm font-bold shadow-sm hover:bg-[#4A7AB8] transition-colors"
+                      >
+                        Request Coffee Sample
+                        <ArrowRight02Icon className="w-4 h-4" />
+                      </Link>
+                    </div>
                   </div>
-                </AnimateInView>
-              )}
+                </div>
+              ))}
             </div>
 
           </div>
