@@ -1,7 +1,7 @@
 import PartnersHero from "@/components/partners/PartnersHero";
 import PartnerCategories from "@/components/partners/PartnerCategories";
 import WhyPartnerWithUs from "@/components/partners/WhyPartnerWithUs";
-import PartnersCta from "@/components/partners/PartnersCta";
+import CtaSection from "@/components/home/CtaSection";
 
 export default function PartnersPage() {
   return (
@@ -9,7 +9,7 @@ export default function PartnersPage() {
       <PartnersHero />
       <PartnerCategories />
       <WhyPartnerWithUs />
-      <PartnersCta />
+      <CtaSection />
     </>
   );
 }

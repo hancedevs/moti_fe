@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import CareerHero from '@/components/careers/CareerHero';
 import EmployeeBenefits from '@/components/careers/EmployeeBenefits';
 import CurrentOpenings from '@/components/careers/CurrentOpenings';
-import CTASection from '@/components/careers/CTASection';
+import CTASection from '@/components/home/CtaSection';
 import JobDetailModal from '@/components/careers/JobDetailModal';
 import { Career } from '@/store/api/apiSlice';
 

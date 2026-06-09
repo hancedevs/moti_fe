@@ -1,5 +1,5 @@
 import ProjectDetailContent from "@/components/projects/ProjectDetailContent";
-import ProjectsCta from "@/components/projects/ProjectsCta";
+import CtaSection from "@/components/home/CtaSection";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +15,7 @@ export default async function ProjectDetailPage({
   return (
     <>
       <ProjectDetailContent projectId={projectId} />
-      <ProjectsCta />
+      <CtaSection />
     </>
   );
 }

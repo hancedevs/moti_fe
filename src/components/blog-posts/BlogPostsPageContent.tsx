@@ -1,6 +1,6 @@
 import BlogPostsHero from "@/components/blog-posts/BlogPostsHero";
 import BlogPostsGrid from "@/components/blog-posts/BlogPostsGrid";
-import BlogPostsCta from "@/components/blog-posts/BlogPostsCta";
+import CtaSection from "@/components/home/CtaSection";
 import type { BlogPostsPageConfig } from "@/lib/blogPostsConfig";
 
 type BlogPostsPageContentProps = {
@@ -12,7 +12,7 @@ export default function BlogPostsPageContent({ config }: BlogPostsPageContentPro
     <>
       <BlogPostsHero config={config} />
       <BlogPostsGrid config={config} />
-      <BlogPostsCta config={config} />
+      <CtaSection />
     </>
   );
 }

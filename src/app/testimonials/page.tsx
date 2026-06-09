@@ -2,7 +2,7 @@ import TestimonialsHero from "@/components/testimonials/TestimonialsHero";
 import ClientTestimonials from "@/components/testimonials/ClientTestimonials";
 import ClientsSection from "@/components/testimonials/ClientsSection";
 import PartnersSection from "@/components/testimonials/PartnersSection";
-import TestimonialsCta from "@/components/testimonials/TestimonialsCta";
+import CtaSection from "@/components/home/CtaSection";
 
 export default function TestimonialsPage() {
   return (
@@ -15,7 +15,7 @@ export default function TestimonialsPage() {
       />
       <ClientsSection />
       <PartnersSection />
-      <TestimonialsCta />
+      <CtaSection />
     </>
   );
 }

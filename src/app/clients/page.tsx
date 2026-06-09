@@ -1,7 +1,7 @@
 import ClientsHero from "@/components/clients/ClientsHero";
 import ClientCategories from "@/components/clients/ClientCategories";
 import WhyClientsTrustUs from "@/components/clients/WhyClientsTrustUs";
-import ClientsCta from "@/components/clients/ClientsCta";
+import CtaSection from "@/components/home/CtaSection";
 
 export default function ClientsPage() {
   return (
@@ -9,7 +9,7 @@ export default function ClientsPage() {
       <ClientsHero />
       <ClientCategories />
       <WhyClientsTrustUs />
-      <ClientsCta />
+      <CtaSection />
     </>
   );
 }

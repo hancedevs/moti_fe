@@ -1,7 +1,7 @@
 import ContactHero from "@/components/contact/ContactHero";
 import ContactForm from "@/components/contact/ContactForm";
 import MapSection from "@/components/contact/MapSection";
-import ContactCTA from "@/components/contact/ContactCTA";
+import CtaSection from "@/components/home/CtaSection";
 
 export default function ContactPage() {
   return (
@@ -9,7 +9,7 @@ export default function ContactPage() {
       <ContactHero />
       <ContactForm />
       <MapSection />
-      <ContactCTA />
+      <CtaSection />
     </>
   );
 }
