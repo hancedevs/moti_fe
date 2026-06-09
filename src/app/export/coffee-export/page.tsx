@@ -369,7 +369,7 @@ export default function CoffeeExportPage() {
             ].map((stat, i) => (
               <AnimateInView key={i} delay={i * 0.1} y={20}>
                 <div className="bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 p-8 rounded-2xl flex flex-col items-center text-center hover:shadow-md hover:border-blue-100 dark:hover:border-gray-600 transition-all duration-300">
-                  <div className="w-14 h-14 rounded-full bg-[#E9F0F8] dark:bg-blue-900/20 flex items-center justify-center mb-5 border border-blue-50/50 dark:border-gray-600">
+                  <div className="mb-5">
                     {stat.icon}
                   </div>
                   <p className="text-3xl font-extrabold text-[#001D6C] dark:text-blue-200 mb-1">{stat.value}</p>
@@ -548,30 +548,30 @@ export default function CoffeeExportPage() {
                 step: "1",
                 title: "Harvesting",
                 desc: "Hand-picked ripe cherries",
-                icon: <Leaf01Icon className="w-6 h-6 text-white" />,
+                icon: <Leaf01Icon className="w-6 h-6 text-[#5A8CD0] dark:text-blue-400" />,
               },
               {
                 step: "2",
                 title: "Processing",
                 desc: "Washed & natural processing",
-                icon: <PackageIcon className="w-6 h-6 text-white" />,
+                icon: <PackageIcon className="w-6 h-6 text-[#5A8CD0] dark:text-blue-400" />,
               },
               {
                 step: "3",
                 title: "Quality Control",
                 desc: "Rigorous grading",
-                icon: <Shield01Icon className="w-6 h-6 text-white" />,
+                icon: <Shield01Icon className="w-6 h-6 text-[#5A8CD0] dark:text-blue-400" />,
               },
               {
                 step: "4",
                 title: "Export",
                 desc: "Global shipping",
-                icon: <TruckIcon className="w-6 h-6 text-white" />,
+                icon: <TruckIcon className="w-6 h-6 text-[#5A8CD0] dark:text-blue-400" />,
               },
             ].map((card, i) => (
               <AnimateInView key={i} delay={i * 0.1} y={30}>
                 <div className="bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700 rounded-2xl p-6 text-center flex flex-col items-center shadow-sm hover:shadow-md transition-all duration-300">
-                  <div className="w-14 h-14 rounded-full bg-[#5A8CD0] dark:bg-blue-700 flex items-center justify-center mb-4 shadow-sm shadow-blue-500/10">
+                  <div className="mb-4">
                     {card.icon}
                   </div>
                   <span className="text-xs font-bold text-[#5A8CD0] dark:text-blue-400 uppercase tracking-wider mb-1">
@@ -622,7 +622,7 @@ export default function CoffeeExportPage() {
               <AnimateInView key={i} delay={i * 0.1} y={30}>
                 <div className="bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 p-8 rounded-2xl shadow-sm hover:shadow-md hover:border-blue-100 dark:hover:border-gray-600 transition-all duration-300">
                   <div className="flex items-center mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-[#E9F0F8] dark:bg-blue-900/20 flex items-center justify-center mr-3 border border-blue-100/50 dark:border-gray-600">
+                    <div className="mr-3">
                       {box.icon}
                     </div>
                     <h3 className="text-xl font-bold text-[#001D6C] dark:text-blue-200">{box.title}</h3>
@@ -691,7 +691,7 @@ export default function CoffeeExportPage() {
                   <div>
                     {/* Header: Cup icon + Name & Origin */}
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-[#5A8CD0] flex items-center justify-center shadow-md shrink-0">
+                      <div>
                         <Coffee02Icon className="w-5 h-5 text-white" />
                       </div>
                       <div>
@@ -790,13 +790,13 @@ export default function CoffeeExportPage() {
       </section>
 
       {/* 7. Quality Control Checklist */}
-      <section className="bg-[#5A8CD0] dark:bg-blue-800 py-12 text-white border-t border-blue-500/20">
+      <section className="bg-[#5A8CD0] py-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-8 max-w-3xl mx-auto">
             <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold tracking-wide uppercase border border-white/20 mb-3">
               QC Checklist
             </span>
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
               Quality Control Checklist
             </h2>
           </div>
@@ -809,10 +809,10 @@ export default function CoffeeExportPage() {
               { title: "Color", value: "Uniform Green" },
             ].map((check, i) => (
               <AnimateInView key={i} delay={i * 0.08} y={20}>
-                <div className="border border-white/20 bg-white/10 rounded-xl p-4 flex flex-col items-center justify-center text-center hover:bg-white/15 transition-all duration-300">
-                  <div className="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center border border-green-400/30 mb-3">
-                    <span className="text-green-400 font-bold text-xs">✓</span>
-                  </div>
+                <div className="bg-white/10 border border-white/20 rounded-xl p-5 flex flex-col items-center justify-center text-center">
+                  <svg className="w-5 h-5 text-green-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                  </svg>
                   <p className="text-[10px] text-white/60 font-bold uppercase tracking-wider mb-0.5">{check.title}</p>
                   <p className="text-sm font-extrabold text-white">{check.value}</p>
                 </div>
@@ -863,7 +863,7 @@ export default function CoffeeExportPage() {
             ].map((card, i) => (
               <AnimateInView key={i} delay={i * 0.1} y={30}>
                 <div className="bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl p-8 flex flex-col justify-between items-center text-center shadow-sm hover:shadow-md transition-shadow h-full">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#E9F0F8] dark:bg-blue-900/20 mb-6 border border-blue-100 dark:border-gray-600">
+                  <div className="mb-6">
                     {card.icon}
                   </div>
                   <div>
