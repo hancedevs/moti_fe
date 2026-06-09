@@ -88,10 +88,7 @@ export default function HeroSection() {
             key={currentSlide} // Force re-render for animation
             className="animate-fade-in-up"
           >
-            <span className="inline-flex items-center mb-6 px-2 py-1 text-[10px] font-semibold text-white uppercase tracking-widest">
-              <svg className="w-3 h-3 mr-1.5" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 2l2 4-2 4-2-4 2-4z" />
-              </svg>
+            <span className="inline-block mb-1 py-1 text-[10px] font-semibold text-white uppercase tracking-widest">
               {slides[currentSlide].eyebrow}
             </span>
             <h1 className="mb-6 text-2xl font-extrabold tracking-wider text-white sm:text-4xl lg:text-5xl leading-tight">

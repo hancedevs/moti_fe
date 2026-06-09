@@ -3,7 +3,7 @@ import WhyPartnerWithUs from "@/components/coffee/WhyPartnerWithUs";
 import CoffeePortfolio from "@/components/coffee/CoffeePortfolio";
 import CoffeeGradingTable from "@/components/coffee/CoffeeGradingTable";
 import CoffeeRegions from "@/components/coffee/CoffeeRegions";
-import CoffeeCTA from "@/components/coffee/CoffeeCTA";
+import CtaSection from "@/components/home/CtaSection";
 
 export default function CoffeePage() {
   return (
@@ -13,7 +13,7 @@ export default function CoffeePage() {
       <CoffeePortfolio />
       <CoffeeGradingTable />
       <CoffeeRegions />
-      <CoffeeCTA />
+      <CtaSection />
     </>
   );
 }

@@ -120,10 +120,10 @@ export default function ClientTestimonials({
   return (
     <section
       id={sectionId}
-      className={isDark ? "py-20 bg-gray-900" : "py-20 bg-[#f8f9fb]"}
+      className={isDark ? "py-12 bg-gray-900" : "py-12 bg-[#f8f9fb]"}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimateInView className="text-center mb-16">
+        <AnimateInView className="text-center mb-8">
           <span
             className={`inline-flex items-center px-2 py-0.5 rounded-full font-semibold tracking-wider text-[10px] uppercase border shadow-sm mb-4 ${
               isDark
@@ -190,15 +190,15 @@ export default function ClientTestimonials({
               <div
                 ref={scrollRef}
                 onScroll={checkScroll}
-                className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 pt-4 -mt-4 px-4 -mx-4 hide-scrollbar"
+                className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 pt-4 -mt-4 px-4 -mx-4 hide-scrollbar"
                 style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
               >
                 {testimonials.map((testimonial) => (
                   <div
                     key={testimonial.id}
-                    className={`w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-center p-6 sm:p-8 rounded-xl shadow-sm border flex flex-col transition-all ${cardClass}`}
+                    className={`w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-center p-5 sm:p-6 rounded-xl shadow-sm border flex flex-col transition-all ${cardClass}`}
                   >
-                    <div className="flex text-yellow-400 mb-6 gap-1">
+                    <div className="flex text-yellow-400 mb-3 gap-1">
                       {[...Array(5)].map((_, i) => (
                         <svg
                           key={i}
@@ -211,7 +211,7 @@ export default function ClientTestimonials({
                     </div>
 
                     <svg
-                      className={`w-10 h-10 mb-6 ${isDark ? "text-blue-500/40" : "text-blue-100"}`}
+                      className={`w-8 h-8 mb-3 ${isDark ? "text-blue-500/40" : "text-blue-100"}`}
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -219,7 +219,7 @@ export default function ClientTestimonials({
                     </svg>
 
                     <p
-                      className={`text-sm leading-relaxed mb-10 flex-grow ${
+                      className={`text-sm leading-relaxed mb-4 flex-grow ${
                         isDark ? "text-gray-300" : "text-gray-600"
                       }`}
                     >
@@ -260,58 +260,58 @@ export default function ClientTestimonials({
               />
             </div>
 
-            <div className="flex items-center justify-center gap-4 mt-8 mb-8">
-              <button
-                type="button"
-                onClick={scrollLeft}
-                disabled={!canScrollLeft}
-                className={`p-2 rounded-full border transition-colors ${
-                  isDark
-                    ? "border-gray-700 bg-gray-800"
-                    : "border-gray-200 bg-white"
-                } ${canScrollLeft ? "text-gray-300 hover:bg-gray-700 cursor-pointer" : "text-gray-600 opacity-50 cursor-not-allowed"}`}
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
+            <div className="flex items-center justify-between mt-4">
+              <div className="flex items-center gap-4">
+                <button
+                  type="button"
+                  onClick={scrollLeft}
+                  disabled={!canScrollLeft}
+                  className={`p-2 rounded-full border transition-colors ${
+                    isDark
+                      ? "border-gray-700 bg-gray-800"
+                      : "border-gray-200 bg-white"
+                  } ${canScrollLeft ? "text-gray-300 hover:bg-gray-700 cursor-pointer" : "text-gray-600 opacity-50 cursor-not-allowed"}`}
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
 
-              <div className="flex items-center gap-2">
-                {[...Array(dotsCount)].map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => scrollToDot(i)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      Math.min(activeIndex, dotsCount - 1) === i
-                        ? "w-5 bg-blue-600"
-                        : isDark
-                          ? "w-1.5 bg-gray-600 hover:bg-gray-500"
-                          : "w-1.5 bg-gray-300 hover:bg-gray-400"
-                    }`}
-                    aria-label={`Go to slide ${i + 1}`}
-                  />
-                ))}
+                <div className="flex items-center gap-2">
+                  {[...Array(dotsCount)].map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      onClick={() => scrollToDot(i)}
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        Math.min(activeIndex, dotsCount - 1) === i
+                          ? "w-5 bg-blue-600"
+                          : isDark
+                            ? "w-1.5 bg-gray-600 hover:bg-gray-500"
+                            : "w-1.5 bg-gray-300 hover:bg-gray-400"
+                      }`}
+                      aria-label={`Go to slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={scrollRight}
+                  disabled={!canScrollRight}
+                  className={`p-2 rounded-full border transition-colors ${
+                    isDark
+                      ? "border-gray-700 bg-gray-800"
+                      : "border-gray-200 bg-white"
+                  } ${canScrollRight ? "text-gray-300 hover:bg-gray-700 cursor-pointer" : "text-gray-600 opacity-50 cursor-not-allowed"}`}
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
               </div>
 
-              <button
-                type="button"
-                onClick={scrollRight}
-                disabled={!canScrollRight}
-                className={`p-2 rounded-full border transition-colors ${
-                  isDark
-                    ? "border-gray-700 bg-gray-800"
-                    : "border-gray-200 bg-white"
-                } ${canScrollRight ? "text-gray-300 hover:bg-gray-700 cursor-pointer" : "text-gray-600 opacity-50 cursor-not-allowed"}`}
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
-
-            {showViewAll && (
-              <div className="text-center">
+              {showViewAll && (
                 <Link
                   href="/testimonials"
                   className={`inline-flex items-center gap-2 px-5 py-2 border rounded-md text-xs font-medium transition-colors shadow-sm ${
@@ -325,8 +325,8 @@ export default function ClientTestimonials({
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                   </svg>
                 </Link>
-              </div>
-            )}
+              )}
+            </div>
           </>
         )}
       </div>

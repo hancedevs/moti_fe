@@ -39,9 +39,9 @@ export default function CtaSection() {
   ];
 
   return (
-    <section className="py-12 lg:py-20 bg-gray-50 border-t border-gray-100">
+    <section className="py-8 lg:py-12 bg-gray-50 border-t border-gray-100">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <AnimateInView className="text-center mb-12">
+        <AnimateInView className="text-center mb-6">
           <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-blue-50/60 text-gray-900 font-semibold tracking-wider text-[10px] uppercase border border-blue-100/50 shadow-sm mb-4">
             Get Started
           </span>
@@ -51,14 +51,14 @@ export default function CtaSection() {
           </p>
         </AnimateInView>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
           {cards.map((card, index) => (
-            <AnimateInView key={index} delay={index * 0.1} y={30} className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center flex flex-col items-center hover:shadow-lg transition-shadow">
-              <div className="flex h-16 w-16 items-center justify-center text-blue-600 mb-6">
+            <AnimateInView key={index} delay={index * 0.1} y={30} className="bg-white rounded-2xl p-5 sm:p-6 shadow-sm border border-gray-100 text-center flex flex-col items-center hover:shadow-lg transition-shadow">
+              <div className="flex h-12 w-12 items-center justify-center text-blue-600 mb-3">
                 {card.icon}
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">{card.title}</h3>
-              <p className="text-gray-500 mb-8 flex-grow">{card.desc}</p>
+              <p className="text-gray-500 mb-4 flex-grow">{card.desc}</p>
               <Link 
                 href={card.link}
                 className="w-full inline-flex justify-center items-center rounded-md bg-blue-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-700 transition-colors"
