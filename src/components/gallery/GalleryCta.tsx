@@ -52,9 +52,6 @@ export default function GalleryCta() {
     <section className="py-12 lg:py-20 bg-gray-50 border-t border-gray-100">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimateInView className="text-center mb-12">
-          <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-blue-50 text-blue-600 font-semibold tracking-wider text-[10px] uppercase border border-blue-100 shadow-sm mb-4">
-            Get Started
-          </span>
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
             Ready to Partner With Us?
           </h2>

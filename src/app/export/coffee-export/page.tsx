@@ -662,6 +662,28 @@ export default function CoffeeExportPage() {
             </p>
           </div>
 
+          {/* QC Checklist */}
+          <div className="mb-14">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
+              {[
+                { title: "Moisture", value: "10.5% - 12.0%" },
+                { title: "Defects", value: "Under 1%" },
+                { title: "Density", value: "Over 700g/L" },
+                { title: "Color", value: "Uniform Green" },
+              ].map((check, i) => (
+                <AnimateInView key={i} delay={i * 0.08} y={20}>
+                  <div className="bg-white/10 border border-white/20 rounded-xl p-5 flex flex-col items-center justify-center text-center backdrop-blur-sm">
+                    <svg className="w-5 h-5 text-green-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <p className="text-[10px] text-white/60 font-bold uppercase tracking-wider mb-0.5">{check.title}</p>
+                    <p className="text-sm font-extrabold text-white">{check.value}</p>
+                  </div>
+                </AnimateInView>
+              ))}
+            </div>
+          </div>
+
           <div className="flex flex-wrap justify-center gap-6 mb-16">
             {[
               { val: `${coffeeTypes.length}`, label: "Varieties" },
@@ -789,46 +811,10 @@ export default function CoffeeExportPage() {
         </div>
       </section>
 
-      {/* 7. Quality Control Checklist */}
-      <section className="bg-[#5A8CD0] py-12">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-8 max-w-3xl mx-auto">
-            <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold tracking-wide uppercase border border-white/20 mb-3">
-              QC Checklist
-            </span>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-white tracking-tight">
-              Quality Control Checklist
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto">
-            {[
-              { title: "Moisture", value: "10.5% - 12.0%" },
-              { title: "Defects", value: "Under 1%" },
-              { title: "Density", value: "Over 700g/L" },
-              { title: "Color", value: "Uniform Green" },
-            ].map((check, i) => (
-              <AnimateInView key={i} delay={i * 0.08} y={20}>
-                <div className="bg-white/10 border border-white/20 rounded-xl p-5 flex flex-col items-center justify-center text-center">
-                  <svg className="w-5 h-5 text-green-500 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <p className="text-[10px] text-white/60 font-bold uppercase tracking-wider mb-0.5">{check.title}</p>
-                  <p className="text-sm font-extrabold text-white">{check.value}</p>
-                </div>
-              </AnimateInView>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 8. Ready to Import Ethiopian Coffee? */}
+      {/* 7. Ready to Import Ethiopian Coffee? */}
       <section className="py-20 bg-[#F4F7FB] dark:bg-gray-900">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16 max-w-3xl mx-auto">
-            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-[#5A8CD0]/10 dark:bg-blue-500/10 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold tracking-wide uppercase border border-blue-500/10 dark:border-blue-500/20 mb-4">
-              Contact
-            </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#001D6C] dark:text-blue-200 tracking-tight mb-4">
               Ready to Import Ethiopian Coffee?
             </h2>

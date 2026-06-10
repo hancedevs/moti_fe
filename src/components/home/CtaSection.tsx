@@ -42,9 +42,6 @@ export default function CtaSection() {
     <section className="py-8 lg:py-12 bg-gray-50 border-t border-gray-100">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimateInView className="text-center mb-6">
-          <span className="inline-flex items-center px-2 py-0.5 rounded-full bg-blue-50/60 text-gray-900 font-semibold tracking-wider text-[10px] uppercase border border-blue-100/50 shadow-sm mb-4">
-            Get Started
-          </span>
           <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">Ready to Partner With Us?</h2>
           <p className="mt-4 text-lg text-gray-500 max-w-2xl mx-auto">
             We are here to help transform your business with cutting-edge technology solutions.

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import { useGetCoffeeTypesQuery, type CoffeeType } from "@/store/api/apiSlice";
 import AnimateInView from "@/components/ui/AnimateInView";
 import {
@@ -13,8 +13,8 @@ import {
 function PlaceholderImage({ name }: { name: string }) {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#E8EDF4] to-[#D5DEE8] dark:from-gray-700 dark:to-gray-600 rounded-xl">
-      <Coffee01Icon className="w-20 h-20 text-[#B0BEC5] dark:text-gray-400 mb-4" />
-      <span className="text-sm text-[#90A4AE] dark:text-gray-400 font-semibold uppercase tracking-wider">{name}</span>
+      <Coffee01Icon className="w-14 h-14 text-[#B0BEC5] dark:text-gray-400 mb-3" />
+      <span className="text-xs text-[#90A4AE] dark:text-gray-400 font-semibold uppercase tracking-wider">{name}</span>
     </div>
   );
 }
@@ -42,9 +42,9 @@ function CoffeeCard({ item }: { item: CoffeeType }) {
     : '—';
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center py-6">
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center py-3">
       <div className="lg:col-span-6 relative w-full self-start">
-        <div className="rounded-xl overflow-hidden w-full aspect-[4/3] max-h-[420px]">
+        <div className="rounded-xl overflow-hidden w-full aspect-[4/3] max-h-[280px]">
           {item.imageUrl && !imgFailed ? (
             <img
               src={item.imageUrl}
@@ -64,40 +64,40 @@ function CoffeeCard({ item }: { item: CoffeeType }) {
       </div>
 
       <div className="lg:col-span-6">
-        <h2 className="text-3xl font-extrabold text-[#161616] dark:text-white mb-4">
+        <h2 className="text-2xl font-extrabold text-[#161616] dark:text-white mb-2">
           {item.name}
         </h2>
 
-        <div className="flex flex-wrap gap-2.5 mb-4">
-          <span className="inline-flex items-center gap-1.5 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-sm font-semibold px-3 py-1.5 rounded-full">
-            <Location01Icon className="w-4 h-4" />
+        <div className="flex flex-wrap gap-2 mb-2">
+          <span className="inline-flex items-center gap-1 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold px-2.5 py-1 rounded-full">
+            <Location01Icon className="w-3.5 h-3.5" />
             {item.origin}
           </span>
           {item.altitude && (
-            <span className="inline-flex items-center gap-1.5 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-sm font-semibold px-3 py-1.5 rounded-full">
-              <MountainIcon className="w-4 h-4" />
+            <span className="inline-flex items-center gap-1 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-xs font-semibold px-2.5 py-1 rounded-full">
+              <MountainIcon className="w-3.5 h-3.5" />
               Altitude: {item.altitude}
             </span>
           )}
         </div>
 
-        <div className="text-[#525252] dark:text-gray-300 text-base leading-relaxed mb-4">
+        <div className="text-[#525252] dark:text-gray-300 text-sm leading-relaxed mb-3">
           {item.description
-            ? item.description.split("\n").slice(0, 3).map((para: string, i: number) => (
-                <p key={i} className={i > 0 ? 'mt-2' : ''}>{para}</p>
+            ? item.description.split("\n").slice(0, 2).map((para: string, i: number) => (
+                <p key={i}>{para}</p>
               ))
             : <p>—</p>}
         </div>
 
-        <hr className="border-[#E0E6ED] dark:border-gray-700 mb-5" />
+        <hr className="border-[#E0E6ED] dark:border-gray-700 mb-3" />
 
-        <div className="grid grid-cols-3 gap-4 mb-4">
+        <div className="grid grid-cols-3 gap-2.5 mb-2.5">
           <SpecBox label="Processing" value={item.processing ? formatEnum(item.processing) : '—'} />
           <SpecBox label="Acidity" value={item.acidity ? formatEnum(item.acidity) : '—'} />
           <SpecBox label="Body" value={item.body ? formatEnum(item.body) : '—'} />
         </div>
 
-        <div className="grid grid-cols-12 gap-4 mb-4">
+        <div className="grid grid-cols-12 gap-2.5 mb-2.5">
           <div className="col-span-5">
             <SpecBox label="Harvest" value={harvestStr} />
           </div>
@@ -107,11 +107,11 @@ function CoffeeCard({ item }: { item: CoffeeType }) {
         </div>
 
         {item.tastingNotes?.length > 0 && (
-          <div className="flex flex-wrap gap-2 mb-5">
-            {item.tastingNotes.slice(0, 10).map((note) => (
+          <div className="flex flex-wrap gap-1.5 mb-3">
+            {item.tastingNotes.slice(0, 8).map((note) => (
               <span
                 key={note}
-                className="inline-flex items-center px-3 py-1 rounded-full bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-sm font-medium"
+                className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-[11px] font-medium"
               >
                 {formatEnum(note)}
               </span>
@@ -119,9 +119,9 @@ function CoffeeCard({ item }: { item: CoffeeType }) {
           </div>
         )}
 
-        <button className="inline-flex items-center gap-2 bg-[#5A8CD0] text-white px-6 py-3 rounded-lg text-base font-bold shadow-md hover:bg-[#4A7AB8] transition-colors w-fit">
+        <button className="inline-flex items-center gap-1.5 bg-[#5A8CD0] text-white px-4 py-2 rounded-lg text-sm font-bold shadow-md hover:bg-[#4A7AB8] transition-colors w-fit">
           Request Sample
-          <ArrowRight02Icon className="w-5 h-5" />
+          <ArrowRight02Icon className="w-4 h-4" />
         </button>
       </div>
     </div>
@@ -130,34 +130,34 @@ function CoffeeCard({ item }: { item: CoffeeType }) {
 
 function LoadingSkeleton() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-4">
       {[0, 1, 2].map((i) => (
-        <div key={i} className="grid grid-cols-1 lg:grid-cols-12 gap-10 animate-pulse py-6">
-          <div className="lg:col-span-6 aspect-[4/3] max-h-[420px] bg-gray-200 dark:bg-gray-700 rounded-xl w-full" />
-          <div className="lg:col-span-6 space-y-5">
-            <div className="h-9 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
-            <div className="flex gap-3">
-              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded-full w-40" />
-              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded-full w-48" />
-            </div>
-            <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-full" />
-            <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-5/6" />
-            <hr className="border-gray-100 dark:border-gray-700" />
-            <div className="grid grid-cols-3 gap-4">
-              {[1, 2, 3].map((j) => (
-                <div key={j} className="h-[80px] bg-gray-200 dark:bg-gray-700 rounded-lg" />
-              ))}
-            </div>
-            <div className="grid grid-cols-12 gap-4">
-              <div className="col-span-5 h-[80px] bg-gray-200 dark:bg-gray-700 rounded-lg" />
-              <div className="col-span-7 h-[80px] bg-gray-200 dark:bg-gray-700 rounded-lg" />
-            </div>
+        <div key={i} className="grid grid-cols-1 lg:grid-cols-12 gap-6 animate-pulse py-3">
+          <div className="lg:col-span-6 aspect-[4/3] max-h-[280px] bg-gray-200 dark:bg-gray-700 rounded-xl w-full" />
+          <div className="lg:col-span-6 space-y-3">
+            <div className="h-7 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
             <div className="flex gap-2">
-              {[1, 2, 3, 4, 5].map((j) => (
-                <div key={j} className="h-8 bg-gray-200 dark:bg-gray-700 rounded-full w-24" />
+              <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-full w-36" />
+              <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-full w-44" />
+            </div>
+            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-full" />
+            <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-5/6" />
+            <hr className="border-gray-100 dark:border-gray-700" />
+            <div className="grid grid-cols-3 gap-2.5">
+              {[1, 2, 3].map((j) => (
+                <div key={j} className="h-[68px] bg-gray-200 dark:bg-gray-700 rounded-lg" />
               ))}
             </div>
-            <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg w-52" />
+            <div className="grid grid-cols-12 gap-2.5">
+              <div className="col-span-5 h-[68px] bg-gray-200 dark:bg-gray-700 rounded-lg" />
+              <div className="col-span-7 h-[68px] bg-gray-200 dark:bg-gray-700 rounded-lg" />
+            </div>
+            <div className="flex gap-1.5">
+              {[1, 2, 3, 4].map((j) => (
+                <div key={j} className="h-6 bg-gray-200 dark:bg-gray-700 rounded-full w-20" />
+              ))}
+            </div>
+            <div className="h-9 bg-gray-200 dark:bg-gray-700 rounded-lg w-44" />
           </div>
         </div>
       ))}
@@ -172,7 +172,7 @@ export default function CoffeePortfolio() {
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
 
-  const items = data || [];
+  const items = useMemo(() => [...(data || [])].reverse(), [data]);
   const itemCount = items.length;
 
   const checkScroll = useCallback(() => {
@@ -304,7 +304,7 @@ export default function CoffeePortfolio() {
               ref={scrollRef}
               onScroll={checkScroll}
               className="flex-1 overflow-y-scroll snap-y snap-mandatory hide-scrollbar"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none", height: "780px" }}
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none", height: "620px" }}
             >
               {items.map((item) => (
                 <div key={item.id} className="snap-start h-full flex items-center py-2">
