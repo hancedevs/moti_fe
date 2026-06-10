@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
-import { useGetCoffeeTypesQuery } from "@/store/api/apiSlice";
+import { useGetCoffeeTypesQuery, type CoffeeType } from "@/store/api/apiSlice";
 import AnimateInView from "@/components/ui/AnimateInView";
 import {
   Coffee01Icon,
@@ -9,12 +9,12 @@ import {
   Location01Icon,
   MountainIcon,
 } from "hugeicons-react";
-import { getCoffeeDetail } from "@/lib/coffee";
 
-function PlaceholderImage() {
+function PlaceholderImage({ name }: { name: string }) {
   return (
-    <div className="w-full h-[220px] bg-[#EAEAEA] dark:bg-gray-700 flex items-center justify-center rounded-xl">
-      <Coffee01Icon className="w-10 h-10 text-gray-300" />
+    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#E8EDF4] to-[#D5DEE8] dark:from-gray-700 dark:to-gray-600 rounded-xl">
+      <Coffee01Icon className="w-20 h-20 text-[#B0BEC5] dark:text-gray-400 mb-4" />
+      <span className="text-sm text-[#90A4AE] dark:text-gray-400 font-semibold uppercase tracking-wider">{name}</span>
     </div>
   );
 }
@@ -33,81 +33,95 @@ function SpecBox({ label, value }: SpecBoxProps) {
   );
 }
 
-function CoffeeCard({ item }: { item: any }) {
-  const detail = getCoffeeDetail(item.name);
+function CoffeeCard({ item }: { item: CoffeeType }) {
+  const [imgFailed, setImgFailed] = useState(false);
+  const formatEnum = (v: string) => v.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  const harvestStr = item.harvestSeason?.length ? item.harvestSeason.map(formatEnum).join(', ') : '—';
+  const gradesStr = item.grades?.length
+    ? item.grades.slice(0, 3).map(g => g.coffeeGrade.grade).join(', ')
+    : '—';
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-      <div className="lg:col-span-5 relative">
-        <div className="rounded-xl overflow-hidden h-[220px]">
-          {item.imageUrl ? (
+    <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center py-6">
+      <div className="lg:col-span-6 relative w-full self-start">
+        <div className="rounded-xl overflow-hidden w-full aspect-[4/3] max-h-[420px]">
+          {item.imageUrl && !imgFailed ? (
             <img
               src={item.imageUrl}
               alt={item.name}
+              onError={() => setImgFailed(true)}
               className="w-full h-full object-cover object-center"
             />
           ) : (
-            <PlaceholderImage />
+            <PlaceholderImage name={item.name} />
           )}
         </div>
-        <span className="absolute top-3 left-3 bg-[#5A8CD0] text-white px-3 py-1 text-xs rounded-lg font-semibold">
-          {detail.badgeText}
-        </span>
+        {item.badgeText && (
+          <span className="absolute top-4 left-4 bg-[#5A8CD0] text-white px-4 py-1.5 text-sm rounded-lg font-semibold shadow-md">
+            {item.badgeText}
+          </span>
+        )}
       </div>
 
-      <div className="lg:col-span-7">
-        <h2 className="text-xl font-bold text-[#161616] dark:text-white mb-2">
+      <div className="lg:col-span-6">
+        <h2 className="text-3xl font-extrabold text-[#161616] dark:text-white mb-4">
           {item.name}
         </h2>
 
-        <div className="flex flex-wrap gap-2 mb-2">
-          <span className="inline-flex items-center gap-1 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-[11px] font-semibold px-2 py-1 rounded-full">
-            <Location01Icon className="w-3 h-3" />
-            {detail.region}
+        <div className="flex flex-wrap gap-2.5 mb-4">
+          <span className="inline-flex items-center gap-1.5 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-sm font-semibold px-3 py-1.5 rounded-full">
+            <Location01Icon className="w-4 h-4" />
+            {item.origin}
           </span>
-          <span className="inline-flex items-center gap-1 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-[11px] font-semibold px-2 py-1 rounded-full">
-            <MountainIcon className="w-3 h-3" />
-            Altitude: {detail.altitude}
-          </span>
+          {item.altitude && (
+            <span className="inline-flex items-center gap-1.5 bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-sm font-semibold px-3 py-1.5 rounded-full">
+              <MountainIcon className="w-4 h-4" />
+              Altitude: {item.altitude}
+            </span>
+          )}
         </div>
 
-        <div className="text-[#525252] dark:text-gray-300 text-xs leading-relaxed mb-2">
-          {item.description.split("\n").slice(0, 2).map((para: string, i: number) => (
-            <p key={i}>{para}</p>
-          ))}
+        <div className="text-[#525252] dark:text-gray-300 text-base leading-relaxed mb-4">
+          {item.description
+            ? item.description.split("\n").slice(0, 3).map((para: string, i: number) => (
+                <p key={i} className={i > 0 ? 'mt-2' : ''}>{para}</p>
+              ))
+            : <p>—</p>}
         </div>
 
-        <hr className="border-[#E0E6ED] dark:border-gray-700 mb-2" />
+        <hr className="border-[#E0E6ED] dark:border-gray-700 mb-5" />
 
-        <div className="grid grid-cols-3 gap-2 mb-2">
-          <SpecBox label="Processing" value={detail.processing} />
-          <SpecBox label="Acidity" value={detail.acidity} />
-          <SpecBox label="Body" value={detail.body} />
+        <div className="grid grid-cols-3 gap-4 mb-4">
+          <SpecBox label="Processing" value={item.processing ? formatEnum(item.processing) : '—'} />
+          <SpecBox label="Acidity" value={item.acidity ? formatEnum(item.acidity) : '—'} />
+          <SpecBox label="Body" value={item.body ? formatEnum(item.body) : '—'} />
         </div>
 
-        <div className="grid grid-cols-12 gap-2 mb-2">
+        <div className="grid grid-cols-12 gap-4 mb-4">
           <div className="col-span-5">
-            <SpecBox label="Harvest" value={detail.harvestSeason} />
+            <SpecBox label="Harvest" value={harvestStr} />
           </div>
           <div className="col-span-7">
-            <SpecBox label="Grades" value={detail.gradesAvailable} />
+            <SpecBox label="Grades" value={gradesStr} />
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-1.5 mb-2">
-          {detail.tastingNotes.slice(0, 4).map((note) => (
-            <span
-              key={note}
-              className="inline-flex items-center px-2 py-0.5 rounded-full bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-[11px] font-medium"
-            >
-              {note}
-            </span>
-          ))}
-        </div>
+        {item.tastingNotes?.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-5">
+            {item.tastingNotes.slice(0, 10).map((note) => (
+              <span
+                key={note}
+                className="inline-flex items-center px-3 py-1 rounded-full bg-[#E9F0F8] dark:bg-blue-900/20 text-[#5A8CD0] dark:text-blue-400 text-sm font-medium"
+              >
+                {formatEnum(note)}
+              </span>
+            ))}
+          </div>
+        )}
 
-        <button className="inline-flex items-center gap-1.5 bg-[#5A8CD0] text-white px-4 py-1.5 rounded-lg text-xs font-bold shadow-sm hover:bg-[#4A7AB8] transition-colors w-fit">
-          {detail.buttonText}
-          <ArrowRight02Icon className="w-3.5 h-3.5" />
+        <button className="inline-flex items-center gap-2 bg-[#5A8CD0] text-white px-6 py-3 rounded-lg text-base font-bold shadow-md hover:bg-[#4A7AB8] transition-colors w-fit">
+          Request Sample
+          <ArrowRight02Icon className="w-5 h-5" />
         </button>
       </div>
     </div>
@@ -118,34 +132,32 @@ function LoadingSkeleton() {
   return (
     <div className="space-y-8">
       {[0, 1, 2].map((i) => (
-        <div key={i} className="grid grid-cols-1 lg:grid-cols-12 gap-6 animate-pulse">
-          <div className="lg:col-span-5 bg-gray-200 rounded-xl h-[220px]" />
-          <div className="lg:col-span-7 space-y-3">
-            <div className="h-7 bg-gray-200 rounded w-1/2" />
+        <div key={i} className="grid grid-cols-1 lg:grid-cols-12 gap-10 animate-pulse py-6">
+          <div className="lg:col-span-6 aspect-[4/3] max-h-[420px] bg-gray-200 dark:bg-gray-700 rounded-xl w-full" />
+          <div className="lg:col-span-6 space-y-5">
+            <div className="h-9 bg-gray-200 dark:bg-gray-700 rounded w-3/4" />
             <div className="flex gap-3">
-              <div className="h-6 bg-gray-200 rounded-full w-32" />
-              <div className="h-6 bg-gray-200 rounded-full w-40" />
+              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded-full w-40" />
+              <div className="h-8 bg-gray-200 dark:bg-gray-700 rounded-full w-48" />
             </div>
-            <div className="h-4 bg-gray-200 rounded w-full" />
-            <div className="h-4 bg-gray-200 rounded w-3/4" />
-            <div className="h-4 bg-gray-200 rounded w-5/6" />
-            <hr className="border-gray-100" />
-            <div className="grid grid-cols-3 gap-3">
+            <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-full" />
+            <div className="h-5 bg-gray-200 dark:bg-gray-700 rounded w-5/6" />
+            <hr className="border-gray-100 dark:border-gray-700" />
+            <div className="grid grid-cols-3 gap-4">
               {[1, 2, 3].map((j) => (
-                <div key={j} className="h-16 bg-gray-200 rounded-lg" />
+                <div key={j} className="h-[80px] bg-gray-200 dark:bg-gray-700 rounded-lg" />
               ))}
             </div>
-            <div className="grid grid-cols-12 gap-3">
-              <div className="col-span-5 h-16 bg-gray-200 rounded-lg" />
-              <div className="col-span-7 h-16 bg-gray-200 rounded-lg" />
+            <div className="grid grid-cols-12 gap-4">
+              <div className="col-span-5 h-[80px] bg-gray-200 dark:bg-gray-700 rounded-lg" />
+              <div className="col-span-7 h-[80px] bg-gray-200 dark:bg-gray-700 rounded-lg" />
             </div>
-            <div className="h-5 bg-gray-200 rounded w-24" />
             <div className="flex gap-2">
-              {[1, 2, 3].map((j) => (
-                <div key={j} className="h-6 bg-gray-200 rounded-full w-16" />
+              {[1, 2, 3, 4, 5].map((j) => (
+                <div key={j} className="h-8 bg-gray-200 dark:bg-gray-700 rounded-full w-24" />
               ))}
             </div>
-            <div className="h-10 bg-gray-200 rounded-lg w-48" />
+            <div className="h-12 bg-gray-200 dark:bg-gray-700 rounded-lg w-52" />
           </div>
         </div>
       ))}
@@ -292,7 +304,7 @@ export default function CoffeePortfolio() {
               ref={scrollRef}
               onScroll={checkScroll}
               className="flex-1 overflow-y-scroll snap-y snap-mandatory hide-scrollbar"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none", height: "560px" }}
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none", height: "780px" }}
             >
               {items.map((item) => (
                 <div key={item.id} className="snap-start h-full flex items-center py-2">

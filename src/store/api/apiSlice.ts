@@ -170,10 +170,29 @@ interface DepartmentsApiResponse {
 export interface CoffeeType {
   id: number;
   name: string;
+  slug: string;
   origin: string;
-  description: string;
+  description: string | null;
   imageUrl: string | null;
   grade: string;
+  altitude: string | null;
+  processing: string | null;
+  acidity: string | null;
+  body: string | null;
+  harvestSeason: string[];
+  tastingNotes: string[];
+  badgeText: string | null;
+  status: string;
+  grades: {
+    coffeeGradeId: number;
+    coffeeGrade: {
+      id: number;
+      grade: string;
+      qualityLevel: string;
+      defects: string;
+      status: string;
+    };
+  }[];
   createdAt: string;
   updatedAt: string;
 }
@@ -513,6 +532,9 @@ export const apiSlice = createApi({
       providesTags: ["CoffeeTypes"],
       transformResponse: (response: { data: CoffeeType[] }) => response.data,
     }),
+    getTastingNotes: builder.query<string[], void>({
+      query: () => "/coffee-types/tasting-notes",
+    }),
     getBlogPostBySlug: builder.query<BlogPost, BlogPostBySlugParams>({
       query: ({ slug, type }) => {
         const params = new URLSearchParams();
@@ -550,6 +572,7 @@ export const {
   useGetAllGalleryCategoriesQuery,
   useGetPaginatedGalleryImagesQuery,
   useGetCoffeeTypesQuery,
+  useGetTastingNotesQuery,
 } = apiSlice;
 
 export const PROJECTS_PAGE_SIZE = 9;
