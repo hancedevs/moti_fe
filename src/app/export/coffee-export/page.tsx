@@ -419,7 +419,7 @@ export default function CoffeeExportPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            <div className="lg:col-span-4">
+            <div className="lg:col-span-4 lg:self-center">
               <div className="lg:sticky lg:top-24 bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm z-10 overflow-hidden">
                 <div className="bg-[#5A8CD0] dark:bg-blue-700 px-4 py-3 text-white flex items-center gap-2">
                   <Coffee02Icon className="w-4 h-4 text-white shrink-0" />
