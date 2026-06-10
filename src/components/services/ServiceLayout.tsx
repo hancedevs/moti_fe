@@ -12,24 +12,24 @@ function getIconForLabel(label: string, isActive: boolean): ReactNode {
   const str = label.toLowerCase();
   
   if (str.includes("atm")) {
-    return <svg className={`w-5 h-5 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>;
+    return <svg className={`w-8 h-8 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" /></svg>;
   } else if (str.includes("pos") || str.includes("desktop")) {
-    return <svg className={`w-5 h-5 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>;
+    return <svg className={`w-8 h-8 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>;
   } else if (str.includes("print") || str.includes("office machines")) {
-    return <svg className={`w-5 h-5 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>;
+    return <svg className={`w-8 h-8 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" /></svg>;
   } else if (str.includes("laptop") || str.includes("tablet")) {
-    return <svg className={`w-5 h-5 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>;
+    return <svg className={`w-8 h-8 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>;
   } else if (str.includes("network") || str.includes("cyber")) {
-    return <svg className={`w-5 h-5 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" /></svg>;
+    return <svg className={`w-8 h-8 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" /></svg>;
   } else if (str.includes("crm") || str.includes("customer")) {
-    return <svg className={`w-5 h-5 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>;
+    return <svg className={`w-8 h-8 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>;
   } else if (str.includes("meeting") || str.includes("video")) {
-    return <svg className={`w-5 h-5 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>;
+    return <svg className={`w-8 h-8 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>;
   } else if (str.includes("server") || str.includes("data center") || str.includes("digital banking")) {
-    return <svg className={`w-5 h-5 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" /></svg>;
+    return <svg className={`w-8 h-8 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" /></svg>;
   }
   
-  return <svg className={`w-5 h-5 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>;
+  return <svg className={`w-8 h-8 ${iconClass}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>;
 }
 
 export default function ServiceLayout({ category }: { category: ServiceCategory }) {
@@ -74,7 +74,8 @@ export default function ServiceLayout({ category }: { category: ServiceCategory 
         </div>
 
         <div className="flex justify-center w-full mb-16 px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 sm:gap-10 lg:gap-12 lg:gap-y-16 w-fit max-w-full">
+          <style>{`@keyframes arrow-wiggle { 0%,100% { transform: translateX(0); } 50% { transform: translateX(3px); } } .animate-arrow-wiggle { animation: arrow-wiggle 2s ease-in-out infinite; } .hide-scrollbar::-webkit-scrollbar { display: none; }`}</style>
+          <div className="flex overflow-x-auto sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4 md:gap-6 lg:gap-8 lg:gap-y-12 w-full max-w-full hide-scrollbar pb-1">
             {category.items.map((item, idx) => {
               const isActive = activeItem.href === item.href;
               return (
@@ -82,28 +83,33 @@ export default function ServiceLayout({ category }: { category: ServiceCategory 
                   key={idx}
                   href={item.href}
                   scroll={false}
-                  className={`relative flex flex-col items-center justify-center w-full min-w-[260px] h-32 rounded-2xl border transition-all duration-300 overflow-hidden group ${
+                  className={`shrink-0 sm:w-full relative flex flex-col items-center justify-center w-[180px] h-28 sm:h-28 rounded-2xl border-2 transition-all duration-200 cursor-pointer overflow-hidden group hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] ${
                     isActive 
-                      ? "bg-blue-600 border-blue-400 text-white shadow-xl shadow-blue-500/20" 
-                      : "bg-gray-50 border-gray-200 text-gray-900 hover:border-gray-300"
+                      ? "bg-blue-600 border-blue-500 text-white shadow-lg shadow-blue-500/25" 
+                      : "bg-white border-gray-200 text-gray-900 hover:border-blue-300 hover:bg-blue-50/30"
                   }`}
                 >
                   {isActive && (
-                    <div className="absolute top-[-20px] right-0 translate-x-1/2 w-40 h-40 bg-white/20 rounded-full transition-transform duration-500 group-hover:scale-110"></div>
+                    <div className="absolute top-[-20px] right-0 translate-x-1/2 w-40 h-40 bg-white/10 rounded-full transition-transform duration-500 group-hover:scale-110"></div>
                   )}
-                  
                   {!isActive && (
-                    <div className="absolute top-[-20px] right-0 translate-x-1/2 w-40 h-40 bg-gray-200/40 rounded-full transition-transform duration-500 group-hover:scale-110"></div>
+                    <div className="absolute top-[-20px] right-0 translate-x-1/2 w-40 h-40 bg-gray-200/20 rounded-full transition-transform duration-500 group-hover:scale-110"></div>
                   )}
-                  
-                  <div className="relative z-10 flex flex-col items-center">
-                    <div className={`mb-3 flex items-center justify-center w-12 h-12`}>
+                  <div className="relative z-10 flex flex-col items-center w-full px-3">
+                    <div className="mb-2">
                       {getIconForLabel(item.label, isActive)}
                     </div>
-                    <h3 className="text-[14px] font-medium text-center px-4 mb-1 leading-tight tracking-wide">{item.label}</h3>
-                    {item.productCount !== undefined && (
-                      <p className={`text-[12px] ${isActive ? "text-blue-50" : "text-gray-500"}`}>{item.productCount} Products</p>
-                    )}
+                    <div className="flex items-center gap-2 w-full">
+                      <div className="flex-1 min-w-0 text-left">
+                        <h3 className="text-[12px] font-semibold leading-tight">{item.label}</h3>
+                        {item.productCount !== undefined && (
+                          <p className={`text-[10px] mt-0.5 ${isActive ? "text-blue-50" : "text-gray-400"}`}>{item.productCount} Products</p>
+                        )}
+                      </div>
+                      <svg className={`shrink-0 w-3.5 h-3.5 animate-arrow-wiggle ${isActive ? "text-white/40" : "text-gray-300"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
                   </div>
                 </Link>
               );
@@ -111,15 +117,15 @@ export default function ServiceLayout({ category }: { category: ServiceCategory 
           </div>
         </div>
 
-        <div className="bg-white border border-gray-200 rounded-xl p-8 mb-8 flex items-center gap-6">
-          <div className="w-16 h-16 flex items-center justify-center shrink-0">
-             <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="bg-white border border-gray-200 rounded-xl p-4 sm:p-5 mb-6 flex items-center gap-4">
+          <div className="w-10 h-10 flex items-center justify-center shrink-0">
+             <svg className="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
               </svg>
           </div>
-          <div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">{activeItem.label}</h2>
-            <p className="text-gray-500">{activeItem.description || `Complete ${activeItem.label} solutions including installation, maintenance, and monitoring.`}</p>
+          <div className="min-w-0">
+            <h2 className="text-lg font-bold text-gray-900">{activeItem.label}</h2>
+            <p className="text-sm text-gray-500 mt-0.5">{activeItem.description || `Complete ${activeItem.label} solutions including installation, maintenance, and monitoring.`}</p>
           </div>
         </div>
 

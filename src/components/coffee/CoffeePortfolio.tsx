@@ -33,6 +33,13 @@ function SpecBox({ label, value }: SpecBoxProps) {
   );
 }
 
+function getImageSrc(url: string | null): string {
+  if (!url) return '';
+  if (url.startsWith('http')) return url;
+  if (url.startsWith('/')) return `https://moti-be.onrender.com${url}`;
+  return url;
+}
+
 function CoffeeCard({ item }: { item: CoffeeType }) {
   const [imgFailed, setImgFailed] = useState(false);
   const formatEnum = (v: string) => v.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
@@ -47,7 +54,7 @@ function CoffeeCard({ item }: { item: CoffeeType }) {
         <div className="rounded-xl overflow-hidden w-full aspect-[4/3] max-h-[280px]">
           {item.imageUrl && !imgFailed ? (
             <img
-              src={item.imageUrl}
+              src={getImageSrc(item.imageUrl)}
               alt={item.name}
               onError={() => setImgFailed(true)}
               className="w-full h-full object-cover object-center"
