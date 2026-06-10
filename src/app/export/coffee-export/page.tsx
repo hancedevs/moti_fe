@@ -248,27 +248,48 @@ export default function CoffeeExportPage() {
   };
 
   const scrollRef = useRef<HTMLDivElement>(null);
+  const sidebarRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (selectedId && sidebarRef.current) {
+      const active = sidebarRef.current.querySelector(`[data-coffee-id="${selectedId}"]`) as HTMLElement | null;
+      if (active) {
+        active.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }, [selectedId]);
 
   const handleScroll = useCallback(() => {
-    if (scrollRef.current && coffeeTypes.length) {
-      const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-      const itemHeight = scrollHeight / coffeeTypes.length;
-      const newIndex = Math.round(scrollTop / itemHeight);
-      const clamped = Math.min(newIndex, coffeeTypes.length - 1);
-      if (coffeeTypes[clamped] && coffeeTypes[clamped].id !== selectedId) {
-        setSelectedId(coffeeTypes[clamped].id);
-      }
+    if (!scrollRef.current || !coffeeTypes.length) return;
+    // Only compute snap index on desktop where container has fixed height
+    const style = window.getComputedStyle(scrollRef.current);
+    if (style.overflowY !== 'scroll' && style.overflowY !== 'auto') return;
+    
+    const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
+    const itemHeight = scrollHeight / coffeeTypes.length;
+    const newIndex = Math.round(scrollTop / itemHeight);
+    const clamped = Math.min(newIndex, coffeeTypes.length - 1);
+    if (coffeeTypes[clamped] && coffeeTypes[clamped].id !== selectedId) {
+      setSelectedId(coffeeTypes[clamped].id);
     }
   }, [coffeeTypes, selectedId]);
 
   const scrollToCoffee = (id: number) => {
-    if (scrollRef.current && coffeeTypes.length) {
-      const idx = coffeeTypes.findIndex(c => c.id === id);
-      if (idx !== -1) {
+    if (!coffeeTypes.length) return;
+    const idx = coffeeTypes.findIndex(c => c.id === id);
+    if (idx === -1) return;
+
+    if (scrollRef.current) {
+      const style = window.getComputedStyle(scrollRef.current);
+      if (style.overflowY === 'scroll' || style.overflowY === 'auto') {
         const itemHeight = scrollRef.current.scrollHeight / coffeeTypes.length;
         scrollRef.current.scrollTo({ top: itemHeight * idx, behavior: "smooth" });
+        return;
       }
     }
+
+    const el = document.getElementById(`coffee-${id}`);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "nearest" });
   };
 
   return (
@@ -399,20 +420,22 @@ export default function CoffeeExportPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
             <div className="lg:col-span-4">
-              <div className="sticky top-24 bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm z-10 overflow-hidden">
+              <div className="lg:sticky lg:top-24 bg-white dark:bg-gray-800 border border-[#E0E6ED] dark:border-gray-700 rounded-2xl shadow-sm z-10 overflow-hidden">
                 <div className="bg-[#5A8CD0] dark:bg-blue-700 px-4 py-3 text-white flex items-center gap-2">
                   <Coffee02Icon className="w-4 h-4 text-white shrink-0" />
                   <h3 className="text-sm font-bold text-white">Coffee Types</h3>
                 </div>
                 
-                <div className="p-2 flex flex-col gap-1.5">
+                {/* Desktop: vertical list | Mobile: horizontal scroll pill strip */}
+                <div ref={sidebarRef} className="p-2 flex lg:flex-col gap-1.5 overflow-x-auto lg:overflow-x-hidden hide-scrollbar whitespace-nowrap">
                   {coffeeTypes.map((item, idx) => {
                     const isActive = item.id === selectedId;
                     return (
                       <button
                         key={item.id}
+                        data-coffee-id={item.id}
                         onClick={() => scrollToCoffee(item.id)}
-                        className={`w-full text-left p-2.5 rounded-lg flex items-center gap-3 transition-all duration-300 ${
+                        className={`shrink-0 lg:w-full text-left p-2.5 rounded-lg flex items-center gap-3 transition-all duration-300 ${
                           isActive 
                             ? "bg-[#5A8CD0] dark:bg-blue-700 text-white shadow-sm" 
                             : "bg-transparent text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700"
@@ -444,13 +467,13 @@ export default function CoffeeExportPage() {
             <div
               ref={scrollRef}
               onScroll={handleScroll}
-              className="lg:col-span-8 overflow-y-scroll snap-y snap-mandatory hide-scrollbar"
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none", height: "740px" }}
+              className="lg:col-span-8 overflow-y-scroll snap-y snap-mandatory hide-scrollbar h-[85vh] lg:h-[700px]"
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
             >
               {coffeeTypes.map((item) => (
-                <div key={item.id} className="snap-start snap-always min-h-full flex items-center py-6">
+                <div key={item.id} id={`coffee-${item.id}`} className="snap-start snap-always min-h-full flex items-center py-4 lg:py-6">
                   <div className="w-full">
-                    <div className="rounded-xl overflow-hidden shadow-sm relative h-[280px] w-full border border-[#E0E6ED] dark:border-gray-700">
+                    <div className="rounded-xl overflow-hidden shadow-sm relative h-[200px] sm:h-[240px] lg:h-[280px] w-full border border-[#E0E6ED] dark:border-gray-700">
                       <img 
                         src={getImageUrl(item.imageUrl)} 
                         alt={item.name} 
@@ -461,8 +484,8 @@ export default function CoffeeExportPage() {
                       </div>
                     </div>
 
-                    <div className="bg-white dark:bg-gray-800 p-6 border border-[#E0E6ED] dark:border-gray-700 rounded-xl shadow-sm mt-4">
-                      <h2 className="text-2xl font-extrabold text-[#001D6C] dark:text-blue-200">{item.name}</h2>
+                    <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 border border-[#E0E6ED] dark:border-gray-700 rounded-xl shadow-sm mt-4">
+                      <h2 className="text-xl sm:text-2xl font-extrabold text-[#001D6C] dark:text-blue-200">{item.name}</h2>
                       <div className="flex flex-wrap gap-3 mt-1.5 mb-4 text-sm text-gray-500 dark:text-gray-400 border-b border-[#E0E6ED] dark:border-gray-700 pb-3">
                         <span className="flex items-center gap-1 text-[#5A8CD0] dark:text-blue-400 font-semibold text-xs">
                           <Location01Icon className="w-3.5 h-3.5" />
@@ -475,9 +498,7 @@ export default function CoffeeExportPage() {
                         </span>
                       </div>
                       
-                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-5 text-sm">
-                        {item.description}
-                      </p>
+                      <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-5 text-xs sm:text-sm line-clamp-4 sm:line-clamp-none">{item.description}</p>
 
                       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 mb-5">
                         {[
