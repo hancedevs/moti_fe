@@ -1,36 +1,46 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function PointsOfPresence() {
+  const [hoveredRegion, setHoveredRegion] = useState<string | null>(null);
+
   const regions = [
     {
       name: "Addis Ababa",
       offices: "15+ offices",
       cities: ["Addis Ababa (HQ)", "East Addis", "+4 more"],
+      cx: 39.4, cy: 52.7, color: "#3b82f6",
     },
     {
       name: "North Region",
       offices: "25+ offices",
       cities: ["Bahir Dar", "Gondar", "+4 more"],
+      cx: 40.0, cy: 5.2, color: "#ef4444",
     },
     {
       name: "South Region",
       offices: "18+ offices",
       cities: ["Hawassa", "Arba Minch", "+4 more"],
+      cx: 51.2, cy: 66.4, color: "#22c55e",
     },
     {
       name: "East Region",
       offices: "20+ offices",
       cities: ["Adama", "Dire Dawa", "+4 more"],
+      cx: 59.6, cy: 47.5, color: "#f59e0b",
     },
     {
       name: "West Region",
       offices: "15+ offices",
       cities: ["Jimma", "Nekemte", "+4 more"],
+      cx: 20.1, cy: 48.7, color: "#a855f7",
     }
   ];
+
+  const isHovered = (name: string) => hoveredRegion === name;
 
   return (
     <section id="points-of-presence" className="py-20 bg-[#f4f7fb]">
@@ -82,7 +92,7 @@ export default function PointsOfPresence() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="w-full xl:w-[55%] bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col"
           >
-            <div className="relative w-full h-full min-h-[300px] rounded-xl overflow-hidden bg-gray-50">
+            <div className="relative w-full h-full min-h-[300px] rounded-xl overflow-hidden bg-gray-50 group/map">
               <Image 
                 src="/ethiopia-map.webp" 
                 alt="MOTI Points of Presence Map" 
@@ -90,6 +100,71 @@ export default function PointsOfPresence() {
                 className="object-cover"
                 priority
               />
+
+              {/* Interactive Dot Overlay */}
+              <svg
+                className="absolute inset-0 w-full h-full z-10"
+                viewBox="0 0 100 100"
+                preserveAspectRatio="none"
+              >
+                {regions.map((region) => {
+                  const active = isHovered(region.name);
+                  return (
+                    <g key={region.name}>
+                      {/* Large invisible hit area */}
+                      <circle
+                        cx={region.cx}
+                        cy={region.cy}
+                        r="5"
+                        className="fill-transparent cursor-pointer"
+                        onMouseEnter={() => setHoveredRegion(region.name)}
+                        onMouseLeave={() => setHoveredRegion(null)}
+                      />
+                      {/* Visible dot */}
+                      <circle
+                        cx={region.cx}
+                        cy={region.cy}
+                        r={active ? "2.5" : "1.5"}
+                        fill={region.color}
+                        stroke="white"
+                        strokeWidth={active ? "0.8" : "0.4"}
+                        className="transition-all duration-200"
+                        style={{ filter: active ? 'drop-shadow(0 0 6px currentColor)' : 'none' }}
+                        onMouseEnter={() => setHoveredRegion(region.name)}
+                        onMouseLeave={() => setHoveredRegion(null)}
+                      />
+                      {/* Tooltip label on hover */}
+                      {active && (() => {
+                        const isTop = region.cy < 12;
+                        const tooltipY = isTop ? region.cy + 4 : region.cy - 10;
+                        const textY = isTop ? region.cy + 9 : region.cy - 5;
+                        return (
+                          <g>
+                            <rect
+                              x={region.cx - 10}
+                              y={tooltipY}
+                              width="20"
+                              height="7"
+                              rx="1.5"
+                              fill="rgba(0,0,0,0.75)"
+                            />
+                            <text
+                              x={region.cx}
+                              y={textY}
+                              textAnchor="middle"
+                              fill="white"
+                              fontSize="3"
+                              fontWeight="600"
+                            >
+                              {region.name}
+                            </text>
+                          </g>
+                        );
+                      })()}
+                    </g>
+                  );
+                })}
+              </svg>
             </div>
           </motion.div>
 
@@ -104,22 +179,37 @@ export default function PointsOfPresence() {
             
             {/* Regions Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {regions.map((region, index) => (
-                <div key={index} className="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="w-2.5 h-2.5 rounded-full bg-blue-600 shadow-sm"></div>
-                    <h3 className="font-bold text-gray-900 text-sm">{region.name}</h3>
+              {regions.map((region, index) => {
+                const active = isHovered(region.name);
+                return (
+                  <div
+                    key={index}
+                    onMouseEnter={() => setHoveredRegion(region.name)}
+                    onMouseLeave={() => setHoveredRegion(null)}
+                    className={`bg-white rounded-2xl p-5 border shadow-sm transition-all duration-200 cursor-pointer ${
+                      active
+                        ? "border-blue-400 shadow-lg shadow-blue-200/50 scale-[1.03] ring-1 ring-blue-400/30"
+                        : "border-gray-100 hover:shadow-md"
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <div
+                        className="w-2.5 h-2.5 rounded-full shadow-sm transition-all duration-200"
+                        style={{ background: region.color, boxShadow: active ? `0 0 10px ${region.color}80` : 'none' }}
+                      />
+                      <h3 className="font-bold text-gray-900 text-sm">{region.name}</h3>
+                    </div>
+                    <p className="text-xs text-gray-500 font-medium mb-3">{region.offices}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {region.cities.map((city, cIdx) => (
+                        <span key={cIdx} className={`text-[10px] px-2 py-1 rounded-md ${cIdx === region.cities.length - 1 ? 'text-blue-600 font-medium' : 'bg-gray-50 text-gray-600 border border-gray-100'}`}>
+                          {city}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <p className="text-xs text-gray-500 font-medium mb-3">{region.offices}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {region.cities.map((city, cIdx) => (
-                      <span key={cIdx} className={`text-[10px] px-2 py-1 rounded-md ${cIdx === region.cities.length - 1 ? 'text-blue-600 font-medium' : 'bg-gray-50 text-gray-600 border border-gray-100'}`}>
-                        {city}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Maintenance Coverage Card - Full Width Horizontal */}

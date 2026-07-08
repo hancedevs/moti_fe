@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ethiopia Map — Coordinate Finder</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, sans-serif;
+      background: #1a1a2e;
+      color: #eee;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px;
+    }
+    h2 { margin-bottom: 8px; font-size: 1.4rem; }
+    p { margin-bottom: 16px; color: #888; font-size: 0.9rem; max-width: 600px; text-align: center; }
+
+    .map-wrapper {
+      position: relative;
+      display: inline-block;
+      border: 2px solid #3b82f6;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: crosshair;
+      box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
+    }
+    #map-img { display: block; width: 100%; height: auto; }
+
+    #dots-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .dot-marker {
+      position: absolute;
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      border: 3px solid white;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 8px rgba(0,0,0,0.5);
+    }
+    .dot-label {
+      position: absolute;
+      transform: translate(-50%, -180%);
+      color: white;
+      font-weight: 800;
+      font-size: 12px;
+      text-shadow: 0 1px 3px black;
+    }
+
+    .coords-panel {
+      margin-top: 20px;
+      background: #16213e;
+      border: 1px solid #2a3a5c;
+      border-radius: 10px;
+      padding: 16px 20px;
+      min-width: 400px;
+      max-width: 650px;
+    }
+    .coords-panel h3 { margin-bottom: 10px; font-size: 1rem; color: #60a5fa; }
+    #coords-output {
+      background: #0f172a;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.8rem;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      min-height: 60px;
+      color: #a5f3fc;
+    }
+    .btn-row { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+    }
+    .btn-copy { background: #3b82f6; color: white; }
+    .btn-copy:hover { background: #2563eb; }
+    .btn-clear { background: #374151; color: #ccc; }
+    .btn-clear:hover { background: #4b5563; }
+    .btn-undo { background: #991b1b; color: #fca5a5; }
+    .btn-undo:hover { background: #7f1d1d; }
+    .counter { color: #fbbf24; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <h2>📍 Ethiopia Map Coordinate Finder</h2>
+  <p>Click each city location on the map below. The X,Y percentages (0–100) will be logged.
+  <br />Click cities in this order: <strong>Addis Ababa → North → South → East → West</strong></p>
+
+  <div class="map-wrapper" id="map-wrapper">
+    <img id="map-img" src="/ethiopia-map.webp" alt="Ethiopia Map" />
+    <div id="dots-layer"></div>
+  </div>
+
+  <div class="coords-panel">
+    <h3>📋 Captured Coordinates (<span class="counter" id="counter">0</span>/5)</h3>
+    <div id="coords-output">{ }</div>
+    <div class="btn-row">
+      <button class="btn-copy" onclick="copyCoords()">📋 Copy to Clipboard</button>
+      <button class="btn-undo" onclick="undoLast()">↩ Undo Last</button>
+      <button class="btn-clear" onclick="clearAll()">🗑 Clear All</button>
+    </div>
+  </div>
+
+<script>
+  const regionNames = ['Addis Ababa', 'North Region', 'South Region', 'East Region', 'West Region'];
+  const regionColors = ['#3b82f6', '#ef4444', '#22c55e', '#f59e0b', '#a855f7'];
+  let points = [];
+
+  const img = document.getElementById('map-img');
+  const dotsLayer = document.getElementById('dots-layer');
+  const output = document.getElementById('coords-output');
+  const counter = document.getElementById('counter');
+
+  function syncOverlaySize() {
+    dotsLayer.style.width = img.offsetWidth + 'px';
+    dotsLayer.style.height = img.offsetHeight + 'px';
+  }
+  window.addEventListener('resize', syncOverlaySize);
+  img.addEventListener('load', syncOverlaySize);
+  syncOverlaySize();
+
+  img.addEventListener('click', (e) => {
+    if (points.length >= 5) return;
+
+    const rect = img.getBoundingClientRect();
+    const xPct = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+    const yPct = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+
+    const idx = points.length;
+    points.push({ name: regionNames[idx], cx: xPct, cy: yPct, color: regionColors[idx] });
+
+    const dot = document.createElement('div');
+    dot.className = 'dot-marker';
+    dot.style.left = xPct + '%';
+    dot.style.top = yPct + '%';
+    dot.style.background = regionColors[idx];
+
+    const label = document.createElement('div');
+    label.className = 'dot-label';
+    label.style.left = xPct + '%';
+    label.style.top = yPct + '%';
+    label.textContent = (idx + 1).toString();
+
+    dotsLayer.appendChild(dot);
+    dotsLayer.appendChild(label);
+
+    renderOutput();
+  });
+
+  function renderOutput() {
+    counter.textContent = points.length;
+    const lines = points.map((p, i) =>
+      `  { name: "${p.name}", cx: ${p.cx}, cy: ${p.cy}, color: "${p.color}" }${i < points.length - 1 ? ',' : ''}`
+    );
+    output.textContent = '[\n' + lines.join('\n') + '\n]';
+  }
+
+  function copyCoords() {
+    navigator.clipboard.writeText(output.textContent).then(() => {
+      const btn = document.querySelector('.btn-copy');
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => { btn.textContent = '📋 Copy to Clipboard'; }, 1500);
+    });
+  }
+
+  function undoLast() {
+    points.pop();
+    while (dotsLayer.children.length > points.length * 2) {
+      dotsLayer.removeChild(dotsLayer.lastChild);
+    }
+    renderOutput();
+  }
+
+  function clearAll() {
+    points = [];
+    dotsLayer.innerHTML = '';
+    renderOutput();
+  }
+
+  img.addEventListener('dragstart', (e) => e.preventDefault());
+</script>
+
+</body>
+</html>
